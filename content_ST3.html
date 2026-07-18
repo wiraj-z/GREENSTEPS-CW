@@ -1,0 +1,811 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenSteps | PAGE TITLE</title>
+    <meta
+      name="description"
+      content="Discover how young people and university students can contribute to SDG 13 Climate Action."
+    />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      .content-hero {
+        display: grid;
+
+        grid-template-columns: 1.15fr 0.85fr;
+
+        align-items: center;
+
+        gap: 50px;
+
+        width: min(calc(100% - 48px), 1250px);
+
+        margin: 0 auto;
+
+        padding: 70px 0 55px;
+      }
+
+      .hero-image {
+        display: block;
+
+        width: 100%;
+
+        height: 390px;
+
+        object-fit: cover;
+
+        border: 3px solid #d1ead7;
+
+        border-radius: 18px;
+
+        box-shadow: 0 10px 28px rgba(46, 139, 87, 0.18);
+      }
+
+      .hero-text {
+        min-width: 0;
+      }
+
+      .section-label {
+        display: inline-block;
+
+        margin: 0 0 18px;
+
+        padding: 7px 15px;
+
+        background-color: #d9f7e3;
+
+        color: #2e8b57;
+
+        border-radius: 22px;
+
+        font-size: 14px;
+
+        font-weight: bold;
+      }
+
+      .content-hero h1 {
+        margin: 0 0 22px;
+
+        color: #2e8b57;
+
+        font-size: 50px;
+
+        line-height: 1.15;
+      }
+
+      .hero-introduction {
+        margin: 0;
+
+        color: #354149;
+
+        font-size: 19px;
+
+        line-height: 1.8;
+      }
+
+      .content-navigation {
+        width: min(calc(100% - 48px), 1150px);
+
+        margin: 10px auto 65px;
+
+        padding: 28px;
+
+        background-color: #edf8f0;
+
+        border: 1px solid #b7ddc0;
+
+        border-radius: 16px;
+
+        box-shadow: 0 6px 18px rgba(46, 139, 87, 0.1);
+      }
+
+      .content-navigation h2 {
+        margin: 0 0 22px;
+
+        color: #2e8b57;
+
+        font-size: 26px;
+
+        text-align: center;
+      }
+
+      .content-navigation ul {
+        display: flex;
+
+        justify-content: center;
+
+        flex-wrap: wrap;
+
+        gap: 14px;
+
+        margin: 0;
+
+        padding: 0;
+
+        list-style: none;
+      }
+
+      .content-navigation a {
+        display: inline-block;
+
+        padding: 10px 17px;
+
+        background-color: #ffffff;
+
+        color: #2e8b57;
+
+        border: 1px solid #9bcba8;
+
+        border-radius: 25px;
+
+        font-size: 15px;
+
+        font-weight: 600;
+
+        text-decoration: none;
+
+        transition: 0.3s;
+      }
+
+      .content-navigation a:hover,
+      .content-navigation a:focus-visible {
+        background-color: #2e8b57;
+
+        color: #ffffff;
+
+        transform: translateY(-2px);
+
+        box-shadow: 0 5px 12px rgba(46, 139, 87, 0.22);
+      }
+
+      .content-section {
+        width: min(calc(100% - 48px), 1150px);
+
+        margin: 0 auto 55px;
+
+        padding: 42px;
+
+        background-color: #ffffff;
+
+        border: 1px solid #dce9df;
+
+        border-radius: 18px;
+
+        box-shadow: 0 7px 22px rgba(0, 0, 0, 0.09);
+
+        scroll-margin-top: 110px;
+      }
+
+      .section-number {
+        display: inline-block;
+
+        margin: 0 0 12px;
+
+        padding: 5px 12px;
+
+        background-color: #d9f7e3;
+
+        color: #2e8b57;
+
+        border-radius: 18px;
+
+        font-size: 14px;
+
+        font-weight: 700;
+      }
+
+      .content-section h2 {
+        margin: 0 0 20px;
+
+        color: #2e8b57;
+
+        font-size: 31px;
+
+        line-height: 1.3;
+      }
+
+      .content-section h3 {
+        margin: 26px 0 12px;
+
+        color: #205c37;
+
+        font-size: 21px;
+      }
+
+      .content-section p {
+        margin: 0 0 18px;
+
+        color: #354149;
+
+        font-size: 17px;
+
+        line-height: 1.8;
+      }
+
+      .content-section ul,
+      .content-section ol {
+        margin: 14px 0 0;
+
+        padding-left: 24px;
+      }
+
+      .content-section li {
+        margin-bottom: 10px;
+
+        color: #354149;
+
+        font-size: 16px;
+
+        line-height: 1.65;
+      }
+
+      .content-section li::marker {
+        color: #2e8b57;
+
+        font-weight: 700;
+      }
+
+      .content-with-image {
+        display: grid;
+
+        grid-template-columns: 1.1fr 0.9fr;
+
+        align-items: center;
+
+        gap: 45px;
+      }
+
+      .reverse-layout .section-text {
+        order: 2;
+      }
+
+      .reverse-layout .section-figure {
+        order: 1;
+      }
+
+      .section-figure {
+        margin: 0;
+      }
+
+      .section-figure img {
+        display: block;
+
+        width: 100%;
+
+        height: 330px;
+
+        object-fit: cover;
+
+        border: 3px solid #d1ead7;
+
+        border-radius: 15px;
+
+        box-shadow: 0 8px 22px rgba(46, 139, 87, 0.16);
+
+        transition: 0.3s;
+      }
+
+      .section-figure img:hover {
+        transform: scale(1.02);
+
+        box-shadow: 0 13px 28px rgba(46, 139, 87, 0.24);
+      }
+
+      .section-figure figcaption {
+        margin-top: 12px;
+
+        color: #667477;
+
+        font-size: 14px;
+
+        font-style: italic;
+
+        line-height: 1.5;
+
+        text-align: center;
+      }
+
+      .content-action-link {
+        display: inline-block;
+
+        margin-top: 24px;
+
+        padding: 12px 22px;
+
+        background-color: #2e8b57;
+
+        color: white;
+
+        border: 2px solid #2e8b57;
+
+        border-radius: 8px;
+
+        font-size: 16px;
+
+        font-weight: 700;
+
+        text-decoration: none;
+
+        cursor: pointer;
+
+        transition: 0.3s;
+      }
+
+      .content-action-link:hover,
+      .content-action-link:focus-visible {
+        background-color: white;
+
+        color: #2e8b57;
+
+        transform: translateY(-2px);
+
+        box-shadow: 0 7px 16px rgba(46, 139, 87, 0.22);
+      }
+
+      @media (max-width: 900px) {
+        .content-hero {
+          grid-template-columns: 1fr;
+        }
+
+        .content-with-image {
+          grid-template-columns: 1fr;
+        }
+
+        .reverse-layout .section-text,
+        .reverse-layout .section-figure {
+          order: initial;
+        }
+
+        .hero-image {
+          height: 350px;
+        }
+
+        .section-figure {
+          width: 100%;
+
+          max-width: 700px;
+
+          margin: 0 auto;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .content-hero {
+          width: min(calc(100% - 28px), 1250px);
+
+          padding: 45px 0 35px;
+
+          gap: 30px;
+        }
+
+        .content-hero h1 {
+          font-size: 37px;
+        }
+
+        .hero-introduction {
+          font-size: 17px;
+        }
+
+        .hero-image {
+          height: 270px;
+        }
+
+        .content-navigation {
+          width: min(calc(100% - 28px), 1150px);
+
+          margin-bottom: 40px;
+
+          padding: 22px 16px;
+        }
+
+        .content-navigation ul {
+          flex-direction: column;
+
+          align-items: stretch;
+        }
+
+        .content-navigation a {
+          display: block;
+
+          text-align: center;
+        }
+
+        .content-section {
+          width: min(calc(100% - 28px), 1150px);
+
+          margin-bottom: 35px;
+
+          padding: 25px 20px;
+        }
+
+        .content-section h2 {
+          font-size: 27px;
+        }
+
+        .content-section h3 {
+          font-size: 19px;
+        }
+
+        .content-section p,
+        .content-section li {
+          font-size: 16px;
+        }
+
+        .section-figure img {
+          height: 250px;
+        }
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .content-navigation a:focus-visible,
+      .content-action-link:focus-visible {
+        outline: 3px solid rgba(46, 139, 87, 0.35);
+
+        outline-offset: 4px;
+      }
+    </style>
+  </head>
+  <body id="top">
+    <!-- ===== SKIP LINK ===== -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="home.html" aria-label="GreenSteps — Home">
+          <span class="brand-mark" aria-hidden="true">☀</span>
+          <span class="brand-name">GreenSteps</span>
+        </a>
+
+        <input
+          type="checkbox"
+          id="nav-toggle"
+          class="nav-checkbox"
+          aria-hidden="true"
+        />
+        <label
+          for="nav-toggle"
+          class="nav-toggle"
+          aria-label="Toggle navigation menu"
+          role="button"
+        >
+          <span class="hamburger" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </label>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a class="nav-link" href="home.html">Home</a>
+          <a class="nav-link" href="gallery.html">Gallery</a>
+          <a class="nav-link" href="ais.html">Action Simulator</a>
+          <a class="nav-link" href="feedback.html">Feedback</a>
+          <a class="nav-link" href="team.html">Team</a>
+          <a class="nav-link" href="profile.html">User Profile</a>
+          <a class="nav-link" href="sitemap.html">Sitemap</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== MAIN — replace everything inside here per page ===== -->
+    <main id="main-content">
+      <!--=== ADD YOUR PAGE CONTENT HERE ===
+        - Do not modify the header or footer.
+        - Use shared classes from style.css.
+      
+      -->
+
+      <section class="content-hero" aria-labelledby="content-title">
+        <div class="hero-text">
+          <p class="section-label">SDG 13 — Climate Action</p>
+
+          <h1 id="content-title">Climate Change and Young People</h1>
+
+          <p class="hero-introduction">
+            Young people will experience many of the long-term effects of
+            climate change, but they are also capable of creating meaningful
+            solutions. Through everyday choices, education, technology and
+            community participation, students can help build a greener and more
+            sustainable future.
+          </p>
+        </div>
+
+        <img
+          src="Images/content/campaign.jpg"
+          alt="Young people participating in a climate action campaign"
+          class="hero-image"
+        />
+      </section>
+
+      <nav
+        class="content-navigation"
+        aria-label="Climate change and young people page sections"
+      >
+        <h2>Explore This Page</h2>
+
+        <ul>
+          <li><a href="#youth-role">Why Young People Matter</a></li>
+
+          <li>
+            <a href="#student-lifestyle">Sustainable Student Lifestyles</a>
+          </li>
+
+          <li><a href="#green-transport">Greener Travel Choices</a></li>
+
+          <li><a href="#community-action">Campus and Community Action</a></li>
+
+          <li><a href="#education-technology">Education and Technology</a></li>
+        </ul>
+      </nav>
+
+      <section class="content-section" id="youth-role">
+        <div class="section-text">
+          <p class="section-number">01</p>
+
+          <h2>Why Young People Matter in Climate Action</h2>
+
+          <p>
+            Young people will live with the long-term environmental,economic and
+            social effects of climate change. Their choices today can influence
+            the type of future experienced by their communities and future
+            generations.
+          </p>
+
+          <p>
+            Students can also influence their families, friends, universities
+            and future workplaces. When young people adopt responsible habits
+            and encourage others to participate, small individual actions can
+            develop into wider community change.
+          </p>
+
+          <h3>Young people can contribute by:</h3>
+
+          <ul>
+            <li>
+              Learning about climate change and sharing reliable information.
+            </li>
+
+            <li>Making environmentally responsible lifestyle choices.</li>
+
+            <li>Participating in local climate-action programmes.</li>
+
+            <li>
+              Encouraging universities and organisations to act responsibly.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <section
+        class="content-section content-with-image"
+        id="student-lifestyle"
+      >
+        <div class="section-text">
+          <p class="section-number">02</p>
+
+          <h2>Sustainable Student Lifestyles</h2>
+
+          <p>
+            Students make daily decisions involving food, water, electricity,
+            clothing and shopping. Choosing more sustainable alternatives can
+            reduce waste and lower environmental impact.
+          </p>
+
+          <p>
+            A sustainable lifestyle does not require students to change
+            everything immediately. Beginning with one realistic action and
+            practising it consistently is more effective than attempting several
+            difficult changes at once.
+          </p>
+
+          <h3>Simple student actions</h3>
+
+          <ul>
+            <li>Carry a reusable water bottle and lunch container.</li>
+
+            <li>Switch off unused lights, fans and electronic devices.</li>
+
+            <li>Avoid unnecessary purchases and disposable products.</li>
+
+            <li>Plan meals to reduce food waste.</li>
+          </ul>
+        </div>
+
+        <figure class="section-figure">
+          <img
+            src="Images/content/reuse.jpg"
+            alt="Reusable bottle, lunch container and bag used by a student"
+            loading="lazy"
+          />
+
+          <figcaption>
+            Reusable products can reduce the amount of disposable waste created
+            during everyday student life.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section
+        class="content-section content-with-image reverse-layout"
+        id="green-transport"
+      >
+        <div class="section-text">
+          <p class="section-number">03</p>
+
+          <h2>Greener Travel Choices</h2>
+
+          <p>
+            Travelling to university, work and social activities can produce
+            greenhouse-gas emissions, especially when people regularly travel
+            alone in private vehicles.
+          </p>
+
+          <p>
+            Walking, cycling, public transport and shared journeys can help
+            reduce the environmental impact of everyday travel. Students can
+            begin by replacing only one or two journeys each week.
+          </p>
+
+          <h3>Lower-emission travel options</h3>
+
+          <ul>
+            <li>Walk when travelling short distances.</li>
+
+            <li>Cycle where safe routes are available.</li>
+
+            <li>Use buses or trains when practical.</li>
+
+            <li>Share journeys with classmates travelling to the same area.</li>
+          </ul>
+        </div>
+
+        <figure class="section-figure">
+          <img
+            src="Images/content/travel.jpg"
+            alt="Young university students travelling together by bicycle"
+            loading="lazy"
+          />
+
+          <figcaption>
+            Cycling and shared transport can reduce emissions from regular
+            student travel.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="content-section content-with-image" id="community-action">
+        <div class="section-text">
+          <p class="section-number">04</p>
+
+          <h2>Campus and Community Climate Action</h2>
+
+          <p>
+            Individual habits are important, but young people can create a
+            greater impact when they work together. Universities provide
+            opportunities for students to join environmental clubs, campaigns
+            and volunteering programmes.
+          </p>
+
+          <p>
+            Activities such as tree planting, beach cleaning, recycling
+            campaigns and climate-awareness events can create visible benefits
+            while encouraging more people to participate.
+          </p>
+
+          <h3>Ways to participate</h3>
+
+          <ul>
+            <li>Join a university environmental society.</li>
+
+            <li>Participate in tree-planting or clean-up campaigns.</li>
+
+            <li>Help organise recycling and waste-reduction programmes.</li>
+
+            <li>Encourage friends to join community activities.</li>
+          </ul>
+        </div>
+
+        <figure class="section-figure">
+          <img
+            src="Images/content/clean.jpg"
+            alt="Students working together during an environmental clean-up"
+            loading="lazy"
+          />
+
+          <figcaption>
+            Working together allows young people to create a wider and more
+            visible environmental impact.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section
+        class="content-section content-with-image reverse-layout"
+        id="education-technology"
+      >
+        <div class="section-text">
+          <p class="section-number">05</p>
+
+          <h2>Using Education and Technology for Climate Action</h2>
+
+          <p>
+            Education helps young people understand the causes and effects of
+            climate change. It also helps students identify false information
+            and communicate climate issues more responsibly.
+          </p>
+
+          <p>
+            Technology students can contribute by developing websites,
+            applications, data systems and digital campaigns that encourage
+            sustainable behaviour or improve environmental awareness.
+          </p>
+
+          <h3>Ideas for young innovators</h3>
+
+          <ul>
+            <li>Create applications that track energy or water use.</li>
+
+            <li>Develop websites that promote local climate programmes.</li>
+
+            <li>
+              Use social media to share reliable environmental information.
+            </li>
+
+            <li>
+              Explore careers connected to renewable energy and sustainability.
+            </li>
+          </ul>
+
+          <a class="content-action-link" href="feedback.html">
+            Explore Climate Action Programs
+          </a>
+        </div>
+
+        <figure class="section-figure">
+          <img
+            src="Images/content/tech.jpg"
+            alt="Young students using technology to develop environmental solutions"
+            loading="lazy"
+          />
+
+          <figcaption>
+            Education and technology allow students to design new climate
+            solutions and share ideas with wider audiences.
+          </figcaption>
+        </figure>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-card">
+          <h3>Student</h3>
+          <p>
+            Rehansa Sumalmi<br />Student 3 – Feedback, Team and Content Page
+          </p>
+        </div>
+        <div class="footer-card">
+          <h3>Explore</h3>
+          <p>
+            <a href="pageEditor_ST3.html">Page Editor</a><br />
+            <a href="validation_ST3.html">Validation</a><br />
+            <a href="sitemap.html">Sitemap</a>
+          </p>
+        </div>
+        <div class="footer-card">
+          <h3>Accessibility</h3>
+          <p><a href="#accessibility">Accessibility Statement</a></p>
+        </div>
+      </div>
+    </footer>
+    <a class="top-btn" href="#top" aria-label="Go to top of page">↑ Top</a>
+  </body>
+</html>

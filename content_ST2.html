@@ -1,0 +1,742 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenSteps | Waste Reduction & Recycling</title>
+    <meta
+      name="description"
+      content="Learn how reducing waste and recycling helps fight climate change and what young people can do to make a difference."
+    />
+    <link rel="icon" type="image/png" href="Images/favicon/favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      .content-hero {
+        display: grid;
+        grid-template-columns: 1.15fr 0.85fr;
+        align-items: center;
+        gap: 50px;
+        width: min(calc(100% - 48px), 1250px);
+        margin: 0 auto;
+        padding: 70px 0 55px;
+      }
+
+      .hero-image {
+        display: block;
+        width: 100%;
+        height: 390px;
+        object-fit: cover;
+        border: 3px solid #d1ead7;
+        border-radius: 18px;
+        box-shadow: 0 10px 28px rgba(46, 139, 87, 0.18);
+      }
+
+      .hero-text {
+        min-width: 0;
+      }
+
+      .section-label {
+        display: inline-block;
+        margin: 0 0 18px;
+        padding: 7px 15px;
+        background-color: #d9f7e3;
+        color: #2e8b57;
+        border-radius: 22px;
+        font-size: 14px;
+        font-weight: bold;
+      }
+
+      .content-hero h1 {
+        margin: 0 0 22px;
+        color: #2e8b57;
+        font-size: 50px;
+        line-height: 1.15;
+      }
+
+      .hero-introduction {
+        margin: 0;
+        color: #354149;
+        font-size: 19px;
+        line-height: 1.8;
+      }
+
+      .content-navigation {
+        width: min(calc(100% - 48px), 1150px);
+        margin: 10px auto 65px;
+        padding: 28px;
+        background-color: #edf8f0;
+        border: 1px solid #b7ddc0;
+        border-radius: 16px;
+        box-shadow: 0 6px 18px rgba(46, 139, 87, 0.1);
+      }
+
+      .content-navigation h2 {
+        margin: 0 0 22px;
+        color: #2e8b57;
+        font-size: 26px;
+        text-align: center;
+      }
+
+      .content-navigation ul {
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .content-navigation a {
+        display: inline-block;
+        padding: 10px 17px;
+        background-color: #ffffff;
+        color: #2e8b57;
+        border: 1px solid #9bcba8;
+        border-radius: 25px;
+        font-size: 15px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: 0.3s;
+      }
+
+      .content-navigation a:hover,
+      .content-navigation a:focus-visible {
+        background-color: #2e8b57;
+        color: #ffffff;
+        transform: translateY(-2px);
+        box-shadow: 0 5px 12px rgba(46, 139, 87, 0.22);
+      }
+
+      .content-section {
+        width: min(calc(100% - 48px), 1150px);
+        margin: 0 auto 55px;
+        padding: 42px;
+        background-color: #ffffff;
+        border: 1px solid #dce9df;
+        border-radius: 18px;
+        box-shadow: 0 7px 22px rgba(0, 0, 0, 0.09);
+        scroll-margin-top: 110px;
+      }
+
+      .section-number {
+        display: inline-block;
+        margin: 0 0 12px;
+        padding: 5px 12px;
+        background-color: #d9f7e3;
+        color: #2e8b57;
+        border-radius: 18px;
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      .content-section h2 {
+        margin: 0 0 20px;
+        color: #2e8b57;
+        font-size: 31px;
+        line-height: 1.3;
+      }
+
+      .content-section h3 {
+        margin: 26px 0 12px;
+        color: #205c37;
+        font-size: 21px;
+      }
+
+      .content-section p {
+        margin: 0 0 18px;
+        color: #354149;
+        font-size: 17px;
+        line-height: 1.8;
+      }
+
+      .content-section ul,
+      .content-section ol {
+        margin: 14px 0 0;
+        padding-left: 24px;
+      }
+
+      .content-section li {
+        margin-bottom: 10px;
+        color: #354149;
+        font-size: 16px;
+        line-height: 1.65;
+      }
+
+      .content-section li::marker {
+        color: #2e8b57;
+        font-weight: 700;
+      }
+
+      .content-with-image {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        align-items: center;
+        gap: 45px;
+      }
+
+      .reverse-layout .section-text {
+        order: 2;
+      }
+
+      .reverse-layout .section-figure {
+        order: 1;
+      }
+
+      .section-figure {
+        margin: 0;
+      }
+
+      .section-figure img {
+        display: block;
+        width: 100%;
+        height: 330px;
+        object-fit: cover;
+        border: 3px solid #d1ead7;
+        border-radius: 15px;
+        box-shadow: 0 8px 22px rgba(46, 139, 87, 0.16);
+        transition: 0.3s;
+      }
+
+      .section-figure img:hover {
+        transform: scale(1.02);
+        box-shadow: 0 13px 28px rgba(46, 139, 87, 0.24);
+      }
+
+      .section-figure figcaption {
+        margin-top: 12px;
+        color: #667477;
+        font-size: 14px;
+        font-style: italic;
+        line-height: 1.5;
+        text-align: center;
+      }
+
+      .content-action-link {
+        display: inline-block;
+        margin-top: 24px;
+        padding: 12px 22px;
+        background-color: #2e8b57;
+        color: white;
+        border: 2px solid #2e8b57;
+        border-radius: 8px;
+        font-size: 16px;
+        font-weight: 700;
+        text-decoration: none;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .content-action-link:hover,
+      .content-action-link:focus-visible {
+        background-color: white;
+        color: #2e8b57;
+        transform: translateY(-2px);
+        box-shadow: 0 7px 16px rgba(46, 139, 87, 0.22);
+      }
+
+      @media (max-width: 900px) {
+        .content-hero {
+          grid-template-columns: 1fr;
+        }
+
+        .content-with-image {
+          grid-template-columns: 1fr;
+        }
+
+        .reverse-layout .section-text,
+        .reverse-layout .section-figure {
+          order: initial;
+        }
+
+        .hero-image {
+          height: 350px;
+        }
+
+        .section-figure {
+          width: 100%;
+          max-width: 700px;
+          margin: 0 auto;
+        }
+      }
+
+      @media (max-width: 650px) {
+        .content-hero {
+          width: min(calc(100% - 28px), 1250px);
+          padding: 45px 0 35px;
+          gap: 30px;
+        }
+
+        .content-hero h1 {
+          font-size: 37px;
+        }
+
+        .hero-introduction {
+          font-size: 17px;
+        }
+
+        .hero-image {
+          height: 270px;
+        }
+
+        .content-navigation {
+          width: min(calc(100% - 28px), 1150px);
+          margin-bottom: 40px;
+          padding: 22px 16px;
+        }
+
+        .content-navigation ul {
+          flex-direction: column;
+          align-items: stretch;
+        }
+
+        .content-navigation a {
+          display: block;
+          text-align: center;
+        }
+
+        .content-section {
+          width: min(calc(100% - 28px), 1150px);
+          margin-bottom: 35px;
+          padding: 25px 20px;
+        }
+
+        .content-section h2 {
+          font-size: 27px;
+        }
+
+        .content-section h3 {
+          font-size: 19px;
+        }
+
+        .content-section p,
+        .content-section li {
+          font-size: 16px;
+        }
+
+        .section-figure img {
+          height: 250px;
+        }
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      .content-navigation a:focus-visible,
+      .content-action-link:focus-visible {
+        outline: 3px solid rgba(46, 139, 87, 0.35);
+        outline-offset: 4px;
+      }
+    </style>
+  </head>
+  <body id="top">
+    <!-- ===== SKIP LINK ===== -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="home.html" aria-label="GreenSteps — Home">
+          <span class="brand-mark" aria-hidden="true">☀</span>
+          <span class="brand-name">GreenSteps</span>
+        </a>
+
+        <input
+          type="checkbox"
+          id="nav-toggle"
+          class="nav-checkbox"
+          aria-hidden="true"
+        />
+        <label
+          for="nav-toggle"
+          class="nav-toggle"
+          aria-label="Toggle navigation menu"
+          role="button"
+        >
+          <span class="hamburger" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </label>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a class="nav-link" href="home.html">Home</a>
+          <a class="nav-link" href="gallery.html">Gallery</a>
+          <a class="nav-link" href="ais.html">Action Simulator</a>
+          <a class="nav-link" href="feedback.html">Feedback</a>
+          <a class="nav-link" href="team.html">Team</a>
+          <a class="nav-link" href="profile.html">User Profile</a>
+          <a class="nav-link" href="sitemap.html">Sitemap</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main id="main-content">
+      <section class="content-hero" aria-labelledby="content-title">
+        <div class="hero-text">
+          <p class="section-label">SDG 13 — Climate Action</p>
+
+          <h1 id="content-title">Waste Reduction &amp; Recycling</h1>
+
+          <p class="hero-introduction">
+            The waste we generate every day has a far greater impact on the
+            climate than most people realise. From landfill methane to the
+            emissions embedded in producing and discarding goods, waste is a
+            significant driver of climate change. By reducing what we consume
+            and recycling more of what remains, individuals and communities can
+            make a meaningful difference.
+          </p>
+        </div>
+
+        <img
+          src="Images/content_ST2/recycle.png"
+          alt="The cards display environmental sustainability concepts in green"
+          class="hero-image"
+        />
+      </section>
+
+      <nav
+        class="content-navigation"
+        aria-label="Waste reduction page sections"
+      >
+        <h2>Explore This Page</h2>
+
+        <ul>
+          <li><a href="#waste-climate">Waste and the Climate</a></li>
+          <li><a href="#landfill">The Problem with Landfill</a></li>
+          <li><a href="#recycling">Power of Recycling</a></li>
+          <li><a href="#reduce-reuse">Reduce and Reuse First</a></li>
+          <li><a href="#circular-economy">Towards a Circular Economy</a></li>
+        </ul>
+      </nav>
+
+      <!-- Section 01 -->
+      <section class="content-section" id="waste-climate">
+        <div class="section-text">
+          <p class="section-number">01</p>
+
+          <h2>How Waste Drives Climate Change</h2>
+
+          <p>
+            Waste is not just an environmental nuisance — it is a significant
+            source of greenhouse-gas emissions. When organic waste decomposes in
+            landfill sites without oxygen, it releases methane, a gas that is
+            over 80 times more potent than carbon dioxide over a 20-year period.
+            At the same time, producing new goods from virgin materials consumes
+            enormous amounts of energy, most of which still comes from fossil
+            fuels.
+          </p>
+
+          <p>
+            The global waste sector accounts for around five percent of total
+            greenhouse-gas emissions, but when the full lifecycle of products is
+            considered — extraction, manufacturing, transport, and disposal —
+            the true climate cost of our throwaway culture is far higher.
+            Tackling waste is therefore one of the most accessible and impactful
+            climate actions available to individuals.
+          </p>
+
+          <h3>Key facts about waste and emissions:</h3>
+
+          <ul>
+            <li>
+              Landfill sites are among the largest human-made sources of methane
+              emissions globally.
+            </li>
+            <li>
+              Food waste alone is responsible for roughly eight percent of
+              global greenhouse-gas emissions.
+            </li>
+            <li>
+              Manufacturing new products from raw materials typically produces
+              significantly more emissions than using recycled ones.
+            </li>
+            <li>
+              Single-use plastics contribute to both carbon emissions and
+              long-term pollution of natural ecosystems.
+            </li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Section 02 -->
+      <section class="content-section content-with-image" id="landfill">
+        <div class="section-text">
+          <p class="section-number">02</p>
+
+          <h2>The Problem with Landfill</h2>
+
+          <p>
+            Burying waste in landfill sites is still the most common method of
+            disposal worldwide, but it is also one of the most damaging for the
+            climate. As organic material — food scraps, garden waste, paper —
+            breaks down in an oxygen-free environment, it generates methane gas.
+            Many landfill sites capture some of this gas, but a significant
+            portion escapes directly into the atmosphere.
+          </p>
+
+          <p>
+            Beyond methane, landfill also produces leachate, a toxic liquid that
+            can contaminate soil and groundwater. Hazardous materials such as
+            batteries, electronics, and certain plastics release chemicals that
+            persist in the environment for centuries. Reducing the volume of
+            waste sent to landfill is therefore essential for both climate and
+            ecological health.
+          </p>
+
+          <h3>Why landfill is a climate problem:</h3>
+
+          <ul>
+            <li>
+              Decomposing organic waste produces methane, a highly potent
+              greenhouse gas.
+            </li>
+            <li>
+              Landfill gases contribute to local air pollution as well as global
+              warming.
+            </li>
+            <li>
+              Valuable materials are permanently lost rather than returned to
+              the economy.
+            </li>
+            <li>
+              Expanding landfill sites destroys natural habitats that store
+              carbon.
+            </li>
+          </ul>
+        </div>
+
+        <figure class="section-figure">
+          <img
+            src="Images/content_ST2/landfill.avif"
+            alt="Large landfill site with waste piled high"
+            loading="lazy"
+          />
+
+          <figcaption>
+            Landfill sites release methane as organic waste decomposes, making
+            them a major contributor to greenhouse-gas emissions.
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- Section 03 -->
+      <section
+        class="content-section content-with-image reverse-layout"
+        id="recycling"
+      >
+        <div class="section-text">
+          <p class="section-number">03</p>
+
+          <h2>The Climate Power of Recycling</h2>
+
+          <p>
+            Recycling diverts waste from landfill and replaces the need to
+            extract and process virgin raw materials. Making aluminium from
+            recycled cans uses around 95 percent less energy than producing it
+            from bauxite ore. Recycled paper, glass, and plastics all offer
+            similar — though varied — energy savings compared to their
+            virgin-material equivalents.
+          </p>
+
+          <p>
+            When individuals and communities recycle consistently and correctly,
+            the cumulative effect on emissions is substantial. However,
+            contamination of recycling streams — putting the wrong items in
+            recycling bins — can render entire batches unprocessable. Learning
+            what can and cannot be recycled in your local system is one of the
+            most practical steps you can take.
+          </p>
+
+          <h3>Advantages of effective recycling:</h3>
+
+          <ul>
+            <li>
+              Dramatically reduces the energy needed to produce new materials.
+            </li>
+            <li>
+              Keeps valuable resources in use rather than sending them to
+              landfill.
+            </li>
+            <li>
+              Lowers emissions associated with mining, logging, and raw material
+              processing.
+            </li>
+            <li>
+              Creates green jobs in collection, sorting, and reprocessing
+              industries.
+            </li>
+          </ul>
+        </div>
+
+        <figure class="section-figure">
+          <img
+            src="Images/content_ST2/recycling-plant.png"
+            alt="Workers sorting recyclable materials on a conveyor belt at a recycling facility"
+            loading="lazy"
+          />
+
+          <figcaption>
+            Recycling facilities recover valuable materials and dramatically
+            reduce the energy needed to manufacture new products.
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- Section 04 -->
+      <section class="content-section content-with-image" id="reduce-reuse">
+        <div class="section-text">
+          <p class="section-number">04</p>
+
+          <h2>Reduce and Reuse Come First</h2>
+
+          <p>
+            Recycling is valuable, but it still requires energy and resources.
+            The most effective strategy is to reduce consumption in the first
+            place, and to reuse items as many times as possible before they
+            reach the end of their life. This is why environmental frameworks
+            place "reduce" and "reuse" above "recycle" in the waste hierarchy.
+          </p>
+
+          <p>
+            Simple everyday choices — buying less, choosing durable goods over
+            disposable ones, repairing rather than replacing, and borrowing or
+            sharing items — can significantly shrink the amount of waste a
+            person generates and the emissions embedded in their consumption.
+            Young people are increasingly leading cultural shifts towards repair
+            cafés, second-hand shopping, and zero-waste lifestyles.
+          </p>
+
+          <h3>How to reduce and reuse in daily life:</h3>
+
+          <ul>
+            <li>
+              Carry reusable bags, bottles, and containers to avoid single-use
+              packaging.
+            </li>
+            <li>
+              Buy second-hand clothing, electronics, and furniture before
+              purchasing new.
+            </li>
+            <li>
+              Repair broken items or take them to a local repair café rather
+              than discarding them.
+            </li>
+            <li>
+              Plan meals carefully to reduce food waste, and compost unavoidable
+              scraps.
+            </li>
+          </ul>
+        </div>
+
+        <figure class="section-figure">
+          <img
+            src="Images/content_ST2/reuse.avif"
+            alt="Repurposed rubber boots and an old car tire used as creative, upcycled plant pots for green foliage"
+            loading="lazy"
+          />
+
+          <figcaption>
+            Repairing and reusing items keeps them out of landfill and avoids
+            the emissions of producing replacements.
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- Section 05 -->
+      <section
+        class="content-section content-with-image reverse-layout"
+        id="circular-economy"
+      >
+        <div class="section-text">
+          <p class="section-number">05</p>
+
+          <h2>Towards a Circular Economy</h2>
+
+          <p>
+            The circular economy is a model designed to eliminate waste entirely
+            by keeping materials and products in use for as long as possible.
+            Rather than the traditional "take, make, dispose" approach, a
+            circular economy designs products to be repaired, remanufactured,
+            and ultimately recycled back into new goods with minimal loss of
+            quality or material.
+          </p>
+
+          <p>
+            Transitioning to a circular economy could reduce global
+            greenhouse-gas emissions by as much as 39 percent, according to
+            research by the Ellen MacArthur Foundation. Young people will both
+            shape and benefit from this transition. Careers in sustainable
+            product design, materials science, supply chain management, and
+            environmental policy all offer opportunities to directly influence
+            how future economies handle resources.
+          </p>
+
+          <h3>Emerging circular economy solutions:</h3>
+
+          <ul>
+            <li>
+              Products designed from the outset to be disassembled and recycled.
+            </li>
+            <li>
+              Industrial symbiosis, where one company's waste becomes another's
+              raw material.
+            </li>
+            <li>
+              Extended producer responsibility schemes that hold manufacturers
+              accountable for end-of-life disposal.
+            </li>
+            <li>
+              Digital platforms that connect people to repair services, sharing
+              schemes, and second-hand markets.
+            </li>
+          </ul>
+
+          <a class="content-action-link" href="ais.html">
+            Calculate Your Waste Footprint
+          </a>
+        </div>
+
+        <figure class="section-figure">
+          <img
+            src="Images/content_WR/circular-economy.avif"
+            alt="Diagram illustration of circular economy showing products being reused and recycled"
+            loading="lazy"
+          />
+
+          <figcaption>
+            The circular economy aims to keep materials in use indefinitely,
+            eliminating waste and dramatically cutting emissions.
+          </figcaption>
+        </figure>
+      </section>
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-card">
+          <h3>Student</h3>
+          <p>Sayuranga Wiraj<br />Student 01 - Home Page & Gallery</p>
+        </div>
+        <div class="footer-card">
+          <h3>Explore</h3>
+          <p>
+            <a href="pageEditor_ST1.html">Page Editor</a><br />
+            <a href="validation_ST1.html">Validation</a><br />
+            <a href="sitemap.html">Sitemap</a>
+          </p>
+        </div>
+        <div class="footer-card">
+          <h3>Accessibility</h3>
+          <p><a href="#accessibility">Accessibility Statement</a></p>
+        </div>
+      </div>
+    </footer>
+    <a class="top-btn" href="#top" aria-label="Go to top of page">↑ Top</a>
+  </body>
+</html>

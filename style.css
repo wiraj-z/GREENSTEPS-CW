@@ -51,8 +51,8 @@ textarea {
    ============================================= */
 .skip-link {
   position: absolute;
-  top: -50px;
-  left: 1rem;
+  top: -48px;
+  left: 0.1rem;
   background: var(--primary);
   color: white;
   padding: 0.8rem 1rem;
@@ -61,7 +61,7 @@ textarea {
 }
 
 .skip-link:focus {
-  top: 1rem;
+  top: 0.5rem;
 }
 
 :focus-visible {

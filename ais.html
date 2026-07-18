@@ -6,410 +6,758 @@
     <title>GreenSteps | Action Impact Simulator</title>
     <meta
       name="description"
-      content="Choose sustainable actions and discover your climate impact with GreenSteps."
+      content="Use the GreenSteps Action Impact Simulator to discover how your sustainable daily choices reduce carbon emissions and contribute to UN SDG 13."
     />
     <link rel="icon" type="image/png" href="assets/img/favicon.ico" />
     <link rel="stylesheet" href="style.css" />
+
+    <!-- =============================================
+         AIS PAGE — PAGE-SPECIFIC STYLES ONLY
+         Does not override any rule in style.css.
+         ============================================= -->
     <style>
-      .simulator-shell {
-        position: relative;
-        overflow: hidden;
-        border-radius: calc(var(--radius) + 6px);
-        padding: 1rem 0 1.4rem;
+      /* -----------------------------------------------
+         1. SIMULATOR WRAPPER — dynamic background layer
+         ----------------------------------------------- */
+
+      /* Background layers are position:fixed so they cover the full
+         viewport regardless of scroll position or wrapper height.
+         z-index:-1 keeps them behind everything including the header. */
+      .ais-bg {
+        position: fixed;
+        inset: 0;
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
-        box-shadow: var(--shadow);
-        transition:
-          background-image 1.1s ease,
-          box-shadow 0.6s ease;
-      }
-
-      .simulator-shell::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: linear-gradient(
-          120deg,
-          rgba(255, 255, 255, 0.28),
-          rgba(255, 255, 255, 0.05)
-        );
+        opacity: 0;
+        transition: opacity 1.2s ease;
+        z-index: -1;
         pointer-events: none;
       }
 
-      .simulator-shell > * {
+      .ais-bg--low {
+        background-image: url("Images/ais/low.avif");
+      }
+
+      .ais-bg--medium {
+        background-image: url("Images/ais/m.avif");
+      }
+
+      .ais-bg--high {
+        background-image: url("Images/ais/high.avif");
+      }
+
+      .ais-bg.is-active {
+        opacity: 0.65;
+      }
+      .ais-content {
         position: relative;
-        z-index: 1;
       }
 
-      .simulator-shell[data-impact="idle"] {
-        background-image: linear-gradient(
-          135deg,
-          rgba(244, 251, 247, 0.95),
-          rgba(232, 245, 233, 0.92)
-        );
-      }
-
-      .simulator-shell[data-impact="low"] {
-        background-image:
-          linear-gradient(
-            135deg,
-            rgba(114, 80, 28, 0.72),
-            rgba(184, 137, 57, 0.38)
-          ),
-          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='%23d6b37d'/%3E%3Cpath d='M0 620 Q220 520 430 610 T860 540 T1200 620 V800 H0Z' fill='%23956f2d'/%3E%3Cpath d='M140 600 L220 430 L310 600 Z' fill='%236c4b1e'/%3E%3Cpath d='M720 600 L830 360 L945 600 Z' fill='%23573f16'/%3E%3C/svg%3E");
-      }
-
-      .simulator-shell[data-impact="medium"] {
-        background-image:
-          linear-gradient(
-            135deg,
-            rgba(29, 82, 38, 0.74),
-            rgba(90, 161, 87, 0.34)
-          ),
-          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='%2345a04e'/%3E%3Cpath d='M0 620 Q180 520 340 590 T760 540 T1200 620 V800 H0Z' fill='%232f6e36'/%3E%3Cpath d='M170 620 L280 320 L390 620 Z' fill='%233e7f3f'/%3E%3Cpath d='M760 620 L860 290 L980 620 Z' fill='%233f8c47'/%3E%3Ccircle cx='950' cy='220' r='54' fill='%23f7d36d'/%3E%3C/svg%3E");
-      }
-
-      .simulator-shell[data-impact="high"] {
-        background-image:
-          linear-gradient(
-            135deg,
-            rgba(7, 58, 101, 0.84),
-            rgba(37, 133, 146, 0.34)
-          ),
-          url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'%3E%3Crect width='1200' height='800' fill='%231b6b8f'/%3E%3Ccircle cx='900' cy='220' r='120' fill='%23f3c75f'/%3E%3Cpath d='M0 620 Q220 500 410 570 T760 530 T1200 610 V800 H0Z' fill='%232d8a72'/%3E%3Cpath d='M170 620 L300 350 L440 620 Z' fill='%235bbd9f'/%3E%3Cpath d='M660 620 L810 300 L980 620 Z' fill='%234dc2b4'/%3E%3C/svg%3E");
-      }
-
-      .simulator-hero {
+      /* -----------------------------------------------
+         2. HERO
+         ----------------------------------------------- */
+      .ais-hero {
         display: grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 1.5rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
         align-items: center;
-        padding: 2rem 2rem 1rem;
+        padding: 3rem 0 2.5rem;
       }
 
-      .hero-copy h1 {
-        font-size: clamp(2rem, 4vw, 2.9rem);
-        margin: 0 0 0.8rem;
+      .ais-hero__heading {
+        font-size: clamp(1.8rem, 4vw, 3rem);
+        font-weight: 800;
+        line-height: 1.12;
         letter-spacing: -0.03em;
-      }
-
-      .hero-copy p {
-        font-size: 1.02rem;
-        color: var(--muted);
+        color: var(--text);
         margin: 0 0 1rem;
-        max-width: 620px;
       }
 
-      .hero-tip {
+      .ais-hero__heading span {
         color: var(--primary);
-        font-weight: 700;
-        margin: 0 0 1.2rem;
       }
 
-      .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.45rem;
-        padding: 0.45rem 0.8rem;
-        border-radius: 999px;
-        background: rgba(46, 125, 50, 0.12);
-        color: var(--primary);
-        font-weight: 700;
-        margin-bottom: 1rem;
+      .ais-hero__copy {
+        color: var(--muted);
+        font-size: 1rem;
+        line-height: 1.75;
+        margin: 0 0 1.6rem;
+        max-width: 460px;
       }
 
-      .hero-illustration {
-        background: rgba(255, 255, 255, 0.74);
-        border-radius: 24px;
-        padding: 1.2rem;
-        box-shadow: 0 18px 40px rgba(10, 28, 24, 0.12);
-        border: 1px solid rgba(255, 255, 255, 0.7);
-        animation: floaty 5s ease-in-out infinite;
-      }
-
-      @keyframes floaty {
+      @keyframes pulse {
         0%,
         100% {
-          transform: translateY(0);
+          transform: scale(1);
         }
         50% {
-          transform: translateY(-6px);
+          transform: scale(1.12);
         }
       }
 
-      .simulator-dashboard {
-        display: grid;
-        grid-template-columns: minmax(0, 1.7fr) 320px;
-        gap: 1.2rem;
-        align-items: start;
-        padding: 0 2rem 1rem;
-      }
-
-      .action-grid {
-        display: grid;
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-        gap: 1rem;
-      }
-
-      .action-card {
+      /* Hero visual — image card */
+      .ais-hero__visual {
+        border-radius: var(--radius);
+        overflow: hidden;
+        box-shadow: var(--shadow);
+        aspect-ratio: 4 / 3;
         position: relative;
-        background: rgba(255, 255, 255, 0.9);
-        border: 1px solid rgba(11, 110, 79, 0.12);
-        border-radius: 20px;
-        padding: 1rem;
+      }
+
+      .ais-hero__visual img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 600ms ease;
+      }
+
+      .ais-hero__visual:hover img {
+        transform: scale(1.04);
+      }
+
+      /* -----------------------------------------------
+         3. ACTION CARDS GRID
+         ----------------------------------------------- */
+      .ais-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+      }
+
+      /* Each action card */
+      .action-card {
+        background: rgba(255, 255, 255, 0.94);
+        border: 2px solid rgba(255, 255, 255, 0.65);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(20px);
+        border-radius: var(--radius);
+        overflow: hidden;
         display: flex;
         flex-direction: column;
-        gap: 0.8rem;
         cursor: pointer;
         transition:
-          transform 250ms ease,
-          box-shadow 250ms ease,
-          border-color 250ms ease;
-        box-shadow: 0 10px 25px rgba(10, 28, 24, 0.06);
+          transform 280ms ease,
+          box-shadow 280ms ease,
+          border-color 280ms ease;
+        /* Make card itself keyboard-focusable for accessibility */
+        position: relative;
       }
 
       .action-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 18px 35px rgba(10, 28, 24, 0.12);
+        transform: translateY(-5px);
+        box-shadow: 0 28px 55px rgba(10, 28, 24, 0.16);
       }
 
-      .action-card:focus-visible {
-        outline: none;
-        box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.35);
-      }
-
+      /* Selected state */
       .action-card.is-selected {
         border-color: var(--primary);
-        transform: translateY(-4px) scale(1.03);
-        box-shadow: 0 22px 46px rgba(11, 110, 79, 0.18);
-        animation: cardPulse 500ms ease;
+        transform: translateY(-5px) scale(1.02);
+        box-shadow: 0 28px 55px rgba(46, 125, 50, 0.25);
       }
 
-      .action-card.is-selected::after {
-        content: "✓";
+      /* Checkmark badge — hidden by default */
+      .action-card__check {
         position: absolute;
-        top: 0.8rem;
-        right: 0.8rem;
-        width: 1.7rem;
-        height: 1.7rem;
-        display: grid;
-        place-items: center;
+        top: 0.75rem;
+        right: 0.75rem;
+        width: 1.8rem;
+        height: 1.8rem;
         border-radius: 50%;
         background: var(--primary);
         color: white;
-        font-weight: 700;
-        box-shadow: 0 8px 18px rgba(11, 110, 79, 0.2);
+        display: grid;
+        place-items: center;
+        font-size: 0.9rem;
+        opacity: 0;
+        transform: scale(0.5);
+        transition:
+          opacity 250ms ease,
+          transform 250ms ease;
+        z-index: 1;
+        pointer-events: none;
       }
 
-      @keyframes cardPulse {
-        0% {
-          transform: translateY(0) scale(1);
-        }
-        60% {
-          transform: translateY(-4px) scale(1.04);
-        }
-        100% {
-          transform: translateY(-4px) scale(1.03);
-        }
+      .action-card.is-selected .action-card__check {
+        opacity: 1;
+        transform: scale(1);
       }
 
-      .action-card img {
-        height: 140px;
+      /* Card image */
+      .action-card__img-wrap {
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+        flex-shrink: 0;
+      }
+
+      .action-card__img-wrap img {
         width: 100%;
+        height: 100%;
         object-fit: cover;
-        border-radius: 14px;
+        transition: transform 500ms ease;
       }
 
-      .action-card h3 {
-        margin: 0;
-        font-size: 1.02rem;
+      .action-card:hover .action-card__img-wrap img,
+      .action-card.is-selected .action-card__img-wrap img {
+        transform: scale(1.08);
       }
 
-      .action-card p {
+      /* Card body */
+      .action-card__body {
+        padding: 1.1rem 1.2rem 1.3rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        flex: 1;
+      }
+
+      .action-card__icon {
+        font-size: 1.6rem;
+        line-height: 1;
+      }
+
+      .action-card__title {
+        font-size: 0.98rem;
+        font-weight: 700;
+        color: var(--text);
         margin: 0;
+      }
+
+      .action-card__desc {
+        font-size: 0.84rem;
         color: var(--muted);
-        font-size: 0.92rem;
+        margin: 0;
+        line-height: 1.55;
+        flex: 1;
       }
 
-      .action-points {
+      /* Points badge */
+      .action-card__points {
         display: inline-flex;
         align-items: center;
-        gap: 0.35rem;
+        gap: 0.3rem;
+        font-size: 0.78rem;
         font-weight: 700;
         color: var(--primary);
+        background: rgba(46, 125, 50, 0.1);
+        padding: 0.25rem 0.7rem;
+        border-radius: 999px;
         width: fit-content;
       }
 
-      .action-toggle {
-        margin-top: auto;
-        border: 0;
+      /* Select button inside card */
+      .action-card__btn {
+        margin-top: 0.6rem;
+        padding: 0.6rem 1rem;
         border-radius: 999px;
-        padding: 0.7rem 1rem;
-        background: rgba(46, 125, 50, 0.1);
+        border: 2px solid rgba(46, 125, 50, 0.3);
+        background: transparent;
         color: var(--primary);
-        font-weight: 700;
+        font-size: 0.84rem;
+        font-weight: 600;
         cursor: pointer;
-        transition: all 250ms ease;
+        transition:
+          background 250ms ease,
+          color 250ms ease,
+          border-color 250ms ease;
+        width: 100%;
       }
 
-      .action-toggle:hover,
-      .action-toggle:focus-visible {
-        background: var(--primary);
+      .action-card__btn:hover,
+      .action-card__btn:focus-visible {
+        background: rgba(46, 125, 50, 0.1);
+        border-color: var(--primary);
+      }
+
+      /* Selected button state */
+      .action-card.is-selected .action-card__btn {
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
         color: white;
+        border-color: transparent;
       }
 
-      .action-toggle.is-selected {
-        background: var(--primary);
-        color: white;
+      /* -----------------------------------------------
+         4. SUMMARY PANEL
+         ----------------------------------------------- */
+      .ais-summary {
+        background: rgba(255, 255, 255, 0.95);
+        border: 1px solid rgba(46, 125, 50, 0.18);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(20px);
+        border-radius: var(--radius);
+        padding: 2rem 2.2rem;
+        margin-bottom: 2rem;
       }
 
-      .summary-panel {
-        padding: 1.2rem;
-        background: rgba(255, 255, 255, 0.86);
-        border: 1px solid rgba(255, 255, 255, 0.72);
-        border-radius: 24px;
-        box-shadow: 0 16px 36px rgba(10, 28, 24, 0.08);
-        position: sticky;
-        top: 100px;
-        display: grid;
+      .ais-summary__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
         gap: 1rem;
+        margin-bottom: 1.4rem;
       }
 
-      .summary-list,
-      .recommendations-list {
-        list-style: none;
-        padding: 0;
-        margin: 0.6rem 0 0;
-        display: grid;
-        gap: 0.5rem;
-      }
-
-      .summary-list li,
-      .recommendations-list li {
-        padding: 0.7rem 0.8rem;
-        border-radius: 12px;
-        background: rgba(46, 125, 50, 0.08);
+      .ais-summary__title {
+        font-size: 1.1rem;
+        font-weight: 700;
         color: var(--text);
+        margin: 0;
       }
 
-      .summary-score {
+      /* Stats row */
+      .ais-summary__stats {
         display: grid;
-        gap: 0.8rem;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1rem;
+        margin-bottom: 1.6rem;
       }
 
-      .score-box {
-        padding: 0.9rem 1rem;
-        border-radius: 16px;
-        background: linear-gradient(
-          135deg,
-          rgba(46, 125, 50, 0.14),
-          rgba(76, 175, 80, 0.08)
-        );
+      .ais-stat {
+        text-align: center;
+        padding: 1.1rem 0.8rem;
+        background: rgba(46, 125, 50, 0.05);
+        border-radius: 12px;
+        border: 1px solid rgba(46, 125, 50, 0.1);
       }
 
-      .score-box strong {
-        display: block;
-        font-size: 1.12rem;
-        margin-top: 0.2rem;
+      .ais-stat__value {
+        font-size: 1.7rem;
+        font-weight: 800;
+        color: var(--primary);
+        letter-spacing: -0.03em;
+        line-height: 1;
+        margin-bottom: 0.3rem;
+        transition: transform 300ms ease;
       }
 
-      .impact-badge {
+      /* Number pop animation when score updates */
+      .ais-stat__value.pop {
+        animation: numPop 300ms ease;
+      }
+
+      @keyframes numPop {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.25);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      .ais-stat__label {
+        font-size: 0.78rem;
+        color: var(--muted);
+        font-weight: 500;
+        line-height: 1.4;
+      }
+
+      /* Selected actions chips */
+      .ais-summary__selected-label {
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin-bottom: 0.6rem;
+      }
+
+      .ais-chips {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        min-height: 2rem;
+        margin-bottom: 1.6rem;
+      }
+
+      .ais-chip {
         display: inline-flex;
         align-items: center;
-        gap: 0.45rem;
-        padding: 0.65rem 0.9rem;
+        gap: 0.35rem;
+        font-size: 0.8rem;
+        font-weight: 600;
+        color: var(--primary);
+        background: rgba(46, 125, 50, 0.1);
+        border: 1px solid rgba(46, 125, 50, 0.2);
+        padding: 0.3rem 0.8rem;
         border-radius: 999px;
-        background: rgba(46, 125, 50, 0.12);
-        color: var(--primary);
-        font-weight: 800;
-        transition: all 500ms ease;
+        animation: chipIn 250ms ease;
       }
 
-      .impact-badge.low {
-        background: rgba(138, 109, 70, 0.14);
-        color: #8b5e00;
+      @keyframes chipIn {
+        from {
+          opacity: 0;
+          transform: scale(0.8);
+        }
+        to {
+          opacity: 1;
+          transform: scale(1);
+        }
       }
 
-      .impact-badge.medium {
-        background: rgba(46, 125, 50, 0.14);
-        color: var(--primary);
+      .ais-chips__empty {
+        font-size: 0.85rem;
+        color: var(--muted);
+        font-style: italic;
       }
 
-      .impact-badge.high {
-        background: rgba(9, 94, 136, 0.16);
-        color: #0f5f7b;
+      /* Live level progress bar in summary */
+      .ais-live-progress {
+        margin-bottom: 1.6rem;
       }
 
-      .progress-block {
-        display: grid;
-        gap: 0.45rem;
+      .ais-live-progress__track {
+        position: relative;
+        height: 10px;
+        border-radius: 999px;
+        background: rgba(46, 125, 50, 0.1);
+        overflow: visible;
+        margin-bottom: 0.4rem;
       }
 
-      .progress-labels {
+      .ais-live-progress__fill {
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, #f59e0b, #22c55e, #3b82f6);
+        transition: width 500ms cubic-bezier(0.22, 0.68, 0, 1.2);
+        width: 0%;
+        position: relative;
+      }
+
+      /* Thumb dot that rides the fill */
+      .ais-live-progress__fill::after {
+        content: "";
+        position: absolute;
+        right: -5px;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: var(--primary);
+        border: 2px solid white;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+        opacity: 0;
+        transition: opacity 300ms ease;
+      }
+
+      .ais-live-progress__fill.has-value::after {
+        opacity: 1;
+      }
+
+      /* Zone labels */
+      .ais-live-progress__zones {
         display: flex;
         justify-content: space-between;
-        font-size: 0.92rem;
-        font-weight: 700;
+        font-size: 0.72rem;
         color: var(--muted);
+        font-weight: 600;
       }
 
-      .progress-track {
+      /* Active level pill in summary */
+      .ais-level-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.78rem;
+        font-weight: 700;
+        padding: 0.3rem 0.85rem;
+        border-radius: 999px;
+        letter-spacing: 0.06em;
+        transition:
+          background 400ms ease,
+          color 400ms ease;
+        margin-bottom: 1.2rem;
+        border: 1px solid transparent;
+      }
+
+      .ais-level-pill--none {
+        background: rgba(0, 0, 0, 0.05);
+        color: var(--muted);
+        border-color: rgba(0, 0, 0, 0.08);
+      }
+      .ais-level-pill--low {
+        background: #fef3c7;
+        color: #92400e;
+        border-color: #f59e0b;
+      }
+      .ais-level-pill--medium {
+        background: #dcfce7;
+        color: #166534;
+        border-color: #22c55e;
+      }
+      .ais-level-pill--high {
+        background: #dbeafe;
+        color: #1e40af;
+        border-color: #3b82f6;
+      }
+
+      /* Calculate CTA */
+      .ais-summary__cta {
+        text-align: center;
+      }
+
+      .btn-calculate {
+        padding: 0.95rem 2.5rem;
+        font-size: 1rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+      }
+
+      /* -----------------------------------------------
+         5. RESULTS SECTION
+         ----------------------------------------------- */
+      .ais-results {
+        /* Hidden by default — JS toggles .is-visible */
+        display: none;
+        opacity: 0;
+        transform: translateY(24px);
+        transition:
+          opacity 500ms ease,
+          transform 500ms ease;
+        margin-bottom: 2rem;
+      }
+
+      .ais-results.is-visible {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* Trigger the transition properly on display change */
+      .ais-results.is-animating {
+        display: block;
+      }
+
+      .ais-results__inner {
+        background: rgba(255, 255, 255, 0.96);
+        border: 1px solid rgba(46, 125, 50, 0.2);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(20px);
+        border-radius: var(--radius);
+        padding: 2.5rem 2.2rem;
+        text-align: center;
+      }
+
+      /* Impact badge */
+      .ais-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-size: 0.85rem;
+        font-weight: 800;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        padding: 0.65rem 1.4rem;
+        border-radius: 999px;
+        margin-bottom: 1.2rem;
+        border: 2px solid currentColor;
+      }
+
+      .ais-badge--low {
+        color: #b45309;
+        background: #fef3c7;
+        border-color: #f59e0b;
+      }
+      .ais-badge--medium {
+        color: #166534;
+        background: #dcfce7;
+        border-color: #22c55e;
+      }
+      .ais-badge--high {
+        color: #1e40af;
+        background: #dbeafe;
+        border-color: #3b82f6;
+      }
+
+      .ais-badge__icon {
+        font-size: 1.5rem;
+      }
+
+      .ais-results__score {
+        font-size: clamp(2.8rem, 6vw, 4.5rem);
+        font-weight: 900;
+        color: var(--primary);
+        letter-spacing: -0.04em;
+        line-height: 1;
+        margin-bottom: 0.3rem;
+      }
+
+      .ais-results__score-label {
+        font-size: 0.85rem;
+        color: var(--muted);
+        margin-bottom: 1rem;
+        font-weight: 500;
+      }
+
+      .ais-results__message {
+        font-size: 1.05rem;
+        color: var(--text);
+        font-weight: 500;
+        max-width: 480px;
+        margin: 0 auto 1.8rem;
+        line-height: 1.65;
+      }
+
+      /* Progress bar */
+      .ais-progress-wrap {
+        max-width: 400px;
+        margin: 0 auto 2rem;
+      }
+
+      .ais-progress-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-bottom: 0.4rem;
+      }
+
+      .ais-progress-bar {
         height: 10px;
         border-radius: 999px;
         background: rgba(46, 125, 50, 0.12);
         overflow: hidden;
       }
 
-      .progress-fill {
+      .ais-progress-fill {
         height: 100%;
-        width: 0;
-        border-radius: inherit;
+        border-radius: 999px;
         background: linear-gradient(90deg, var(--primary), var(--secondary));
-        transition: width 700ms ease;
+        transition: width 800ms cubic-bezier(0.22, 0.68, 0, 1.2);
+        width: 0%;
       }
 
-      .summary-message {
+      /* Recommendations */
+      .ais-recs {
+        text-align: left;
+        max-width: 440px;
+        margin: 0 auto 2rem;
+        background: rgba(46, 125, 50, 0.05);
+        border: 1px solid rgba(46, 125, 50, 0.12);
+        border-radius: 12px;
+        padding: 1.1rem 1.3rem;
+      }
+
+      .ais-recs__title {
+        font-size: 0.82rem;
+        font-weight: 700;
+        color: var(--text);
+        text-transform: uppercase;
+        letter-spacing: 0.08em;
+        margin: 0 0 0.7rem;
+      }
+
+      .ais-recs__list {
+        list-style: none;
         margin: 0;
-        color: var(--muted);
-        font-size: 0.95rem;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
       }
 
+      .ais-recs__list li {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.55rem;
+        font-size: 0.87rem;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+
+      .ais-recs__list li::before {
+        content: "→";
+        color: var(--primary);
+        font-weight: 700;
+        flex-shrink: 0;
+        margin-top: 0.05em;
+      }
+
+      /* Reset button */
+      .btn-reset {
+        background: white;
+        color: var(--primary);
+        border: 2px solid rgba(46, 125, 50, 0.3);
+        box-shadow: none;
+      }
+
+      .btn-reset:hover,
+      .btn-reset:focus-visible {
+        border-color: var(--primary);
+        background: rgba(46, 125, 50, 0.06);
+      }
+
+      /* -----------------------------------------------
+         6. RESPONSIVE
+         ----------------------------------------------- */
       @media (max-width: 900px) {
-        .simulator-hero {
+        .ais-hero {
           grid-template-columns: 1fr;
         }
 
-        .simulator-dashboard {
-          grid-template-columns: 1fr;
-        }
-
-        .summary-panel {
-          position: static;
+        .ais-hero__visual {
           order: -1;
+          aspect-ratio: 16 / 7;
+        }
+
+        .ais-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .ais-summary__stats {
+          grid-template-columns: repeat(3, 1fr);
         }
       }
 
       @media (max-width: 640px) {
-        .simulator-shell {
-          padding-top: 0.7rem;
+        .ais-hero__heading {
+          font-size: 1.8rem;
         }
 
-        .simulator-hero,
-        .simulator-dashboard {
-          padding-left: 1rem;
-          padding-right: 1rem;
-        }
-
-        .action-grid {
+        .ais-grid {
           grid-template-columns: 1fr;
+        }
+
+        .ais-summary__stats {
+          grid-template-columns: 1fr;
+        }
+
+        .ais-summary {
+          padding: 1.4rem 1.2rem;
+        }
+
+        .ais-results__inner {
+          padding: 1.8rem 1.2rem;
+        }
+      }
+
+      /* Respect reduced-motion preference */
+      @media (prefers-reduced-motion: reduce) {
+        .ais-hero__icon {
+          animation: none;
+        }
+        .ais-bg {
+          transition: none;
+        }
+        .ais-results {
+          transition: none;
+        }
+        .ais-progress-fill {
+          transition: none;
         }
       }
     </style>
   </head>
-  <body>
+  <body id="top">
+    <!-- ===== SKIP LINK ===== -->
     <a class="skip-link" href="#main-content">Skip to content</a>
 
+    <!-- ===== HEADER ===== -->
     <header class="site-header">
       <div class="header-inner">
         <a class="brand" href="home.html" aria-label="GreenSteps — Home">
@@ -439,7 +787,7 @@
         <nav class="site-nav" aria-label="Primary navigation">
           <a class="nav-link" href="home.html">Home</a>
           <a class="nav-link" href="gallery.html">Gallery</a>
-          <a class="nav-link active" href="ais.html" aria-current="page"
+          <a class="nav-link" href="ais.html" aria-current="page"
             >Action Simulator</a
           >
           <a class="nav-link" href="feedback.html">Feedback</a>
@@ -450,300 +798,451 @@
       </div>
     </header>
 
+    <!-- ===== MAIN ===== -->
     <main id="main-content">
-      <div class="container">
-        <div class="simulator-shell" id="simulatorShell" data-impact="idle">
-          <section class="simulator-hero" aria-labelledby="simulator-title">
-            <div class="hero-copy">
-              <div class="hero-badge">🌍 Climate Action Studio</div>
-              <h1 id="simulator-title">Climate Impact Simulator</h1>
-              <p>
-                Choose sustainable actions and discover how your everyday
-                choices contribute to a healthier planet.
+      <!-- Fixed background layers — JS fades between them on score change -->
+      <div class="ais-bg ais-bg--low" id="bg-low" aria-hidden="true"></div>
+      <div
+        class="ais-bg ais-bg--medium"
+        id="bg-medium"
+        aria-hidden="true"
+      ></div>
+      <div class="ais-bg ais-bg--high" id="bg-high" aria-hidden="true"></div>
+
+      <div class="ais-content">
+        <div class="container">
+          <!-- ===========================================
+               SECTION 1 — HERO
+               =========================================== -->
+          <section class="ais-hero section" aria-labelledby="ais-heading">
+            <div class="ais-hero__text">
+              <h1 class="ais-hero__heading" id="ais-heading">
+                Climate Impact<br /><span>Simulator</span>
+              </h1>
+              <p class="ais-hero__copy">
+                Choose the sustainable actions you already take — or are ready
+                to start — and instantly see your positive environmental impact
+                scored in real time.
               </p>
-              <a class="btn" href="#impact-summary">Calculate My Impact</a>
+              <p class="ais-hero__copy" style="margin-top: -0.8rem">
+                Select cards below, then hit
+                <strong>Calculate My Impact</strong>
+                to reveal your result.
+              </p>
             </div>
 
-            <div class="hero-illustration" aria-hidden="true">
-              <svg
-                viewBox="0 0 480 320"
-                role="img"
-                aria-label="Climate-friendly illustration"
-              >
-                <rect width="480" height="320" rx="28" fill="#f7fbf4" />
-                <path
-                  d="M0 240 C90 200 155 190 220 220 C290 252 360 260 480 220 L480 320 L0 320 Z"
-                  fill="#b7dfb5"
-                />
-                <path
-                  d="M110 186 C140 140 190 98 236 96 C296 93 352 145 342 205 C331 275 255 270 202 262 C160 256 94 223 110 186 Z"
-                  fill="#4caf50"
-                  opacity="0.8"
-                />
-                <circle cx="144" cy="116" r="34" fill="#ffd166" />
-                <path
-                  d="M91 148 C126 110 186 86 216 92"
-                  stroke="#2e7d32"
-                  stroke-width="6"
-                  fill="none"
-                  stroke-linecap="round"
-                />
-                <path d="M314 120 L346 82 L378 120" fill="#2e7d32" />
-                <path
-                  d="M330 120 L330 188"
-                  stroke="#2e7d32"
-                  stroke-width="8"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M360 120 L360 188"
-                  stroke="#2e7d32"
-                  stroke-width="8"
-                  stroke-linecap="round"
-                />
-                <path
-                  d="M228 230 C260 208 312 206 340 228"
-                  stroke="#2e7d32"
-                  stroke-width="10"
-                  fill="none"
-                  stroke-linecap="round"
-                />
-              </svg>
+            <div class="ais-hero__visual">
+              <img
+                src="Images/ais/ais-hero.avif"
+                alt="Hands holding a green seedling, symbolising growth through climate action"
+                width="900"
+                height="675"
+                loading="eager"
+                fetchpriority="high"
+              />
             </div>
           </section>
 
+          <!-- ===========================================
+               SECTION 2 — ACTION CARDS
+               =========================================== -->
           <section class="section" aria-labelledby="actions-heading">
-            <div class="section-header" style="padding: 0 0 1rem">
-              <span class="section-header__tag">Choose Your Actions</span>
+            <header style="margin-bottom: 1.4rem">
               <h2 class="section-title" id="actions-heading">
-                Select sustainable habits
+                Choose Your Actions
               </h2>
               <p class="section-copy muted">
-                Each action adds points to your impact score and helps estimate
-                your annual carbon savings.
+                Select every action that applies to your lifestyle. Each action
+                earns impact points toward your final score.
               </p>
+            </header>
+
+            <div
+              class="ais-grid"
+              role="group"
+              aria-label="Sustainable action cards"
+            >
+              <!-- Card 1 — Sustainable Transport -->
+              <article
+                class="action-card"
+                data-id="transport"
+                data-points="15"
+                data-label="Sustainable Transport"
+                data-icon="🚲"
+              >
+                <span class="action-card__check" aria-hidden="true">✓</span>
+                <div class="action-card__img-wrap">
+                  <img
+                    src="Images/ais/Bicycles.avif"
+                    alt="Bicycles parked in a park — a sustainable transport choice"
+                    width="500"
+                    height="281"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="action-card__body">
+                  <span class="action-card__icon" aria-hidden="true">🚲</span>
+                  <h3 class="action-card__title">Sustainable Transport</h3>
+                  <p class="action-card__desc">
+                    Walk, cycle, or use public transport instead of driving a
+                    private car to reduce road emissions.
+                  </p>
+                  <span class="action-card__points">+15 pts</span>
+                  <button
+                    class="action-card__btn"
+                    type="button"
+                    aria-pressed="false"
+                    aria-label="Select Sustainable Transport — 15 impact points"
+                  >
+                    Select Action
+                  </button>
+                </div>
+              </article>
+
+              <!-- Card 2 — Save Electricity -->
+              <article
+                class="action-card"
+                data-id="electricity"
+                data-points="10"
+                data-label="Save Electricity"
+                data-icon="⚡"
+              >
+                <span class="action-card__check" aria-hidden="true">✓</span>
+                <div class="action-card__img-wrap">
+                  <img
+                    src="Images/ais/save-electricity.avif"
+                    alt="Light bulbs — choosing energy-efficient lighting saves electricity"
+                    width="500"
+                    height="281"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="action-card__body">
+                  <span class="action-card__icon" aria-hidden="true">⚡</span>
+                  <h3 class="action-card__title">Save Electricity</h3>
+                  <p class="action-card__desc">
+                    Switch off unused lights and appliances, use energy-saving
+                    modes, and choose renewables where possible.
+                  </p>
+                  <span class="action-card__points">+10 pts</span>
+                  <button
+                    class="action-card__btn"
+                    type="button"
+                    aria-pressed="false"
+                    aria-label="Select Save Electricity — 10 impact points"
+                  >
+                    Select Action
+                  </button>
+                </div>
+              </article>
+
+              <!-- Card 3 — Recycle Waste -->
+              <article
+                class="action-card"
+                data-id="recycle"
+                data-points="10"
+                data-label="Recycle Waste"
+                data-icon="♻️"
+              >
+                <span class="action-card__check" aria-hidden="true">✓</span>
+                <div class="action-card__img-wrap">
+                  <img
+                    src="Images/ais/recycle-bin.jpg"
+                    alt="Colour-coded recycling bins for separating household waste"
+                    width="500"
+                    height="281"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="action-card__body">
+                  <span class="action-card__icon" aria-hidden="true">♻️</span>
+                  <h3 class="action-card__title">Recycle Waste</h3>
+                  <p class="action-card__desc">
+                    Separate recyclable waste — paper, glass, plastic, metal —
+                    so materials re-enter the production cycle.
+                  </p>
+                  <span class="action-card__points">+10 pts</span>
+                  <button
+                    class="action-card__btn"
+                    type="button"
+                    aria-pressed="false"
+                    aria-label="Select Recycle Waste — 10 impact points"
+                  >
+                    Select Action
+                  </button>
+                </div>
+              </article>
+
+              <!-- Card 4 — Plant Trees -->
+              <article
+                class="action-card"
+                data-id="trees"
+                data-points="20"
+                data-label="Plant Trees"
+                data-icon="🌱"
+              >
+                <span class="action-card__check" aria-hidden="true">✓</span>
+                <div class="action-card__img-wrap">
+                  <img
+                    src="Images/ais/trees.jpg"
+                    alt="Young trees in a reforestation project absorbing carbon dioxide"
+                    width="500"
+                    height="281"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="action-card__body">
+                  <span class="action-card__icon" aria-hidden="true">🌱</span>
+                  <h3 class="action-card__title">Plant Trees</h3>
+                  <p class="action-card__desc">
+                    Support tree-planting initiatives or start your own — trees
+                    are one of the most effective carbon sinks on the planet.
+                  </p>
+                  <span class="action-card__points">+20 pts</span>
+                  <button
+                    class="action-card__btn"
+                    type="button"
+                    aria-pressed="false"
+                    aria-label="Select Plant Trees — 20 impact points"
+                  >
+                    Select Action
+                  </button>
+                </div>
+              </article>
+
+              <!-- Card 5 — Save Water -->
+              <article
+                class="action-card"
+                data-id="water"
+                data-points="10"
+                data-label="Save Water"
+                data-icon="💧"
+              >
+                <span class="action-card__check" aria-hidden="true">✓</span>
+                <div class="action-card__img-wrap">
+                  <img
+                    src="Images/ais/save-water.avif"
+                    alt="water dropping on a hand"
+                    width="500"
+                    height="281"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="action-card__body">
+                  <span class="action-card__icon" aria-hidden="true">💧</span>
+                  <h3 class="action-card__title">Save Water</h3>
+                  <p class="action-card__desc">
+                    Take shorter showers, fix leaks, and turn off taps when not
+                    in use to conserve fresh water.
+                  </p>
+                  <span class="action-card__points">+10 pts</span>
+                  <button
+                    class="action-card__btn"
+                    type="button"
+                    aria-pressed="false"
+                    aria-label="Select Save Water — 10 impact points"
+                  >
+                    Select Action
+                  </button>
+                </div>
+              </article>
+
+              <!-- Card 6 — Reusable Bags -->
+              <article
+                class="action-card"
+                data-id="bags"
+                data-points="5"
+                data-label="Use Reusable Bags"
+                data-icon="🛍️"
+              >
+                <span class="action-card__check" aria-hidden="true">✓</span>
+                <div class="action-card__img-wrap">
+                  <img
+                    src="Images/ais/bag.avif"
+                    alt="reusable bag in ground with greenary background"
+                    width="500"
+                    height="281"
+                    loading="lazy"
+                  />
+                </div>
+                <div class="action-card__body">
+                  <span class="action-card__icon" aria-hidden="true">🛍️</span>
+                  <h3 class="action-card__title">Use Reusable Bags</h3>
+                  <p class="action-card__desc">
+                    Swap single-use plastic bags for durable reusable bags to
+                    cut plastic pollution in oceans and landfills.
+                  </p>
+                  <span class="action-card__points">+5 pts</span>
+                  <button
+                    class="action-card__btn"
+                    type="button"
+                    aria-pressed="false"
+                    aria-label="Select Use Reusable Bags — 5 impact points"
+                  >
+                    Select Action
+                  </button>
+                </div>
+              </article>
+            </div>
+            <!-- /.ais-grid -->
+          </section>
+
+          <!-- ===========================================
+               SECTION 3 — SUMMARY PANEL
+               =========================================== -->
+          <section
+            class="section ais-summary"
+            aria-labelledby="summary-heading"
+            aria-live="polite"
+          >
+            <div class="ais-summary__header">
+              <h2 class="ais-summary__title" id="summary-heading">
+                📊 Your Impact Summary
+              </h2>
             </div>
 
-            <div class="simulator-dashboard">
-              <div class="action-grid" role="list">
-                <article
-                  class="action-card"
-                  data-action-id="transport"
-                  role="button"
-                  tabindex="0"
-                  aria-pressed="false"
-                >
-                  <img
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23f2f9f1'/%3E%3Ccircle cx='470' cy='110' r='70' fill='%23ffd166'/%3E%3Cpath d='M110 270h320' stroke='%232e7d32' stroke-width='18' stroke-linecap='round'/%3E%3Cpath d='M166 266l34-104h116l44 104' fill='none' stroke='%232e7d32' stroke-width='16' stroke-linejoin='round'/%3E%3Ccircle cx='222' cy='282' r='34' fill='%23333'/%3E%3Ccircle cx='378' cy='282' r='34' fill='%23333'/%3E%3Cpath d='M216 170h88' stroke='%232e7d32' stroke-width='10' stroke-linecap='round'/%3E%3Cpath d='M310 170h74' stroke='%232e7d32' stroke-width='10' stroke-linecap='round'/%3E%3C/svg%3E"
-                    alt="A bicycle and public transport scene representing sustainable travel"
-                  />
-                  <h3>Sustainable Transport</h3>
-                  <p>Walk, cycle or use public transport instead of driving.</p>
-                  <span class="action-points">★ 15 impact points</span>
-                  <button
-                    class="action-toggle"
-                    type="button"
-                    aria-pressed="false"
-                  >
-                    Select Action
-                  </button>
-                </article>
+            <!-- Live stats -->
+            <div class="ais-summary__stats">
+              <div class="ais-stat">
+                <p class="ais-stat__value" id="stat-score">0</p>
+                <p class="ais-stat__label">Current Score<br />(points)</p>
+              </div>
+              <div class="ais-stat">
+                <p class="ais-stat__value" id="stat-actions">0</p>
+                <p class="ais-stat__label">Actions<br />Selected</p>
+              </div>
+              <div class="ais-stat">
+                <p class="ais-stat__value" id="stat-co2">0 kg</p>
+                <p class="ais-stat__label">Est. CO₂ Saved<br />(per year)</p>
+              </div>
+            </div>
 
-                <article
-                  class="action-card"
-                  data-action-id="electricity"
-                  role="button"
-                  tabindex="0"
-                  aria-pressed="false"
-                >
-                  <img
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23f8fbf7'/%3E%3Cpath d='M190 110h220v220H190z' fill='%23ffffff' stroke='%232e7d32' stroke-width='12'/%3E%3Cpath d='M260 90h80v130h-80z' fill='%234caf50'/%3E%3Cpath d='M220 214h160' stroke='%232e7d32' stroke-width='14' stroke-linecap='round'/%3E%3Cpath d='M220 250h160' stroke='%232e7d32' stroke-width='14' stroke-linecap='round'/%3E%3Cpath d='M270 120l40 48h-40z' fill='%23ffd166'/%3E%3C/svg%3E"
-                    alt="A home energy-saving scene with reduced electricity usage"
-                  />
-                  <h3>Save Electricity</h3>
-                  <p>
-                    Reduce unnecessary electricity use and switch off devices.
-                  </p>
-                  <span class="action-points">★ 10 impact points</span>
-                  <button
-                    class="action-toggle"
-                    type="button"
-                    aria-pressed="false"
-                  >
-                    Select Action
-                  </button>
-                </article>
+            <!-- Live level indicator pill -->
+            <div style="margin-bottom: 0.4rem">
+              <span
+                class="ais-level-pill ais-level-pill--none"
+                id="live-level-pill"
+              >
+                — Select actions to begin
+              </span>
+            </div>
 
-                <article
-                  class="action-card"
-                  data-action-id="recycle"
-                  role="button"
-                  tabindex="0"
-                  aria-pressed="false"
-                >
-                  <img
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23f7fbee'/%3E%3Crect x='140' y='110' width='320' height='180' rx='20' fill='%23ffffff' stroke='%232e7d32' stroke-width='12'/%3E%3Cpath d='M220 180h160' stroke='%232e7d32' stroke-width='16' stroke-linecap='round'/%3E%3Cpath d='M250 150l-40 40 40 40' stroke='%232e7d32' stroke-width='12' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3Cpath d='M350 210l40-40-40-40' stroke='%232e7d32' stroke-width='12' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E"
-                    alt="Recycling bins arranged for waste separation"
-                  />
-                  <h3>Recycle Waste</h3>
-                  <p>
-                    Separate recyclable waste properly to reduce landfill
-                    impact.
-                  </p>
-                  <span class="action-points">★ 10 impact points</span>
-                  <button
-                    class="action-toggle"
-                    type="button"
-                    aria-pressed="false"
-                  >
-                    Select Action
-                  </button>
-                </article>
+            <!-- Live score progress bar -->
+            <div class="ais-live-progress" aria-hidden="true">
+              <div class="ais-live-progress__track">
+                <div
+                  class="ais-live-progress__fill"
+                  id="live-progress-fill"
+                ></div>
+              </div>
+              <div class="ais-live-progress__zones">
+                <span>0</span>
+                <span>Low ≤20</span>
+                <span>Medium ≤45</span>
+                <span>High 46+</span>
+              </div>
+            </div>
 
-                <article
-                  class="action-card"
-                  data-action-id="trees"
-                  role="button"
-                  tabindex="0"
-                  aria-pressed="false"
-                >
-                  <img
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23f4fbf2'/%3E%3Cpath d='M210 300l80-174 80 174z' fill='%232e7d32'/%3E%3Cpath d='M250 300l40-120 40 120z' fill='%234caf50'/%3E%3Crect x='276' y='250' width='24' height='42' fill='%237a4f22'/%3E%3Ccircle cx='430' cy='140' r='46' fill='%23ffd166'/%3E%3C/svg%3E"
-                    alt="Young trees symbolizing reforestation and planting"
-                  />
-                  <h3>Plant Trees</h3>
-                  <p>
-                    Support tree planting and reforestation in your community.
-                  </p>
-                  <span class="action-points">★ 20 impact points</span>
-                  <button
-                    class="action-toggle"
-                    type="button"
-                    aria-pressed="false"
-                  >
-                    Select Action
-                  </button>
-                </article>
+            <!-- Selected action chips -->
+            <p class="ais-summary__selected-label">Selected Actions</p>
+            <div
+              class="ais-chips"
+              id="chips-container"
+              aria-label="Selected actions"
+            >
+              <span class="ais-chips__empty" id="chips-empty">
+                No actions selected yet — pick some cards above!
+              </span>
+            </div>
 
-                <article
-                  class="action-card"
-                  data-action-id="water"
-                  role="button"
-                  tabindex="0"
-                  aria-pressed="false"
-                >
-                  <img
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23f3faf9'/%3E%3Cpath d='M300 100c84 82 132 154 132 220c0 72-58 114-132 114s-132-42-132-114c0-66 48-138 132-220z' fill='%234fc3f7' opacity='0.7'/%3E%3Cpath d='M300 122c58 58 96 115 96 180c0 48-38 86-96 86s-96-38-96-86c0-65 38-122 96-180z' fill='%23ffffff' opacity='0.85'/%3E%3Cpath d='M242 192h116' stroke='%232e7d32' stroke-width='14' stroke-linecap='round'/%3E%3Cpath d='M242 224h116' stroke='%232e7d32' stroke-width='14' stroke-linecap='round'/%3E%3C/svg%3E"
-                    alt="A water-saving scene showing efficient water use"
-                  />
-                  <h3>Save Water</h3>
-                  <p>Reduce daily water consumption with simple habits.</p>
-                  <span class="action-points">★ 10 impact points</span>
-                  <button
-                    class="action-toggle"
-                    type="button"
-                    aria-pressed="false"
-                  >
-                    Select Action
-                  </button>
-                </article>
+            <!-- Calculate button -->
+            <div class="ais-summary__cta">
+              <button
+                class="btn btn-calculate"
+                type="button"
+                id="btn-calculate"
+                aria-controls="results-section"
+              >
+                Calculate My Impact
+              </button>
+            </div>
+          </section>
 
-                <article
-                  class="action-card"
-                  data-action-id="bags"
-                  role="button"
-                  tabindex="0"
-                  aria-pressed="false"
-                >
-                  <img
-                    src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='600' height='400' viewBox='0 0 600 400'%3E%3Crect width='600' height='400' fill='%23faf7f4'/%3E%3Cpath d='M220 150h160v170c0 44-36 80-80 80s-80-36-80-80z' fill='%23ffffff' stroke='%232e7d32' stroke-width='12'/%3E%3Cpath d='M250 150c0-44 32-76 72-76s72 32 72 76' stroke='%232e7d32' stroke-width='12' fill='none'/%3E%3Cpath d='M262 214h76' stroke='%232e7d32' stroke-width='12' stroke-linecap='round'/%3E%3Cpath d='M262 246h76' stroke='%232e7d32' stroke-width='12' stroke-linecap='round'/%3E%3C/svg%3E"
-                    alt="A reusable shopping bag representing reduced plastic use"
-                  />
-                  <h3>Use Reusable Bags</h3>
-                  <p>Avoid single-use plastics and carry a reusable bag.</p>
-                  <span class="action-points">★ 5 impact points</span>
-                  <button
-                    class="action-toggle"
-                    type="button"
-                    aria-pressed="false"
-                  >
-                    Select Action
-                  </button>
-                </article>
+          <!-- ===========================================
+               SECTION 4 — RESULTS
+               =========================================== -->
+          <section
+            class="section ais-results"
+            id="results-section"
+            aria-labelledby="results-heading"
+            aria-live="assertive"
+          >
+            <div class="ais-results__inner">
+              <!-- Impact badge — JS sets class + text -->
+              <div class="ais-badge" id="result-badge" role="status">
+                <span
+                  class="ais-badge__icon"
+                  id="result-badge-icon"
+                  aria-hidden="true"
+                ></span>
+                <span id="result-badge-text"></span>
               </div>
 
-              <aside
-                class="summary-panel"
-                id="impact-summary"
-                aria-labelledby="summary-heading"
+              <!-- Score display -->
+              <p class="ais-results__score" id="result-score">0</p>
+              <p class="ais-results__score-label">Total Impact Points</p>
+
+              <!-- Progress bar (0–70 pts = 100%) -->
+              <div
+                class="ais-progress-wrap"
+                role="progressbar"
+                aria-valuemin="0"
+                aria-valuemax="70"
+                id="result-progressbar"
               >
-                <div>
-                  <span class="section-header__tag">Live Impact</span>
-                  <h2 class="section-title" id="summary-heading">
-                    Your Climate Snapshot
-                  </h2>
-                  <p class="summary-message" id="impactMessage">
-                    Select an action to begin building your positive impact.
-                  </p>
+                <div class="ais-progress-label">
+                  <span>0</span>
+                  <span>Max: 70 pts</span>
                 </div>
-
-                <div class="summary-score">
-                  <div class="score-box">
-                    <span class="muted">Current Score</span>
-                    <strong id="scoreValue">0 Points</strong>
-                  </div>
-                  <div class="score-box">
-                    <span class="muted">Estimated CO₂ Saved</span>
-                    <strong id="co2Value">≈0 kg/year</strong>
-                  </div>
-                  <div class="score-box">
-                    <span class="muted">Impact Level</span>
-                    <strong class="impact-badge low" id="impactBadge"
-                      >🌱 LOW IMPACT</strong
-                    >
-                  </div>
+                <div class="ais-progress-bar">
+                  <div
+                    class="ais-progress-fill"
+                    id="result-progress-fill"
+                  ></div>
                 </div>
+              </div>
 
-                <div class="progress-block">
-                  <div class="progress-labels">
-                    <span>Climate Impact</span>
-                    <span id="progressText">0%</span>
-                  </div>
-                  <div class="progress-track">
-                    <div class="progress-fill" id="progressFill"></div>
-                  </div>
-                </div>
+              <!-- Encouraging message -->
+              <p class="ais-results__message" id="result-message"></p>
 
-                <div>
-                  <h3 style="margin: 0 0 0.4rem">Selected Actions</h3>
-                  <ul class="summary-list" id="selectedActionsList">
-                    <li>No actions selected yet.</li>
-                  </ul>
-                </div>
+              <!-- Recommendations -->
+              <div class="ais-recs">
+                <p class="ais-recs__title">Next Steps</p>
+                <ul
+                  class="ais-recs__list"
+                  id="result-recs"
+                  aria-label="Recommendations"
+                ></ul>
+              </div>
 
-                <div>
-                  <h3 style="margin: 0 0 0.4rem">Recommended Next Steps</h3>
-                  <ul
-                    class="recommendations-list"
-                    id="recommendationsList"
-                  ></ul>
-                </div>
-
-                <button class="btn btn-secondary" id="resetBtn" type="button">
-                  Try Again
-                </button>
-              </aside>
+              <!-- Reset -->
+              <button class="btn btn-reset" type="button" id="btn-reset">
+                ↺ Try Again
+              </button>
             </div>
           </section>
         </div>
+        <!-- /.container -->
       </div>
+      <!-- /.ais-content -->
     </main>
 
+    <!-- ===== FOOTER ===== -->
     <footer class="site-footer">
       <div class="footer-grid">
         <div class="footer-card">
           <h3>Student</h3>
-          <p>Sayuranga Wiraj<br />Student 01 - Home Page & Gallery</p>
+          <p>Alex Morgan<br />Web Developer</p>
         </div>
         <div class="footer-card">
           <h3>Explore</h3>
@@ -762,212 +1261,386 @@
 
     <a class="top-btn" href="#top" aria-label="Go to top of page">↑ Top</a>
 
-    <script>
-      const actions = [
-        {
-          id: "transport",
-          title: "Sustainable Transport",
-          points: 15,
-          recommendation: "Choose cycling or public transport for short trips.",
-        },
-        {
-          id: "electricity",
-          title: "Save Electricity",
-          points: 10,
-          recommendation:
-            "Switch off lights and unplug chargers when not needed.",
-        },
-        {
-          id: "recycle",
-          title: "Recycle Waste",
-          points: 10,
-          recommendation:
-            "Separate recyclable waste properly at home and on campus.",
-        },
-        {
-          id: "trees",
-          title: "Plant Trees",
-          points: 20,
-          recommendation:
-            "Support reforestation or tree planting in your community.",
-        },
-        {
-          id: "water",
-          title: "Save Water",
-          points: 10,
-          recommendation:
-            "Reduce water use with shorter showers and mindful habits.",
-        },
-        {
-          id: "bags",
-          title: "Use Reusable Bags",
-          points: 5,
-          recommendation: "Carry a reusable bag to reduce single-use plastics.",
-        },
-      ];
+    <script defer>
+      (function () {
+        "use strict";
 
-      const selectedActions = [];
-      const actionCards = Array.from(document.querySelectorAll(".action-card"));
-      const selectedActionsList = document.getElementById(
-        "selectedActionsList",
-      );
-      const scoreValue = document.getElementById("scoreValue");
-      const co2Value = document.getElementById("co2Value");
-      const impactBadge = document.getElementById("impactBadge");
-      const impactMessage = document.getElementById("impactMessage");
-      const progressFill = document.getElementById("progressFill");
-      const progressText = document.getElementById("progressText");
-      const recommendationsList = document.getElementById(
-        "recommendationsList",
-      );
-      const resetBtn = document.getElementById("resetBtn");
-      const simulatorShell = document.getElementById("simulatorShell");
+        /* ------------------------------------------
+           DATA — action definitions
+           ------------------------------------------ */
+        // Points-to-CO₂ conversion: 1 point ≈ 2.8 kg CO₂/year (illustrative)
+        const CO2_PER_POINT = 2.8;
+        const MAX_SCORE = 70; // sum of all card points
 
-      function getSvgBackground(fill, mid, accent) {
-        const svg = `
-          <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800'>
-            <rect width='1200' height='800' fill='${fill}'/>
-            <path d='M0 620 Q200 520 420 590 T860 540 T1200 620 V800 H0Z' fill='${mid}'/>
-            <path d='M180 620 L310 340 L450 620 Z' fill='${accent}'/>
-            <path d='M700 620 L860 300 L1030 620 Z' fill='${accent}' opacity='0.8'/>
-            <circle cx='960' cy='220' r='70' fill='%23f7d36d'/>
-          </svg>`;
-        return `url("data:image/svg+xml,${encodeURIComponent(svg)}")`;
-      }
-
-      function updateBackground(level) {
-        const backgrounds = {
-          idle: "linear-gradient(135deg, rgba(244, 251, 247, 0.95), rgba(232, 245, 233, 0.92))",
-          low: `${getSvgBackground("#d8b36c", "#925f26", "#6a4517")}, linear-gradient(135deg, rgba(114, 80, 28, 0.72), rgba(184, 137, 57, 0.38))`,
-          medium: `${getSvgBackground("#4aa250", "#2b6e35", "#3f8a42")}, linear-gradient(135deg, rgba(29, 82, 38, 0.74), rgba(90, 161, 87, 0.34))`,
-          high: `${getSvgBackground("#1f78a5", "#1d6d6c", "#2f928c")}, linear-gradient(135deg, rgba(7, 58, 101, 0.84), rgba(37, 133, 146, 0.34))`,
+        /* Impact level thresholds */
+        const LEVELS = {
+          low: {
+            min: 0,
+            max: 20,
+            label: "LOW IMPACT",
+            icon: "🌱",
+            badgeClass: "ais-badge--low",
+            bg: "bg-low",
+            message:
+              "You're taking your first green steps! Every action counts — keep building these habits and your impact will grow.",
+            recs: [
+              "Try cycling or walking for short journeys instead of driving.",
+              "Switch off lights and standby appliances when you leave a room.",
+              "Carry a reusable bottle and refuse single-use plastics.",
+            ],
+          },
+          medium: {
+            min: 21,
+            max: 45,
+            label: "MEDIUM IMPACT",
+            icon: "🌿",
+            badgeClass: "ais-badge--medium",
+            bg: "bg-medium",
+            message:
+              "Great progress! You're making a real positive contribution to climate action. A few more actions will take you to the next level.",
+            recs: [
+              "Continue recycling — try composting food waste too.",
+              "Reduce single-use plastic further by buying in bulk.",
+              "Share your habits with friends and inspire them to join you.",
+            ],
+          },
+          high: {
+            min: 46,
+            max: Infinity,
+            label: "HIGH IMPACT",
+            icon: "🌍",
+            badgeClass: "ais-badge--high",
+            bg: "bg-high",
+            message:
+              "Outstanding! You're a true climate champion. Your daily actions are making a significant difference for our planet.",
+            recs: [
+              "Inspire friends and family — share GreenSteps with them.",
+              "Join a local environmental project or community clean-up.",
+              "Consider a plant-rich diet to further reduce your footprint.",
+            ],
+          },
         };
-        simulatorShell.style.backgroundImage =
-          backgrounds[level] || backgrounds.idle;
-      }
 
-      function toggleAction(card) {
-        const actionId = card.dataset.actionId;
-        const button = card.querySelector(".action-toggle");
-        const isSelected = card.getAttribute("aria-pressed") === "true";
+        /* ------------------------------------------
+           STATE
+           ------------------------------------------ */
+        const selectedActions = new Set(); // stores data-id values
 
-        if (isSelected) {
-          selectedActions.splice(selectedActions.indexOf(actionId), 1);
-          card.classList.remove("is-selected");
-          card.setAttribute("aria-pressed", "false");
-          button.classList.remove("is-selected");
-          button.setAttribute("aria-pressed", "false");
-          button.textContent = "Select Action";
-        } else {
-          selectedActions.push(actionId);
-          card.classList.add("is-selected");
-          card.setAttribute("aria-pressed", "true");
-          button.classList.add("is-selected");
-          button.setAttribute("aria-pressed", "true");
-          button.textContent = "Selected ✓";
+        /* ------------------------------------------
+           DOM REFERENCES
+           ------------------------------------------ */
+        const cards = document.querySelectorAll(".action-card");
+        const statScore = document.getElementById("stat-score");
+        const statActions = document.getElementById("stat-actions");
+        const statCO2 = document.getElementById("stat-co2");
+        const chipsContainer = document.getElementById("chips-container");
+        const chipsEmpty = document.getElementById("chips-empty");
+        const liveLevelPill = document.getElementById("live-level-pill");
+        const liveProgressFill = document.getElementById("live-progress-fill");
+        const btnCalculate = document.getElementById("btn-calculate");
+        const btnReset = document.getElementById("btn-reset");
+        const resultsSection = document.getElementById("results-section");
+        const resultBadge = document.getElementById("result-badge");
+        const resultBadgeIcon = document.getElementById("result-badge-icon");
+        const resultBadgeText = document.getElementById("result-badge-text");
+        const resultScore = document.getElementById("result-score");
+        const resultMessage = document.getElementById("result-message");
+        const resultRecs = document.getElementById("result-recs");
+        const progressFill = document.getElementById("result-progress-fill");
+        const progressBar = document.getElementById("result-progressbar");
+        const bgLow = document.getElementById("bg-low");
+        const bgMedium = document.getElementById("bg-medium");
+        const bgHigh = document.getElementById("bg-high");
+
+        /* ------------------------------------------
+           FUNCTION: calculateScore
+           Returns the numeric total of selected pts.
+           ------------------------------------------ */
+        function calculateScore() {
+          let total = 0;
+          selectedActions.forEach(function (id) {
+            const card = document.querySelector('[data-id="' + id + '"]');
+            if (card) {
+              total += parseInt(card.dataset.points, 10);
+            }
+          });
+          return total;
         }
 
-        renderSummary();
-      }
+        /* ------------------------------------------
+           FUNCTION: getLevel
+           Returns the level object for a given score.
+           ------------------------------------------ */
+        function getLevel(score) {
+          if (score <= LEVELS.low.max) return LEVELS.low;
+          if (score <= LEVELS.medium.max) return LEVELS.medium;
+          return LEVELS.high;
+        }
 
-      function getRecommendations() {
-        const unselected = actions.filter(
-          (action) => !selectedActions.includes(action.id),
-        );
-        return unselected.slice(0, 3).map((action) => action.recommendation);
-      }
+        /* ------------------------------------------
+           FUNCTION: popValue
+           Triggers the number-pop CSS animation.
+           ------------------------------------------ */
+        function popValue(el) {
+          el.classList.remove("pop");
+          // Force reflow so the animation re-fires
+          void el.offsetWidth;
+          el.classList.add("pop");
+        }
 
-      function renderSummary() {
-        const selected = actions.filter((action) =>
-          selectedActions.includes(action.id),
-        );
-        const totalScore = selected.reduce(
-          (sum, action) => sum + action.points,
-          0,
-        );
-        const co2Saved = Math.round(totalScore * 2.67);
-        const maxScore = 70;
-        const percent = Math.min(
-          100,
-          Math.round((totalScore / maxScore) * 100),
-        );
+        /* ------------------------------------------
+           FUNCTION: updateSummary
+           Refreshes the live summary panel AND
+           triggers the background change in real time.
+           ------------------------------------------ */
+        function updateSummary() {
+          var score = calculateScore();
+          var co2 = Math.round(score * CO2_PER_POINT);
 
-        selectedActionsList.innerHTML = "";
+          // Update stat numbers with pop animation
+          statScore.textContent = score;
+          statActions.textContent = selectedActions.size;
+          statCO2.textContent = co2 + " kg";
+          popValue(statScore);
 
-        if (selected.length === 0) {
-          const emptyItem = document.createElement("li");
-          emptyItem.textContent = "No actions selected yet.";
-          selectedActionsList.appendChild(emptyItem);
-        } else {
-          selected.forEach((action) => {
-            const item = document.createElement("li");
-            item.textContent = action.title;
-            selectedActionsList.appendChild(item);
+          // ── Live background + pill + progress bar on every selection ──
+          if (selectedActions.size === 0) {
+            // Nothing selected — reset everything
+            bgLow.classList.remove("is-active");
+            bgMedium.classList.remove("is-active");
+            bgHigh.classList.remove("is-active");
+            liveLevelPill.className = "ais-level-pill ais-level-pill--none";
+            liveLevelPill.textContent = "— Select actions to begin";
+            liveProgressFill.style.width = "0%";
+            liveProgressFill.classList.remove("has-value");
+          } else {
+            var liveLevel = getLevel(score);
+            setBackground(liveLevel.bg);
+
+            // Update level pill
+            liveLevelPill.className =
+              "ais-level-pill ais-level-pill--" +
+              (liveLevel === LEVELS.low
+                ? "low"
+                : liveLevel === LEVELS.medium
+                  ? "medium"
+                  : "high");
+            liveLevelPill.textContent = liveLevel.icon + " " + liveLevel.label;
+
+            // Update mini progress bar (max 70 pts)
+            var livePct = Math.min(Math.round((score / MAX_SCORE) * 100), 100);
+            liveProgressFill.style.width = livePct + "%";
+            liveProgressFill.classList.add("has-value");
+          }
+
+          // Rebuild chips
+          var existingChips = chipsContainer.querySelectorAll(".ais-chip");
+          existingChips.forEach(function (c) {
+            c.remove();
+          });
+
+          if (selectedActions.size === 0) {
+            chipsEmpty.style.display = "";
+          } else {
+            chipsEmpty.style.display = "none";
+            selectedActions.forEach(function (id) {
+              var card = document.querySelector('[data-id="' + id + '"]');
+              var chip = document.createElement("span");
+              chip.className = "ais-chip";
+              chip.textContent = card.dataset.icon + " " + card.dataset.label;
+              chipsContainer.appendChild(chip);
+            });
+          }
+        }
+
+        /* ------------------------------------------
+           FUNCTION: toggleAction
+           Selects / deselects a card.
+           ------------------------------------------ */
+        function toggleAction(card) {
+          var id = card.dataset.id;
+          var btn = card.querySelector(".action-card__btn");
+
+          if (selectedActions.has(id)) {
+            // Deselect
+            selectedActions.delete(id);
+            card.classList.remove("is-selected");
+            btn.textContent = "Select Action";
+            btn.setAttribute("aria-pressed", "false");
+          } else {
+            // Select
+            selectedActions.add(id);
+            card.classList.add("is-selected");
+            btn.textContent = "Selected ✓";
+            btn.setAttribute("aria-pressed", "true");
+          }
+
+          updateSummary();
+
+          // Hide results if user changes selection after calculating
+          hideResults();
+        }
+
+        /* ------------------------------------------
+           FUNCTION: setBackground
+           Fades in the correct background layer.
+           ------------------------------------------ */
+        function setBackground(bgId) {
+          bgLow.classList.remove("is-active");
+          bgMedium.classList.remove("is-active");
+          bgHigh.classList.remove("is-active");
+
+          if (bgId === "bg-low") bgLow.classList.add("is-active");
+          if (bgId === "bg-medium") bgMedium.classList.add("is-active");
+          if (bgId === "bg-high") bgHigh.classList.add("is-active");
+        }
+
+        /* ------------------------------------------
+           FUNCTION: showResults
+           Reveals and populates the results section.
+           ------------------------------------------ */
+        function showResults() {
+          var score = calculateScore();
+          var level = getLevel(score);
+          var pct = Math.min(Math.round((score / MAX_SCORE) * 100), 100);
+          var co2 = Math.round(score * CO2_PER_POINT);
+
+          // Populate badge
+          resultBadge.className = "ais-badge " + level.badgeClass;
+          resultBadgeIcon.textContent = level.icon;
+          resultBadgeText.textContent = level.label;
+
+          // Score & message
+          resultScore.textContent = score;
+          resultMessage.textContent = level.message;
+
+          // Progress bar
+          progressFill.style.width = "0%";
+          progressBar.setAttribute("aria-valuenow", score);
+
+          // Build recommendations
+          resultRecs.innerHTML = "";
+          level.recs.forEach(function (rec) {
+            var li = document.createElement("li");
+            li.textContent = rec;
+            resultRecs.appendChild(li);
+          });
+
+          // Swap background
+          setBackground(level.bg);
+
+          // Reveal the results panel
+          resultsSection.classList.add("is-animating");
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              resultsSection.classList.add("is-visible");
+              // Animate progress bar after reveal
+              setTimeout(function () {
+                progressFill.style.width = pct + "%";
+              }, 150);
+            });
+          });
+
+          // Scroll results into view
+          setTimeout(function () {
+            resultsSection.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }, 100);
+        }
+
+        /* ------------------------------------------
+           FUNCTION: hideResults
+           Hides the results panel (no animation reset).
+           ------------------------------------------ */
+        function hideResults() {
+          resultsSection.classList.remove("is-visible", "is-animating");
+          progressFill.style.width = "0%";
+        }
+
+        /* ------------------------------------------
+           FUNCTION: resetSimulator
+           Clears all state and returns to start.
+           ------------------------------------------ */
+        function resetSimulator() {
+          // Deselect all cards
+          selectedActions.clear();
+          cards.forEach(function (card) {
+            card.classList.remove("is-selected");
+            var btn = card.querySelector(".action-card__btn");
+            btn.textContent = "Select Action";
+            btn.setAttribute("aria-pressed", "false");
+          });
+
+          // Reset summary
+          updateSummary();
+
+          // Hide results
+          hideResults();
+
+          // Scroll back to top of simulator
+          document.getElementById("actions-heading").scrollIntoView({
+            behavior: "smooth",
+            block: "start",
           });
         }
 
-        scoreValue.textContent = `${totalScore} Points`;
-        co2Value.textContent = `≈${co2Saved} kg/year`;
-        progressFill.style.width = `${percent}%`;
-        progressText.textContent = `${percent}%`;
+        /* ------------------------------------------
+           EVENT LISTENERS
+           ------------------------------------------ */
 
-        let level = "low";
-        let badgeText = "🌱 LOW IMPACT";
-        let message = "Select more actions to grow your impact.";
-
-        if (totalScore >= 46) {
-          level = "high";
-          badgeText = "🌍 HIGH IMPACT";
-          message = "You are making a strong contribution to climate action.";
-        } else if (totalScore >= 21) {
-          level = "medium";
-          badgeText = "🌿 MEDIUM IMPACT";
-          message = "You are building meaningful momentum with your choices.";
-        }
-
-        impactBadge.textContent = badgeText;
-        impactBadge.className = `impact-badge ${level}`;
-        impactMessage.textContent = message;
-
-        const recommendations = getRecommendations();
-        recommendationsList.innerHTML = recommendations.length
-          ? recommendations.map((item) => `<li>${item}</li>`).join("")
-          : "<li>You already picked a strong set of actions. Keep sharing them.</li>";
-
-        simulatorShell.dataset.impact = level;
-        updateBackground(level);
-      }
-
-      function resetSimulator() {
-        selectedActions.length = 0;
-        actionCards.forEach((card) => {
-          card.classList.remove("is-selected");
-          card.setAttribute("aria-pressed", "false");
-          const button = card.querySelector(".action-toggle");
-          button.classList.remove("is-selected");
-          button.setAttribute("aria-pressed", "false");
-          button.textContent = "Select Action";
-        });
-        renderSummary();
-      }
-
-      actionCards.forEach((card) => {
-        const button = card.querySelector(".action-toggle");
-        card.addEventListener("click", () => toggleAction(card));
-        card.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
+        // Card clicks — delegate to both card and button
+        cards.forEach(function (card) {
+          // Clicking the card article itself
+          card.addEventListener("click", function (e) {
+            // Avoid double-firing when the inner button is clicked
+            if (e.target.closest(".action-card__btn")) return;
             toggleAction(card);
-          }
-        });
-        button.addEventListener("click", (event) => {
-          event.stopPropagation();
-          toggleAction(card);
-        });
-      });
+          });
 
-      resetBtn.addEventListener("click", resetSimulator);
-      renderSummary();
+          // Clicking the Select button inside
+          var btn = card.querySelector(".action-card__btn");
+          btn.addEventListener("click", function (e) {
+            e.stopPropagation();
+            toggleAction(card);
+          });
+
+          // Keyboard: Enter/Space on card (for non-button focus)
+          card.addEventListener("keydown", function (e) {
+            if (e.key === "Enter" || e.key === " ") {
+              if (e.target === card) {
+                e.preventDefault();
+                toggleAction(card);
+              }
+            }
+          });
+        });
+
+        // Calculate button
+        btnCalculate.addEventListener("click", function () {
+          if (selectedActions.size === 0) {
+            // Friendly nudge — no alert, just highlight the grid
+            var grid = document.querySelector(".ais-grid");
+            grid.style.outline = "3px solid #f59e0b";
+            grid.style.borderRadius = "16px";
+            setTimeout(function () {
+              grid.style.outline = "";
+              grid.style.borderRadius = "";
+            }, 1800);
+            return;
+          }
+          showResults();
+        });
+
+        // Reset button
+        btnReset.addEventListener("click", resetSimulator);
+
+        /* ------------------------------------------
+           INIT
+           ------------------------------------------ */
+        updateSummary(); // prime the panel on load
+      })();
     </script>
   </body>
 </html>

@@ -1,0 +1,507 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenSteps | User Profile</title>
+    <meta
+      name="description"
+      content="Build a personal climate profile for GreenSteps and track progress toward SDG 13."
+    />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      .hidden {
+        display: none;
+      }
+      .progress-track {
+        position: relative;
+        width: 100%;
+        height: 1.1rem;
+        background: rgba(46, 125, 50, 0.12);
+        border-radius: 999px;
+        overflow: hidden;
+        margin-top: 1rem;
+      }
+      .progress-fill {
+        width: 0;
+        height: 100%;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        border-radius: inherit;
+        transition: width 350ms ease;
+      }
+      .progress-labels {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 0.8rem;
+        font-size: 0.95rem;
+      }
+      .profile-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+      }
+      .profile-actions button {
+        min-width: 12rem;
+      }
+      .summary-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+      .summary-list li {
+        margin-bottom: 0.8rem;
+      }
+      .section-copy strong {
+        color: var(--text);
+      }
+      .card dl {
+        margin: 1rem 0 0;
+        display: grid;
+        gap: 0.65rem;
+      }
+      .card dt {
+        font-weight: 700;
+        margin-bottom: 0.2rem;
+      }
+      .card dd {
+        margin: 0;
+        color: var(--muted);
+      }
+      @media (max-width: 900px) {
+        .profile-actions {
+          flex-direction: column;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="home.html" aria-label="GreenSteps — Home">
+          <span class="brand-mark" aria-hidden="true">☀</span>
+          <span class="brand-name">GreenSteps</span>
+        </a>
+
+        <input
+          type="checkbox"
+          id="nav-toggle"
+          class="nav-checkbox"
+          aria-hidden="true"
+        />
+        <label
+          for="nav-toggle"
+          class="nav-toggle"
+          aria-label="Toggle navigation menu"
+          role="button"
+        >
+          <span class="hamburger" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </label>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a class="nav-link" href="home.html">Home</a>
+          <a class="nav-link" href="gallery.html">Gallery</a>
+          <a class="nav-link" href="ais.html">Action Simulator</a>
+          <a class="nav-link" href="feedback.html">Feedback</a>
+          <a class="nav-link" href="team.html">Team</a>
+          <a class="nav-link" href="profile.html" aria-current="page"
+            >User Profile</a
+          >
+          <a class="nav-link" href="sitemap.html">Sitemap</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <div class="container">
+        <section class="section" aria-labelledby="welcome-title">
+          <div class="card">
+            <h1 class="section-title" id="welcome-title">
+              GreenSteps Climate Profile
+            </h1>
+            <p class="section-copy">
+              Use guided prompts to build your SDG 13 profile. Your profile is
+              hidden until you start, and you can skip prompts or return later
+              to complete missing information.
+            </p>
+            <button id="start-btn" class="btn">Start Profile</button>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="progress-title">
+          <div class="card">
+            <h2 class="section-title" id="progress-title">Profile Progress</h2>
+            <p id="progress-text" class="section-copy" aria-live="polite">
+              Your profile is ready when you start the process.
+            </p>
+            <div
+              class="progress-track"
+              role="progressbar"
+              aria-labelledby="progress-title"
+              aria-valuemin="0"
+              aria-valuemax="100"
+              aria-valuenow="0"
+            >
+              <div class="progress-fill" id="progress-fill"></div>
+            </div>
+            <div class="progress-labels">
+              <span>0%</span>
+              <span>33%</span>
+              <span>66%</span>
+              <span>100%</span>
+            </div>
+          </div>
+        </section>
+
+        <section class="section hidden" id="cards-section">
+          <div class="grid-2">
+            <article class="card" aria-labelledby="personal-title">
+              <h2 class="section-title" id="personal-title">
+                Personal Information
+              </h2>
+              <p class="section-copy">
+                Core identity details that help shape your climate action.
+              </p>
+              <dl>
+                <dt>Name</dt>
+                <dd id="name-value">Not added yet</dd>
+                <dt>Age</dt>
+                <dd id="age-value">Not added yet</dd>
+                <dt>Country</dt>
+                <dd id="country-value">Not added yet</dd>
+              </dl>
+            </article>
+
+            <article class="card" aria-labelledby="lifestyle-title">
+              <h2 class="section-title" id="lifestyle-title">
+                Climate Lifestyle
+              </h2>
+              <p class="section-copy">
+                Track habits that contribute to responsible and sustainable
+                living.
+              </p>
+              <dl>
+                <dt>Preferred Transport</dt>
+                <dd id="transport-value">Not added yet</dd>
+                <dt>Recycling Habit</dt>
+                <dd id="recycling-value">Not added yet</dd>
+                <dt>Energy Saving Habit</dt>
+                <dd id="energy-value">Not added yet</dd>
+              </dl>
+            </article>
+          </div>
+
+          <div class="grid-2 mt-2">
+            <article class="card" aria-labelledby="goals-title">
+              <h2 class="section-title" id="goals-title">Climate Goals</h2>
+              <p class="section-copy">
+                Define measurable actions and promises that support SDG 13.
+              </p>
+              <dl>
+                <dt>Trees to Plant</dt>
+                <dd id="trees-value">Not added yet</dd>
+                <dt>Climate Goal</dt>
+                <dd id="goal-value">Not added yet</dd>
+                <dt>Personal Promise</dt>
+                <dd id="promise-value">Not added yet</dd>
+              </dl>
+            </article>
+
+            <article class="card" aria-labelledby="summary-title">
+              <h2 class="section-title" id="summary-title">Profile Summary</h2>
+              <p class="section-copy">
+                Review the current profile status and see which fields still
+                need completion.
+              </p>
+              <ul class="summary-list" id="summary-list">
+                <li>Profile has not started yet.</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" aria-labelledby="actions-title">
+          <div class="card">
+            <h2 class="section-title" id="actions-title">Action Buttons</h2>
+            <div class="section-copy profile-actions">
+              <button id="edit-btn" class="btn" disabled>
+                Edit Missing Information
+              </button>
+              <button id="reset-btn" class="btn btn-secondary">
+                Reset Profile
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-card">
+          <h3>Student</h3>
+          <p>
+            Mubaris Mufli Muhammath<br />Student 4 — User Profile &amp; Sitemap
+          </p>
+        </div>
+        <div class="footer-card">
+          <h3>Explore</h3>
+          <p>
+            <a href="pageEditor_ST4.html">Page Editor</a><br />
+            <a href="validation_ST4.html">Validation</a><br />
+            <a href="sitemap.html">Sitemap</a>
+          </p>
+        </div>
+        <div class="footer-card">
+          <h3>Accessibility</h3>
+          <p><a href="#accessibility">Accessibility Statement</a></p>
+        </div>
+      </div>
+    </footer>
+    <a class="top-btn" href="#top" aria-label="Go to top of page">↑ Top</a>
+
+    <script>
+      const profileData = {
+        name: "",
+        age: "",
+        country: "",
+        transport: "",
+        recycling: "",
+        energy: "",
+        trees: "",
+        goal: "",
+        promise: "",
+      };
+
+      const startButton = document.getElementById("start-btn");
+      const editButton = document.getElementById("edit-btn");
+      const resetButton = document.getElementById("reset-btn");
+      const cardsSection = document.getElementById("cards-section");
+      const progressText = document.getElementById("progress-text");
+      const progressFill = document.getElementById("progress-fill");
+      const summaryList = document.getElementById("summary-list");
+
+      const fieldMap = [
+        { key: "name", label: "Name" },
+        { key: "age", label: "Age" },
+        { key: "country", label: "Country" },
+        { key: "transport", label: "Preferred transport" },
+        { key: "recycling", label: "Recycling habit" },
+        { key: "energy", label: "Energy saving habit" },
+        { key: "trees", label: "Number of trees to plant" },
+        { key: "goal", label: "Climate goal" },
+        { key: "promise", label: "Personal climate promise" },
+      ];
+
+      const steps = [
+        {
+          label: "Step 1",
+          prompt:
+            "Start Step 1: Personal information? OK to continue, Cancel to skip this step.",
+          fields: [
+            { key: "name", text: "Enter your name" },
+            { key: "age", text: "Enter your age" },
+            { key: "country", text: "Enter your country" },
+          ],
+        },
+        {
+          label: "Step 2",
+          prompt:
+            "Start Step 2: Climate lifestyle habits? OK to continue, Cancel to skip this step.",
+          fields: [
+            { key: "transport", text: "Enter your preferred transport" },
+            { key: "recycling", text: "Enter your recycling habit" },
+            { key: "energy", text: "Enter your energy saving habit" },
+          ],
+        },
+        {
+          label: "Step 3",
+          prompt:
+            "Start Step 3: Climate goals and promise? OK to continue, Cancel to skip this step.",
+          fields: [
+            {
+              key: "trees",
+              text: "Enter the number of trees you plan to plant",
+            },
+            { key: "goal", text: "Enter your main climate goal" },
+            { key: "promise", text: "Enter your personal climate promise" },
+          ],
+        },
+      ];
+
+      startButton.addEventListener("click", () => {
+        showProfile();
+        runProfileSteps();
+      });
+      editButton.addEventListener("click", () => {
+        collectMissingFields();
+      });
+      resetButton.addEventListener("click", () => {
+        resetProfile();
+      });
+
+      function showProfile() {
+        cardsSection.classList.remove("hidden");
+        editButton.disabled = false;
+      }
+
+      function runProfileSteps() {
+        steps.forEach((step) => {
+          collectStep(step);
+        });
+        updateDisplay();
+      }
+
+      function collectStep(step) {
+        const startStep = confirm(step.prompt);
+        if (!startStep) {
+          return;
+        }
+        step.fields.forEach((field) => {
+          if (!profileData[field.key]) {
+            const value = askPrompt(field.text);
+            if (value !== null) {
+              profileData[field.key] = value;
+            }
+          }
+        });
+      }
+
+      function askPrompt(message) {
+        const response = prompt(
+          `${message}\n(Press Cancel to skip this prompt)`,
+        );
+        if (response === null) {
+          return null;
+        }
+        const trimmed = response.trim();
+        return trimmed === "" ? null : trimmed;
+      }
+
+      function collectMissingFields() {
+        const missingFields = getMissingFields();
+        if (missingFields.length === 0) {
+          alert("All profile fields are already completed.");
+          return;
+        }
+        showProfile();
+        alert(
+          "Answer the prompts for missing information. Press Cancel to skip any prompt.",
+        );
+        steps.forEach((step) => {
+          const stepMissing = step.fields.filter(
+            (field) => !profileData[field.key],
+          );
+          if (stepMissing.length === 0) {
+            return;
+          }
+          const confirmStep = confirm(
+            `${step.label}: complete missing items in this section?`,
+          );
+          if (!confirmStep) {
+            return;
+          }
+          stepMissing.forEach((field) => {
+            const value = askPrompt(field.text);
+            if (value !== null) {
+              profileData[field.key] = value;
+            }
+          });
+        });
+        updateDisplay();
+      }
+
+      function getMissingFields() {
+        return Object.entries(profileData)
+          .filter(([, value]) => !value)
+          .map(([key]) => key);
+      }
+
+      function resetProfile() {
+        const confirmed = confirm(
+          "Reset the profile and remove all climate profile information?",
+        );
+        if (!confirmed) {
+          return;
+        }
+        Object.keys(profileData).forEach((key) => {
+          profileData[key] = "";
+        });
+        cardsSection.classList.add("hidden");
+        editButton.disabled = true;
+        progressFill.style.width = "0%";
+        progressFill.setAttribute("aria-valuenow", "0");
+        progressText.textContent =
+          "Your profile is ready when you start the process.";
+        summaryList.innerHTML = "<li>Profile has not started yet.</li>";
+        updateCardValues();
+      }
+
+      function updateDisplay() {
+        showProfile();
+        updateCardValues();
+        updateProgress();
+        updateSummary();
+      }
+
+      function updateCardValues() {
+        fieldMap.forEach((item) => {
+          const valueElement = document.getElementById(`${item.key}-value`);
+          if (valueElement) {
+            valueElement.textContent = profileData[item.key] || "Not added yet";
+          }
+        });
+      }
+
+      function updateProgress() {
+        const completed = Object.values(profileData).filter(
+          (value) => value !== "",
+        ).length;
+        const percent = getProgressPercent(completed);
+        progressFill.style.width = `${percent}%`;
+        progressFill.setAttribute("aria-valuenow", percent);
+        progressText.textContent =
+          completed === 0
+            ? "No profile fields completed yet."
+            : `${percent}% complete — ${completed} of 9 fields finished.`;
+      }
+
+      function getProgressPercent(completedCount) {
+        if (completedCount === 0) {
+          return 0;
+        }
+        if (completedCount <= 3) {
+          return 33;
+        }
+        if (completedCount <= 6) {
+          return 66;
+        }
+        return 100;
+      }
+
+      function updateSummary() {
+        const missing = getMissingFields();
+        summaryList.innerHTML = "";
+        fieldMap.forEach((item) => {
+          const entry = document.createElement("li");
+          entry.innerHTML = `<strong>${item.label}:</strong> ${profileData[item.key] || "Not added yet"}`;
+          summaryList.appendChild(entry);
+        });
+        if (missing.length > 0) {
+          const missingEntry = document.createElement("li");
+          missingEntry.style.marginTop = "1rem";
+          missingEntry.innerHTML = `<strong>Missing:</strong> ${missing.map((key) => fieldMap.find((item) => item.key === key).label).join(", ")}`;
+          summaryList.appendChild(missingEntry);
+        }
+      }
+
+      updateCardValues();
+    </script>
+  </body>
+</html>

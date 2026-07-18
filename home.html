@@ -1,0 +1,857 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenSteps | Home — Climate Action for Students</title>
+    <meta
+      name="description"
+      content="GreenSteps empowers students to take practical climate actions. Discover how small daily steps create a global impact aligned with UN SDG 13."
+    />
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+      /* 1. Hero — full-viewport background image with dark overlay, text centred on top */
+      .home-hero {
+        position: relative;
+        /* Break out of .container to reach full viewport width */
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        width: 100vw;
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        margin-bottom: 3rem;
+      }
+
+      /* Background image layer */
+      .home-hero__bg {
+        position: absolute;
+        inset: 0;
+        z-index: 0;
+      }
+
+      .home-hero__bg img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+        /* Subtle slow zoom for visual drama */
+        animation: heroZoom 18s ease-in-out infinite alternate;
+      }
+
+      @keyframes heroZoom {
+        from {
+          transform: scale(1);
+        }
+        to {
+          transform: scale(1.06);
+        }
+      }
+
+      /* Dark gradient overlay for text legibility — WCAG AA compliant */
+      .home-hero__bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.3) 0%,
+          rgba(10, 30, 15, 0.72) 60%,
+          rgba(10, 30, 15, 0.88) 100%
+        );
+      }
+
+      /* Text layer — centred over the image */
+      .home-hero__text {
+        position: relative;
+        z-index: 1;
+        text-align: center;
+        padding: 2rem 1.5rem;
+        max-width: 780px;
+        margin-inline: auto;
+      }
+
+      .home-hero__eyebrow {
+        display: inline-block;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: #a5d6a7; /* light green — readable on dark bg */
+        background: rgba(255, 255, 255, 0.12);
+        border: 1px solid rgba(255, 255, 255, 0.22);
+        padding: 0.4rem 1rem;
+        border-radius: 999px;
+        margin-bottom: 1.4rem;
+        backdrop-filter: blur(6px);
+      }
+
+      .home-hero__heading {
+        font-size: clamp(2.4rem, 6vw, 4.2rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -0.03em;
+        color: #ffffff;
+        margin: 0 0 1.2rem;
+        text-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+      }
+
+      .home-hero__heading span {
+        color: #69f0ae; /* vivid mint — accent on dark bg */
+      }
+
+      .home-hero__copy {
+        color: rgba(255, 255, 255, 0.88);
+        font-size: 1.15rem;
+        max-width: 580px;
+        margin: 0 auto 2.2rem;
+        line-height: 1.75;
+        text-shadow: 0 1px 8px rgba(0, 0, 0, 0.35);
+      }
+
+      .home-hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.9rem;
+        justify-content: center;
+      }
+
+      /* Outline/ghost secondary button — visible on dark bg */
+      .btn-ghost {
+        background: rgba(255, 255, 255, 0.12);
+        color: #ffffff;
+        border: 2px solid rgba(255, 255, 255, 0.55);
+        backdrop-filter: blur(6px);
+        box-shadow: none;
+      }
+
+      .btn-ghost:hover,
+      .btn-ghost:focus-visible {
+        background: rgba(255, 255, 255, 0.22);
+        color: #ffffff;
+        text-decoration: none;
+        transform: translateY(-3px);
+      }
+
+      /* Scroll-hint arrow at the bottom of the hero */
+      .home-hero__scroll {
+        position: absolute;
+        bottom: 2rem;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 1;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.4rem;
+        color: rgba(255, 255, 255, 0.6);
+        font-size: 0.75rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        animation: scrollBounce 2s ease-in-out infinite;
+        text-decoration: none;
+      }
+
+      .home-hero__scroll:hover {
+        color: rgba(255, 255, 255, 0.9);
+        text-decoration: none;
+      }
+
+      .home-hero__scroll svg {
+        width: 20px;
+        height: 20px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 2;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+
+      @keyframes scrollBounce {
+        0%,
+        100% {
+          transform: translateX(-50%) translateY(0);
+        }
+        50% {
+          transform: translateX(-50%) translateY(6px);
+        }
+      }
+
+      /* ---- Mobile: stack image above text (as requested) ---- */
+      @media (max-width: 640px) {
+        .home-hero {
+          min-height: 100svh; /* safe-area-aware on iOS */
+          align-items: flex-end;
+          padding-bottom: 3rem;
+        }
+
+        .home-hero__text {
+          padding: 1.5rem 1rem;
+        }
+
+        .home-hero__heading {
+          font-size: 2.1rem;
+        }
+
+        .home-hero__copy {
+          font-size: 1rem;
+        }
+
+        /* Deepen the overlay at bottom so text pops on small screens */
+        .home-hero__bg::after {
+          background: linear-gradient(
+            to bottom,
+            rgba(0, 0, 0, 0.15) 0%,
+            rgba(10, 30, 15, 0.85) 55%,
+            rgba(10, 30, 15, 0.95) 100%
+          );
+        }
+      }
+
+      /*  Mission cards*/
+      .missions-grid {
+        margin-bottom: 2rem;
+      }
+
+      .mission-card {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .mission-card__img-wrap {
+        border-radius: 10px;
+        overflow: hidden;
+        aspect-ratio: 16 / 9;
+      }
+
+      .mission-card__img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 500ms ease;
+      }
+
+      .mission-card:hover .mission-card__img-wrap img {
+        transform: scale(1.06);
+      }
+
+      .mission-card__title {
+        font-size: 1.05rem;
+        font-weight: 700;
+        color: var(--text);
+        margin: 0;
+      }
+
+      .mission-card__copy {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin: 0;
+        line-height: 1.6;
+      }
+
+      .mission-card__actions {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        flex-direction: column;
+        gap: 0.45rem;
+        margin-top: auto;
+      }
+
+      .mission-card__actions li {
+        display: flex;
+        align-items: center;
+        gap: 0.55rem;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--primary);
+      }
+
+      .mission-card__actions li::before {
+        content: "✓";
+        display: inline-grid;
+        place-items: center;
+        width: 1.3rem;
+        height: 1.3rem;
+        border-radius: 50%;
+        background: rgba(46, 125, 50, 0.12);
+        font-size: 0.75rem;
+        flex-shrink: 0;
+      }
+
+      /* 4. Gallery / content cards */
+      .home-gallery {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.2rem;
+        margin-bottom: 2rem;
+      }
+
+      .gallery-card {
+        padding: 0;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        transition:
+          transform 300ms ease,
+          box-shadow 300ms ease;
+      }
+
+      .gallery-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 28px 60px rgba(10, 28, 24, 0.18);
+      }
+
+      .gallery-card__img-wrap {
+        position: relative;
+        overflow: hidden;
+        aspect-ratio: 4 / 3;
+      }
+
+      .gallery-card__img-wrap img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 500ms ease;
+      }
+
+      .gallery-card:hover .gallery-card__img-wrap img {
+        transform: scale(1.1);
+      }
+
+      /* Colour overlay on hover */
+      .gallery-card__img-wrap::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to top,
+          rgba(46, 125, 50, 0.55) 0%,
+          transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 400ms ease;
+      }
+
+      .gallery-card:hover .gallery-card__img-wrap::after {
+        opacity: 1;
+      }
+
+      .gallery-card__body {
+        padding: 1.1rem 1.3rem 1.4rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.4rem;
+        flex: 1;
+      }
+
+      .gallery-card__title {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--text);
+        margin: 0;
+      }
+
+      .gallery-card__desc {
+        font-size: 0.82rem;
+        color: var(--muted);
+        margin: 0;
+        line-height: 1.5;
+        flex: 1;
+      }
+
+      .gallery-card__link {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.3rem;
+        font-size: 0.82rem;
+        font-weight: 600;
+        color: var(--primary);
+        margin-top: 0.6rem;
+        transition: gap 200ms ease;
+      }
+
+      .gallery-card__link:hover {
+        gap: 0.6rem;
+        text-decoration: underline;
+      }
+
+      /* 5. CTA banner */
+      .home-cta {
+        background: linear-gradient(135deg, var(--primary) 0%, #1b5e20 100%);
+        border-radius: var(--radius);
+        padding: 3rem 2.5rem;
+        text-align: center;
+        color: white;
+        margin-bottom: 2rem;
+      }
+
+      .home-cta__heading {
+        font-size: clamp(1.4rem, 3vw, 2rem);
+        font-weight: 800;
+        margin: 0 0 0.7rem;
+        letter-spacing: -0.02em;
+      }
+
+      .home-cta__copy {
+        font-size: 1rem;
+        opacity: 0.85;
+        max-width: 520px;
+        margin: 0 auto 1.8rem;
+        line-height: 1.6;
+      }
+
+      .btn-white {
+        background: white;
+        color: var(--primary);
+        font-weight: 700;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+      }
+
+      .btn-white:hover,
+      .btn-white:focus-visible {
+        background: #f1f8f2;
+        color: var(--primary);
+        text-decoration: none;
+      }
+
+      /* 6. Section header shared helper */
+      .section-header {
+        margin-bottom: 1.6rem;
+      }
+
+      .section-header__tag {
+        display: inline-block;
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--primary);
+        margin-bottom: 0.5rem;
+      }
+
+      /* 7. Fade-in animation for sections */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .fade-up {
+        animation: fadeUp 0.55s ease both;
+      }
+
+      .fade-up--d1 {
+        animation-delay: 0.05s;
+      }
+      .fade-up--d2 {
+        animation-delay: 0.12s;
+      }
+      .fade-up--d3 {
+        animation-delay: 0.19s;
+      }
+      .fade-up--d4 {
+        animation-delay: 0.26s;
+      }
+
+      /* Respect reduced-motion preference */
+      @media (prefers-reduced-motion: reduce) {
+        .fade-up {
+          animation: none;
+        }
+      }
+
+      /* 8. Responsive — tablet (900 px) */
+      @media (max-width: 900px) {
+        .stats-strip {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .home-gallery {
+          grid-template-columns: repeat(2, 1fr);
+        }
+      }
+
+      /* 9. Responsive — mobile (640 px) */
+      @media (max-width: 640px) {
+        .stats-strip {
+          grid-template-columns: 1fr 1fr;
+        }
+
+        .home-gallery {
+          grid-template-columns: 1fr;
+        }
+
+        .home-cta {
+          padding: 2rem 1.2rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ===== SKIP LINK ===== -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
+
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="home.html" aria-label="GreenSteps — Home">
+          <span class="brand-mark" aria-hidden="true">☀</span>
+          <span class="brand-name">GreenSteps</span>
+        </a>
+
+        <input
+          type="checkbox"
+          id="nav-toggle"
+          class="nav-checkbox"
+          aria-hidden="true"
+        />
+        <label
+          for="nav-toggle"
+          class="nav-toggle"
+          aria-label="Toggle navigation menu"
+          role="button"
+        >
+          <span class="hamburger" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </label>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a class="nav-link active" href="home.html" aria-current="page"
+            >Home</a
+          >
+          <a class="nav-link" href="gallery.html">Gallery</a>
+          <a class="nav-link" href="ais.html">Action Simulator</a>
+          <a class="nav-link" href="feedback.html">Feedback</a>
+          <a class="nav-link" href="team.html">Team</a>
+          <a class="nav-link" href="profile.html">User Profile</a>
+          <a class="nav-link" href="sitemap.html">Sitemap</a>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== MAIN ===== -->
+    <main id="main-content">
+      <div class="container">
+        <!-- ===================================================
+             SECTION 1 — HERO (full-viewport background overlay)
+             =================================================== -->
+        <section class="home-hero" aria-labelledby="hero-heading">
+          <!-- Background image layer (decorative — meaningful alt on img) -->
+          <div class="home-hero__bg" aria-hidden="true">
+            <img
+              src="https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1800&q=85"
+              alt=""
+              width="1800"
+              height="1200"
+              loading="eager"
+              fetchpriority="high"
+            />
+          </div>
+
+          <!-- Foreground text -->
+          <div class="home-hero__text">
+            <span class="home-hero__eyebrow">UN SDG 13 — Climate Action</span>
+            <h1 class="home-hero__heading" id="hero-heading">
+              Small Actions.<br />
+              <span>Global Impact.</span>
+            </h1>
+            <p class="home-hero__copy">
+              Discover practical ways students can reduce their environmental
+              impact and contribute towards climate action — one green step at a
+              time.
+            </p>
+            <div class="home-hero__actions">
+              <a class="btn" href="ais.html"> Try the Action Simulator </a>
+              <a class="btn btn-ghost" href="gallery.html"> Explore Content </a>
+            </div>
+          </div>
+
+          <!-- Scroll hint -->
+          <a
+            class="home-hero__scroll"
+            href="#stats-section"
+            aria-label="Scroll down to content"
+          >
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+            Scroll
+          </a>
+        </section>
+
+        <!-- ===================================================
+             SECTION 3 — THREE MISSION CARDS
+             =================================================== -->
+        <section class="section" aria-labelledby="mission-heading">
+          <header class="section-header">
+            <span class="section-header__tag">Why GreenSteps?</span>
+            <h2 class="section-title" id="mission-heading">
+              What We Stand For
+            </h2>
+            <p class="section-copy muted">
+              Understanding the climate crisis, knowing your power as a student,
+              and acting through GreenSteps.
+            </p>
+          </header>
+
+          <div class="missions-grid">
+            <!-- Card 1 -->
+            <article class="mission-card fade-up fade-up--d1">
+              <div class="mission-card__img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1503596476-1c12a8ba09a9?w=600&q=75"
+                  alt="Melting ice caps illustrating the urgent need for climate action"
+                  width="600"
+                  height="338"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="mission-card__title">Why Climate Action Matters</h3>
+              <p class="mission-card__copy">
+                Rising temperatures, extreme weather, and shrinking biodiversity
+                affect every community on Earth. Acting now prevents
+                irreversible tipping points and protects the world future
+                generations will inherit.
+              </p>
+              <ul
+                class="mission-card__actions"
+                aria-label="Key actions for climate impact"
+              >
+                <li>Reduce carbon emissions</li>
+                <li>Protect ecosystems</li>
+                <li>Build sustainable communities</li>
+              </ul>
+            </article>
+
+            <!-- Card 2 -->
+            <article class="mission-card fade-up fade-up--d2">
+              <div class="mission-card__img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=600&q=75"
+                  alt="Students working together on a sustainability project"
+                  width="600"
+                  height="338"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="mission-card__title">
+                Students Can Make a Difference
+              </h3>
+              <p class="mission-card__copy">
+                Students are powerful agents of change. Through informed daily
+                decisions — from how you travel to what you eat — you influence
+                your peers, families, and future workplaces.
+              </p>
+              <ul
+                class="mission-card__actions"
+                aria-label="Key actions for students"
+              >
+                <li>Save energy on campus</li>
+                <li>Reduce and reuse waste</li>
+                <li>Choose greener transport</li>
+              </ul>
+            </article>
+
+            <!-- Card 3 -->
+            <article class="mission-card fade-up fade-up--d3">
+              <div class="mission-card__img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=600&q=75"
+                  alt="Hands holding a small green seedling representing hope and growth"
+                  width="600"
+                  height="338"
+                  loading="lazy"
+                />
+              </div>
+              <h3 class="mission-card__title">Our GreenSteps Mission</h3>
+              <p class="mission-card__copy">
+                GreenSteps is a student-led platform built to educate, motivate,
+                and connect people who want to live more sustainably — turning
+                small daily actions into a collective global movement.
+              </p>
+              <ul
+                class="mission-card__actions"
+                aria-label="Our mission pillars"
+              >
+                <li>Learn through interactive content</li>
+                <li>Take action with the simulator</li>
+                <li>Inspire others in your community</li>
+              </ul>
+            </article>
+          </div>
+        </section>
+
+        <!-- ===================================================
+             SECTION 4 — CONTENT GALLERY
+             =================================================== -->
+        <section class="section" aria-labelledby="gallery-heading">
+          <header class="section-header">
+            <span class="section-header__tag">Explore Topics</span>
+            <h2 class="section-title" id="gallery-heading">
+              Sustainability in Action
+            </h2>
+            <p class="section-copy muted">
+              Dive into our four content areas and discover practical steps you
+              can take right now.
+            </p>
+          </header>
+
+          <div class="home-gallery">
+            <!-- Gallery card 1 -->
+            <article class="gallery-card fade-up fade-up--d1">
+              <div class="gallery-card__img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1486325212027-8081e485255e?w=500&q=75"
+                  alt="Bicycles parked in a city representing sustainable urban transport"
+                  width="500"
+                  height="375"
+                  loading="lazy"
+                />
+              </div>
+              <div class="gallery-card__body">
+                <h3 class="gallery-card__title">Sustainable Transport</h3>
+                <p class="gallery-card__desc">
+                  Walking, cycling, and public transit cut emissions while
+                  improving your health and saving money.
+                </p>
+                <a class="gallery-card__link" href="content_ST1.html">
+                  Read more →
+                </a>
+              </div>
+            </article>
+
+            <!-- Gallery card 2 -->
+            <article class="gallery-card fade-up fade-up--d2">
+              <div class="gallery-card__img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1509391366360-2e959784a276?w=500&q=75"
+                  alt="Solar panels on a roof generating clean renewable energy"
+                  width="500"
+                  height="375"
+                  loading="lazy"
+                />
+              </div>
+              <div class="gallery-card__body">
+                <h3 class="gallery-card__title">Renewable Energy</h3>
+                <p class="gallery-card__desc">
+                  Solar, wind, and hydro power replace fossil fuels and give
+                  communities energy independence.
+                </p>
+                <a class="gallery-card__link" href="content_ST2.html">
+                  Read more →
+                </a>
+              </div>
+            </article>
+
+            <!-- Gallery card 3 -->
+            <article class="gallery-card fade-up fade-up--d3">
+              <div class="gallery-card__img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?w=500&q=75"
+                  alt="Hands sorting recyclable materials into colour-coded bins"
+                  width="500"
+                  height="375"
+                  loading="lazy"
+                />
+              </div>
+              <div class="gallery-card__body">
+                <h3 class="gallery-card__title">Waste Reduction</h3>
+                <p class="gallery-card__desc">
+                  Refuse, reduce, reuse, recycle — a circular approach to
+                  consumption that keeps landfills and oceans cleaner.
+                </p>
+                <a class="gallery-card__link" href="content_ST3.html">
+                  Read more →
+                </a>
+              </div>
+            </article>
+
+            <!-- Gallery card 4 -->
+            <article class="gallery-card fade-up fade-up--d4">
+              <div class="gallery-card__img-wrap">
+                <img
+                  src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=500&q=75"
+                  alt="A person holding a reusable shopping bag at a farmers market"
+                  width="500"
+                  height="375"
+                  loading="lazy"
+                />
+              </div>
+              <div class="gallery-card__body">
+                <h3 class="gallery-card__title">Sustainable Lifestyle</h3>
+                <p class="gallery-card__desc">
+                  From plant-based meals to mindful shopping, everyday habits
+                  compound into lasting environmental benefits.
+                </p>
+                <a class="gallery-card__link" href="content_ST4.html">
+                  Read more →
+                </a>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ===================================================
+             SECTION 5 — CTA BANNER
+             =================================================== -->
+        <section class="home-cta section" aria-labelledby="cta-heading">
+          <h2 class="home-cta__heading" id="cta-heading">
+            Ready to Measure Your Climate Impact?
+          </h2>
+          <p class="home-cta__copy">
+            Use our Action Impact Simulator to see how your daily choices affect
+            carbon emissions — and discover which green steps make the biggest
+            difference.
+          </p>
+          <a class="btn btn-white" href="ais.html">
+            Try the Action Simulator
+          </a>
+        </section>
+      </div>
+      <!-- /.container -->
+    </main>
+
+    <!-- ===== FOOTER ===== -->
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-card">
+          <h3>Student</h3>
+          <p>Sayuranga Wiraj<br />Student 01 - Home Page & Gallery</p>
+        </div>
+        <div class="footer-card">
+          <h3>Explore</h3>
+          <p>
+            <a href="pageEditor_ST1.html">Page Editor</a><br />
+            <a href="validation_ST1.html">Validation</a><br />
+            <a href="sitemap.html">Sitemap</a>
+          </p>
+        </div>
+        <div class="footer-card">
+          <h3>Accessibility</h3>
+          <p><a href="#accessibility">Accessibility Statement</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Back to top — no JS required, pure anchor -->
+    <a class="top-btn" href="#top" aria-label="Go to top of page">↑ Top</a>
+
+    <!-- No page-specific JavaScript required for the Home page -->
+    <script src="js/main.js" defer></script>
+  </body>
+</html>

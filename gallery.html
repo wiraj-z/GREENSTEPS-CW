@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Climate Action | Gallery</title>
+    <meta
+      name="description"
+      content="Interactive gallery for the climate action campaign."
+    />
+    <link rel="stylesheet" href="style.css" />
+    <style>
+      /* Gallery Page Styles */
+      .gallery-shell {
+        display: grid;
+        gap: 1.4rem;
+      }
+
+      .gallery-toolbar {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 1.2rem;
+        border-radius: var(--radius);
+        background: rgba(255, 255, 255, 0.7);
+        border: 1px solid rgba(11, 110, 79, 0.1);
+      }
+
+      .gallery-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .gallery-card {
+        padding: 0.9rem;
+        cursor: pointer;
+        transition:
+          transform 300ms ease,
+          box-shadow 300ms ease;
+      }
+
+      .gallery-card:hover,
+      .gallery-card.hovered {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 35px rgba(10, 28, 24, 0.16);
+      }
+
+      .gallery-card img {
+        border-radius: 12px;
+        height: 190px;
+        object-fit: cover;
+        margin-bottom: 0.75rem;
+      }
+
+      .modal {
+        position: fixed;
+        inset: 0;
+        background: rgba(5, 15, 11, 0.68);
+        display: none;
+        place-items: center;
+        padding: 1rem;
+        z-index: 300;
+      }
+
+      .modal.open {
+        display: grid;
+      }
+
+      .modal-content {
+        width: min(760px, 100%);
+        background: white;
+        border-radius: 24px;
+        padding: 1.2rem;
+        box-shadow: var(--shadow);
+      }
+
+      .modal-controls {
+        display: flex;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+        margin-bottom: 1rem;
+      }
+
+      .modal-controls select {
+        padding: 0.6rem 0.7rem;
+        border-radius: 999px;
+        border: 1px solid rgba(11, 110, 79, 0.16);
+        background: white;
+      }
+
+      .modal img {
+        width: 100%;
+        border-radius: 14px;
+        max-height: 360px;
+        object-fit: cover;
+      }
+
+      @media (max-width: 900px) {
+        .gallery-grid {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .gallery-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="home.html" aria-label="GreenSteps — Home">
+          <span class="brand-mark" aria-hidden="true">☀</span>
+          <span class="brand-name">GreenSteps</span>
+        </a>
+
+        <input
+          type="checkbox"
+          id="nav-toggle"
+          class="nav-checkbox"
+          aria-hidden="true"
+        />
+        <label
+          for="nav-toggle"
+          class="nav-toggle"
+          aria-label="Toggle navigation menu"
+          role="button"
+        >
+          <span class="hamburger" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </label>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a class="nav-link" href="home.html" aria-current="page">Home</a>
+          <a class="nav-link active" href="gallery.html">Gallery</a>
+          <a class="nav-link" href="ais.html">Action Simulator</a>
+          <a class="nav-link" href="feedback.html">Feedback</a>
+          <a class="nav-link" href="team.html">Team</a>
+          <a class="nav-link" href="profile.html">User Profile</a>
+          <a class="nav-link" href="sitemap.html">Sitemap</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="main-content">
+      <section class="section container gallery-shell">
+        <div class="gallery-toolbar">
+          <div>
+            <h1 class="section-title">Climate gallery</h1>
+            <p class="section-copy">
+              Explore four stories of transition and innovation. Personalized
+              controls let you change the mood of each preview.
+            </p>
+          </div>
+          <div class="muted">Hover and click to inspect each story.</div>
+        </div>
+        <div class="gallery-grid" id="galleryGrid"></div>
+      </section>
+    </main>
+
+    <div
+      class="modal"
+      id="galleryModal"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="modalTitle"
+    >
+      <div class="modal-content">
+        <div class="modal-controls">
+          <label for="fontSelect">Font</label>
+          <select id="fontSelect">
+            <option value="Inter">Inter</option>
+            <option value="Georgia">Georgia</option>
+            <option value="Arial">Arial</option>
+          </select>
+          <label for="themeSelect">Theme</label>
+          <select id="themeSelect">
+            <option value="default">Default</option>
+            <option value="forest">Forest</option>
+            <option value="sunset">Sunset</option>
+          </select>
+          <button class="btn" id="closeModal" type="button">Close</button>
+        </div>
+        <div id="modalBody"></div>
+      </div>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-card">
+          <h3>Student</h3>
+          <p>Sayuranga Wiraj<br />Student 01</p>
+        </div>
+        <div class="footer-card">
+          <h3>Explore</h3>
+          <p>
+            <a href="pageEditor_ST1.html">Page Editor</a><br /><a
+              href="validation_ST1.html"
+              >Validation</a
+            ><br /><a href="sitemap.html">Sitemap</a>
+          </p>
+        </div>
+        <div class="footer-card">
+          <h3>Accessibility</h3>
+          <p><a href="home.html">Accessibility Statement</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Build the gallery cards from the content dataset.
+      const galleryItems = [
+        {
+          title: "Solar Futures",
+          image:
+            "https://images.unsplash.com/photo-1509391366360-2e959784a276?auto=format&fit=crop&w=900&q=80",
+          description:
+            "Large-scale solar farms remove dependency on fossil fuels.",
+        },
+        {
+          title: "Urban Forests",
+          image:
+            "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=900&q=80",
+          description: "Green infrastructure cools cities and captures carbon.",
+        },
+        {
+          title: "Zero Waste",
+          image:
+            "https://images.unsplash.com/photo-1517048676732-d65bc937f952?auto=format&fit=crop&w=900&q=80",
+          description:
+            "Circular habits reduce landfill pressure and emissions.",
+        },
+        {
+          title: "Ocean Care",
+          image:
+            "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?auto=format&fit=crop&w=900&q=80",
+          description:
+            "Marine restoration protects biodiversity and climate resilience.",
+        },
+      ];
+
+      const galleryGrid = document.getElementById("galleryGrid");
+      const modal = document.getElementById("galleryModal");
+      const modalBody = document.getElementById("modalBody");
+      const closeModal = document.getElementById("closeModal");
+      const fontSelect = document.getElementById("fontSelect");
+      const themeSelect = document.getElementById("themeSelect");
+
+      galleryItems.forEach((item) => {
+        const card = document.createElement("article");
+        card.className = "gallery-card";
+        card.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" />
+          <h3>${item.title}</h3>
+          <p class="muted">${item.description}</p>
+        `;
+        const activateHover = () => card.classList.add("hovered");
+        const deactivateHover = () => card.classList.remove("hovered");
+        card.addEventListener("mouseenter", activateHover);
+        card.addEventListener("mouseleave", deactivateHover);
+        card.addEventListener("focus", activateHover);
+        card.addEventListener("blur", deactivateHover);
+        card.addEventListener("click", () => openModal(item));
+        card.addEventListener("keydown", (event) => {
+          if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            openModal(item);
+          }
+        });
+        card.tabIndex = 0;
+        galleryGrid.appendChild(card);
+      });
+
+      function openModal(item) {
+        modalBody.innerHTML = `
+          <img src="${item.image}" alt="${item.title}" />
+          <h2 id="modalTitle">${item.title}</h2>
+          <p>${item.description}</p>
+          <p>The future of climate action is built by deliberate choices, creative design, and a commitment to public good.</p>
+        `;
+        modal.classList.add("open");
+      }
+
+      closeModal.addEventListener("click", () =>
+        modal.classList.remove("open"),
+      );
+      modal.addEventListener("click", (event) => {
+        if (event.target === modal) {
+          modal.classList.remove("open");
+        }
+      });
+
+      fontSelect.addEventListener("change", (event) => {
+        document.body.style.fontFamily = event.target.value;
+      });
+
+      themeSelect.addEventListener("change", (event) => {
+        const themes = {
+          default: {
+            "--primary": "#0b6e4f",
+            "--secondary": "#43aa8b",
+            "--accent": "#ffd166",
+          },
+          forest: {
+            "--primary": "#275d3b",
+            "--secondary": "#5aa76a",
+            "--accent": "#9ad14f",
+          },
+          sunset: {
+            "--primary": "#b85c38",
+            "--secondary": "#f4a261",
+            "--accent": "#ffd166",
+          },
+        };
+        const selected = themes[event.target.value];
+        Object.entries(selected).forEach(([key, value]) => {
+          document.documentElement.style.setProperty(key, value);
+        });
+      });
+    </script>
+  </body>
+</html>

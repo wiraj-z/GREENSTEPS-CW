@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GreenSteps | Climate Change and Young People</title>
+    <title>GreenSteps | Sustainable Transport</title>
     <meta
       name="description"
-      content="Discover how young people and university students can contribute to SDG 13 Climate Action."
+      content="Learn how transportation choices affect climate change and what young people can do to travel more sustainably."
     />
     <link rel="icon" type="image/png" href="Images/favicon/favicon.ico" />
     <link rel="stylesheet" href="style.css" />
@@ -14,33 +14,21 @@
     <style>
       .content-hero {
         display: grid;
-
         grid-template-columns: 1.15fr 0.85fr;
-
         align-items: center;
-
         gap: 50px;
-
         width: min(calc(100% - 48px), 1250px);
-
         margin: 0 auto;
-
         padding: 70px 0 55px;
       }
 
       .hero-image {
         display: block;
-
         width: 100%;
-
         height: 390px;
-
         object-fit: cover;
-
         border: 3px solid #d1ead7;
-
         border-radius: 18px;
-
         box-shadow: 0 10px 28px rgba(46, 139, 87, 0.18);
       }
 
@@ -50,211 +38,141 @@
 
       .section-label {
         display: inline-block;
-
         margin: 0 0 18px;
-
         padding: 7px 15px;
-
         background-color: #d9f7e3;
-
         color: #2e8b57;
-
         border-radius: 22px;
-
         font-size: 14px;
-
         font-weight: bold;
       }
 
       .content-hero h1 {
         margin: 0 0 22px;
-
         color: #2e8b57;
-
         font-size: 50px;
-
         line-height: 1.15;
       }
 
       .hero-introduction {
         margin: 0;
-
         color: #354149;
-
         font-size: 19px;
-
         line-height: 1.8;
       }
 
       .content-navigation {
         width: min(calc(100% - 48px), 1150px);
-
         margin: 10px auto 65px;
-
         padding: 28px;
-
         background-color: #edf8f0;
-
         border: 1px solid #b7ddc0;
-
         border-radius: 16px;
-
         box-shadow: 0 6px 18px rgba(46, 139, 87, 0.1);
       }
 
       .content-navigation h2 {
         margin: 0 0 22px;
-
         color: #2e8b57;
-
         font-size: 26px;
-
         text-align: center;
       }
 
       .content-navigation ul {
         display: flex;
-
         justify-content: center;
-
         flex-wrap: wrap;
-
         gap: 14px;
-
         margin: 0;
-
         padding: 0;
-
         list-style: none;
       }
 
       .content-navigation a {
         display: inline-block;
-
         padding: 10px 17px;
-
         background-color: #ffffff;
-
         color: #2e8b57;
-
         border: 1px solid #9bcba8;
-
         border-radius: 25px;
-
         font-size: 15px;
-
         font-weight: 600;
-
         text-decoration: none;
-
         transition: 0.3s;
       }
 
       .content-navigation a:hover,
       .content-navigation a:focus-visible {
         background-color: #2e8b57;
-
         color: #ffffff;
-
         transform: translateY(-2px);
-
         box-shadow: 0 5px 12px rgba(46, 139, 87, 0.22);
       }
 
       .content-section {
         width: min(calc(100% - 48px), 1150px);
-
         margin: 0 auto 55px;
-
         padding: 42px;
-
         background-color: #ffffff;
-
         border: 1px solid #dce9df;
-
         border-radius: 18px;
-
         box-shadow: 0 7px 22px rgba(0, 0, 0, 0.09);
-
         scroll-margin-top: 110px;
       }
 
       .section-number {
         display: inline-block;
-
         margin: 0 0 12px;
-
         padding: 5px 12px;
-
         background-color: #d9f7e3;
-
         color: #2e8b57;
-
         border-radius: 18px;
-
         font-size: 14px;
-
         font-weight: 700;
       }
 
       .content-section h2 {
         margin: 0 0 20px;
-
         color: #2e8b57;
-
         font-size: 31px;
-
         line-height: 1.3;
       }
 
       .content-section h3 {
         margin: 26px 0 12px;
-
         color: #205c37;
-
         font-size: 21px;
       }
 
       .content-section p {
         margin: 0 0 18px;
-
         color: #354149;
-
         font-size: 17px;
-
         line-height: 1.8;
       }
 
       .content-section ul,
       .content-section ol {
         margin: 14px 0 0;
-
         padding-left: 24px;
       }
 
       .content-section li {
         margin-bottom: 10px;
-
         color: #354149;
-
         font-size: 16px;
-
         line-height: 1.65;
       }
 
       .content-section li::marker {
         color: #2e8b57;
-
         font-weight: 700;
       }
 
       .content-with-image {
         display: grid;
-
         grid-template-columns: 1.1fr 0.9fr;
-
         align-items: center;
-
         gap: 45px;
       }
 
@@ -272,76 +190,49 @@
 
       .section-figure img {
         display: block;
-
         width: 100%;
-
         height: 330px;
-
         object-fit: cover;
-
         border: 3px solid #d1ead7;
-
         border-radius: 15px;
-
         box-shadow: 0 8px 22px rgba(46, 139, 87, 0.16);
-
         transition: 0.3s;
       }
 
       .section-figure img:hover {
         transform: scale(1.02);
-
         box-shadow: 0 13px 28px rgba(46, 139, 87, 0.24);
       }
 
       .section-figure figcaption {
         margin-top: 12px;
-
         color: #667477;
-
         font-size: 14px;
-
         font-style: italic;
-
         line-height: 1.5;
-
         text-align: center;
       }
 
       .content-action-link {
         display: inline-block;
-
         margin-top: 24px;
-
         padding: 12px 22px;
-
         background-color: #2e8b57;
-
         color: white;
-
         border: 2px solid #2e8b57;
-
         border-radius: 8px;
-
         font-size: 16px;
-
         font-weight: 700;
-
         text-decoration: none;
-
         cursor: pointer;
-
         transition: 0.3s;
       }
 
       .content-action-link:hover,
       .content-action-link:focus-visible {
         background-color: white;
-
         color: #2e8b57;
-
         transform: translateY(-2px);
-
         box-shadow: 0 7px 16px rgba(46, 139, 87, 0.22);
       }
 
@@ -365,9 +256,7 @@
 
         .section-figure {
           width: 100%;
-
           max-width: 700px;
-
           margin: 0 auto;
         }
       }
@@ -375,9 +264,7 @@
       @media (max-width: 650px) {
         .content-hero {
           width: min(calc(100% - 28px), 1250px);
-
           padding: 45px 0 35px;
-
           gap: 30px;
         }
 
@@ -395,29 +282,23 @@
 
         .content-navigation {
           width: min(calc(100% - 28px), 1150px);
-
           margin-bottom: 40px;
-
           padding: 22px 16px;
         }
 
         .content-navigation ul {
           flex-direction: column;
-
           align-items: stretch;
         }
 
         .content-navigation a {
           display: block;
-
           text-align: center;
         }
 
         .content-section {
           width: min(calc(100% - 28px), 1150px);
-
           margin-bottom: 35px;
-
           padding: 25px 20px;
         }
 
@@ -446,7 +327,6 @@
       .content-navigation a:focus-visible,
       .content-action-link:focus-visible {
         outline: 3px solid rgba(46, 139, 87, 0.35);
-
         outline-offset: 4px;
       }
     </style>
@@ -494,290 +374,298 @@
       </div>
     </header>
 
-    <!-- ===== MAIN — replace everything inside here per page ===== -->
+    <!-- ===== MAIN ===== -->
     <main id="main-content">
-      <!--=== ADD YOUR PAGE CONTENT HERE ===
-        - Do not modify the header or footer.
-        - Use shared classes from style.css.
-      
-      -->
-
       <section class="content-hero" aria-labelledby="content-title">
         <div class="hero-text">
           <p class="section-label">SDG 13 — Climate Action</p>
 
-          <h1 id="content-title">Climate Change and Young People</h1>
+          <h1 id="content-title">Sustainable Transport and Climate Change</h1>
 
           <p class="hero-introduction">
-            Young people will experience many of the long-term effects of
-            climate change, but they are also capable of creating meaningful
-            solutions. Through everyday choices, education, technology and
-            community participation, students can help build a greener and more
-            sustainable future.
+            Transportation is one of the largest sources of greenhouse-gas
+            emissions worldwide. The choices people make about how they travel
+            every day have a direct impact on the climate. By understanding
+            these effects and choosing lower-emission alternatives, individuals
+            and communities can make a meaningful difference.
           </p>
         </div>
 
         <img
-          src="Images/content_ST3/campaign.jpg"
-          alt="Young people participating in a climate action campaign"
+          src="Images/content_ST1/cycling.avif"
+          alt="family cycling together on a sunny day in a park"
           class="hero-image"
         />
       </section>
 
       <nav
         class="content-navigation"
-        aria-label="Climate change and young people page sections"
+        aria-label="Sustainable transport page sections"
       >
         <h2>Explore This Page</h2>
 
         <ul>
-          <li><a href="#youth-role">Why Young People Matter</a></li>
-
+          <li><a href="#transport-impact">Transport and Emissions</a></li>
+          <li><a href="#private-vehicles">The Cost of Private Vehicles</a></li>
+          <li><a href="#public-transport">Public Transport Benefits</a></li>
+          <li><a href="#active-travel">Walking and Cycling</a></li>
           <li>
-            <a href="#student-lifestyle">Sustainable Student Lifestyles</a>
+            <a href="#future-transport">Future of Sustainable Transport</a>
           </li>
-
-          <li><a href="#green-transport">Greener Travel Choices</a></li>
-
-          <li><a href="#community-action">Campus and Community Action</a></li>
-
-          <li><a href="#education-technology">Education and Technology</a></li>
         </ul>
       </nav>
 
-      <section class="content-section" id="youth-role">
+      <!-- Section 01 -->
+      <section class="content-section" id="transport-impact">
         <div class="section-text">
           <p class="section-number">01</p>
 
-          <h2>Why Young People Matter in Climate Action</h2>
+          <h2>How Transport Affects the Climate</h2>
 
           <p>
-            Young people will live with the long-term environmental,economic and
-            social effects of climate change. Their choices today can influence
-            the type of future experienced by their communities and future
-            generations.
+            The transport sector is responsible for approximately one quarter of
+            global carbon dioxide emissions from energy use. Cars, lorries,
+            aeroplanes and ships all burn fossil fuels, releasing greenhouse
+            gases that trap heat in the atmosphere and drive climate change.
           </p>
 
           <p>
-            Students can also influence their families, friends, universities
-            and future workplaces. When young people adopt responsible habits
-            and encourage others to participate, small individual actions can
-            develop into wider community change.
+            In many countries, transport emissions have continued to rise even
+            as other sectors have reduced their output. This makes changing how
+            people travel one of the most important steps in addressing the
+            climate crisis.
           </p>
 
-          <h3>Young people can contribute by:</h3>
+          <h3>Key facts about transport emissions:</h3>
 
           <ul>
             <li>
-              Learning about climate change and sharing reliable information.
+              Road vehicles account for the majority of transport-related CO₂
+              emissions.
             </li>
-
-            <li>Making environmentally responsible lifestyle choices.</li>
-
-            <li>Participating in local climate-action programmes.</li>
-
             <li>
-              Encouraging universities and organisations to act responsibly.
+              Short-haul flights produce a disproportionately high level of
+              emissions per kilometre.
+            </li>
+            <li>
+              Freight transport contributes significantly to global supply chain
+              emissions.
+            </li>
+            <li>
+              Urban areas generate a large share of transport emissions due to
+              high population density and car dependency.
             </li>
           </ul>
         </div>
       </section>
 
-      <section
-        class="content-section content-with-image"
-        id="student-lifestyle"
-      >
+      <!-- Section 02 -->
+      <section class="content-section content-with-image" id="private-vehicles">
         <div class="section-text">
           <p class="section-number">02</p>
 
-          <h2>Sustainable Student Lifestyles</h2>
+          <h2>The Environmental Cost of Private Vehicles</h2>
 
           <p>
-            Students make daily decisions involving food, water, electricity,
-            clothing and shopping. Choosing more sustainable alternatives can
-            reduce waste and lower environmental impact.
+            Private cars are convenient, but they are also one of the least
+            efficient ways to move people. A car carrying only one person
+            produces far more emissions per passenger than a bus or train
+            carrying many travellers.
           </p>
 
           <p>
-            A sustainable lifestyle does not require students to change
-            everything immediately. Beginning with one realistic action and
-            practising it consistently is more effective than attempting several
-            difficult changes at once.
+            Beyond direct emissions, private vehicles also contribute to urban
+            congestion, air pollution, and land use for roads and car parks.
+            Reducing dependence on private cars is a key strategy for more
+            sustainable cities.
           </p>
 
-          <h3>Simple student actions</h3>
+          <h3>Why single-occupancy car journeys are costly:</h3>
 
           <ul>
-            <li>Carry a reusable water bottle and lunch container.</li>
-
-            <li>Switch off unused lights, fans and electronic devices.</li>
-
-            <li>Avoid unnecessary purchases and disposable products.</li>
-
-            <li>Plan meals to reduce food waste.</li>
+            <li>
+              Emit more CO₂ per passenger kilometre than any shared transport
+              mode.
+            </li>
+            <li>
+              Contribute to poor air quality through exhaust and tyre particles.
+            </li>
+            <li>Increase urban noise pollution and road congestion.</li>
+            <li>
+              Require large areas of land for parking and road infrastructure.
+            </li>
           </ul>
         </div>
 
         <figure class="section-figure">
           <img
-            src="Images/content_ST3/reuse.jpg"
-            alt="Reusable bottle, lunch container and bag used by a student"
+            src="Images/content_ST1/traffic.avif"
+            alt="Heavy traffic congestion on a city road with private vehicles"
             loading="lazy"
           />
 
           <figcaption>
-            Reusable products can reduce the amount of disposable waste created
-            during everyday student life.
+            Single-occupancy car journeys are a leading contributor to urban
+            transport emissions and air quality problems.
           </figcaption>
         </figure>
       </section>
 
+      <!-- Section 03 -->
       <section
         class="content-section content-with-image reverse-layout"
-        id="green-transport"
+        id="public-transport"
       >
         <div class="section-text">
           <p class="section-number">03</p>
 
-          <h2>Greener Travel Choices</h2>
+          <h2>The Climate Benefits of Public Transport</h2>
 
           <p>
-            Travelling to university, work and social activities can produce
-            greenhouse-gas emissions, especially when people regularly travel
-            alone in private vehicles.
+            Buses, trains, trams and metro systems can carry large numbers of
+            passengers at a fraction of the emissions produced by the same
+            number of private cars. Well-used public transport is one of the
+            most effective tools for reducing urban carbon footprints.
           </p>
 
           <p>
-            Walking, cycling, public transport and shared journeys can help
-            reduce the environmental impact of everyday travel. Students can
-            begin by replacing only one or two journeys each week.
+            Switching from a car to a bus or train for regular commutes can
+            significantly reduce an individual's annual transport emissions.
+            When many people make this switch, the cumulative impact on a city
+            or region can be substantial.
           </p>
 
-          <h3>Lower-emission travel options</h3>
+          <h3>Advantages of using public transport:</h3>
 
           <ul>
-            <li>Walk when travelling short distances.</li>
-
-            <li>Cycle where safe routes are available.</li>
-
-            <li>Use buses or trains when practical.</li>
-
-            <li>Share journeys with classmates travelling to the same area.</li>
+            <li>Lower emissions per passenger compared to private vehicles.</li>
+            <li>
+              Reduces total number of vehicles on the road, easing congestion.
+            </li>
+            <li>
+              Electric trains and trams produce near-zero direct emissions.
+            </li>
+            <li>Encourages denser, more walkable urban development.</li>
           </ul>
         </div>
 
         <figure class="section-figure">
           <img
-            src="Images/content_ST3/travel.jpg"
-            alt="Young university students travelling together by bicycle"
+            src="Images/content_ST1/bus.avif"
+            alt="Passengers boarding a modern city bus at a busy urban stop"
             loading="lazy"
           />
 
           <figcaption>
-            Cycling and shared transport can reduce emissions from regular
-            student travel.
+            Public transport moves many people efficiently, producing
+            significantly lower emissions per passenger than private cars.
           </figcaption>
         </figure>
       </section>
 
-      <section class="content-section content-with-image" id="community-action">
+      <!-- Section 04 -->
+      <section class="content-section content-with-image" id="active-travel">
         <div class="section-text">
           <p class="section-number">04</p>
 
-          <h2>Campus and Community Climate Action</h2>
+          <h2>Walking and Cycling as Climate Action</h2>
 
           <p>
-            Individual habits are important, but young people can create a
-            greater impact when they work together. Universities provide
-            opportunities for students to join environmental clubs, campaigns
-            and volunteering programmes.
+            Active travel — walking and cycling — produces zero direct
+            emissions, requires minimal infrastructure compared to roads, and
+            has significant co-benefits for physical and mental health. For
+            short distances, it is both the most sustainable and often the most
+            practical option.
           </p>
 
           <p>
-            Activities such as tree planting, beach cleaning, recycling
-            campaigns and climate-awareness events can create visible benefits
-            while encouraging more people to participate.
+            Many cities are investing in cycling infrastructure, pedestrian
+            zones and bike-sharing schemes to make active travel safer and more
+            accessible. Students and young people can both benefit from and
+            advocate for these improvements.
           </p>
 
-          <h3>Ways to participate</h3>
+          <h3>How to make active travel work for you:</h3>
 
           <ul>
-            <li>Join a university environmental society.</li>
-
-            <li>Participate in tree-planting or clean-up campaigns.</li>
-
-            <li>Help organise recycling and waste-reduction programmes.</li>
-
-            <li>Encourage friends to join community activities.</li>
+            <li>
+              Plan routes in advance using cycling maps or pedestrian-friendly
+              apps.
+            </li>
+            <li>Use a bike-sharing scheme if you do not own a bicycle.</li>
+            <li>
+              Walk for journeys under 20 minutes instead of taking a vehicle.
+            </li>
+            <li>
+              Combine cycling or walking with public transport for longer trips.
+            </li>
           </ul>
         </div>
 
         <figure class="section-figure">
           <img
-            src="Images/content_ST3/clean.jpg"
-            alt="Students working together during an environmental clean-up"
+            src="Images/content_ST1/cylcle-walk.avif"
+            alt="people walking and cycling in a city park on a sunny day"
             loading="lazy"
           />
 
           <figcaption>
-            Working together allows young people to create a wider and more
-            visible environmental impact.
+            Cycling and walking produce no direct emissions and provide health
+            benefits alongside environmental ones.
           </figcaption>
         </figure>
       </section>
 
+      <!-- Section 05 -->
       <section
         class="content-section content-with-image reverse-layout"
-        id="education-technology"
+        id="future-transport"
       >
         <div class="section-text">
           <p class="section-number">05</p>
 
-          <h2>Using Education and Technology for Climate Action</h2>
+          <h2>The Future of Sustainable Transport</h2>
 
           <p>
-            Education helps young people understand the causes and effects of
-            climate change. It also helps students identify false information
-            and communicate climate issues more responsibly.
+            Electric vehicles, hydrogen-powered transport and smart mobility
+            systems represent the next phase of sustainable transport. These
+            technologies can dramatically reduce emissions from road and rail
+            travel when powered by renewable energy.
           </p>
 
           <p>
-            Technology students can contribute by developing websites,
-            applications, data systems and digital campaigns that encourage
-            sustainable behaviour or improve environmental awareness.
+            Young people will both shape and benefit from these developments.
+            Careers in transport engineering, urban planning, energy systems and
+            policy offer opportunities to directly influence how future
+            communities travel.
           </p>
 
-          <h3>Ideas for young innovators</h3>
+          <h3>Emerging sustainable transport solutions:</h3>
 
           <ul>
-            <li>Create applications that track energy or water use.</li>
-
-            <li>Develop websites that promote local climate programmes.</li>
-
+            <li>Electric vehicles charged by renewable energy sources.</li>
+            <li>Hydrogen fuel cells for lorries, trains and ferries.</li>
+            <li>Smart traffic systems that reduce idling and congestion.</li>
             <li>
-              Use social media to share reliable environmental information.
-            </li>
-
-            <li>
-              Explore careers connected to renewable energy and sustainability.
+              Mobility-as-a-service platforms that reduce private car ownership.
             </li>
           </ul>
 
-          <a class="content-action-link" href="feedback.html">
-            Explore Climate Action Programs
+          <a class="content-action-link" href="ais.html">
+            Calculate Your Transport Footprint
           </a>
         </div>
 
         <figure class="section-figure">
           <img
-            src="Images/content_ST3/tech.jpg"
-            alt="Young students using technology to develop environmental solutions"
+            src="Images/content_ST1/electric.avif"
+            alt="An electric vehicle charging at a public charging station"
             loading="lazy"
           />
 
           <figcaption>
-            Education and technology allow students to design new climate
-            solutions and share ideas with wider audiences.
+            Electric vehicles and renewable energy infrastructure are central to
+            the future of low-emission transport.
           </figcaption>
         </figure>
       </section>
@@ -788,15 +676,13 @@
       <div class="footer-grid">
         <div class="footer-card">
           <h3>Student</h3>
-          <p>
-            Rehansa Sumalmi<br />Student 3 – Feedback, Team and Content Page
-          </p>
+          <p>Sayuranga Wiraj<br />Student 01 - Home Page & Gallery</p>
         </div>
         <div class="footer-card">
           <h3>Explore</h3>
           <p>
-            <a href="pageEditor_ST3.html">Page Editor</a><br />
-            <a href="validation_ST3.html">Validation</a><br />
+            <a href="pageEditor_ST1.html">Page Editor</a><br />
+            <a href="validation_ST1.html">Validation</a><br />
             <a href="sitemap.html">Sitemap</a>
           </p>
         </div>

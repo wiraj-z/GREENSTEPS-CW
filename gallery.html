@@ -9,7 +9,7 @@
       content="Interactive gallery for the climate action campaign."
     />
     <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/png" href="assets/img/favicon.ico" />
+    <link rel="icon" type="image/png" href="Images/favicon/favicon.ico" />
     <style>
       /* Gallery Page Styles */
       .gallery-shell {
@@ -76,18 +76,38 @@
         box-shadow: var(--shadow);
       }
 
-      .modal-controls {
+      .modal-header {
         display: flex;
-        gap: 0.8rem;
-        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: 1rem;
         margin-bottom: 1rem;
       }
 
-      .modal-controls select {
-        padding: 0.6rem 0.7rem;
-        border-radius: 999px;
-        border: 1px solid rgba(11, 110, 79, 0.16);
+      .modal-title-wrap {
+        display: grid;
+        gap: 0.2rem;
+      }
+
+      .modal-label {
+        margin: 0;
+        font-size: 0.78rem;
+        text-transform: uppercase;
+        letter-spacing: 0.2em;
+        color: var(--secondary);
+      }
+
+      .modal-heading {
+        margin: 0;
+        font-size: clamp(1.2rem, 1.7vw, 1.5rem);
+      }
+
+      .modal-close {
+        padding: 0.7rem 1rem;
         background: white;
+        color: var(--primary);
+        border: 1px solid rgba(11, 110, 79, 0.14);
+        box-shadow: none;
       }
 
       .modal img {
@@ -156,11 +176,9 @@
           <div>
             <h1 class="section-title">Climate gallery</h1>
             <p class="section-copy">
-              Explore four stories of transition and innovation. Personalized
-              controls let you change the mood of each preview.
+              Explore four stories of transition and innovation.
             </p>
           </div>
-          <div class="muted">Hover and click to inspect each story.</div>
         </div>
         <div class="gallery-grid" id="galleryGrid"></div>
       </section>
@@ -174,20 +192,19 @@
       aria-labelledby="modalTitle"
     >
       <div class="modal-content">
-        <div class="modal-controls">
-          <label for="fontSelect">Font</label>
-          <select id="fontSelect">
-            <option value="Inter">Inter</option>
-            <option value="Georgia">Georgia</option>
-            <option value="Arial">Arial</option>
-          </select>
-          <label for="themeSelect">Theme</label>
-          <select id="themeSelect">
-            <option value="default">Default</option>
-            <option value="forest">Forest</option>
-            <option value="sunset">Sunset</option>
-          </select>
-          <button class="btn" id="closeModal" type="button">Close</button>
+        <div class="modal-header">
+          <div class="modal-title-wrap">
+            <p class="modal-label">Featured story</p>
+            <h2 id="modalTitle" class="modal-heading">Climate story</h2>
+          </div>
+          <button
+            class="btn btn-secondary modal-close"
+            id="closeModal"
+            type="button"
+            aria-label="Close dialog"
+          >
+            Close
+          </button>
         </div>
         <div id="modalBody"></div>
       </div>
@@ -248,8 +265,6 @@
       const modal = document.getElementById("galleryModal");
       const modalBody = document.getElementById("modalBody");
       const closeModal = document.getElementById("closeModal");
-      const fontSelect = document.getElementById("fontSelect");
-      const themeSelect = document.getElementById("themeSelect");
 
       galleryItems.forEach((item) => {
         const card = document.createElement("article");
@@ -277,9 +292,10 @@
       });
 
       function openModal(item) {
+        const modalTitle = document.getElementById("modalTitle");
+        modalTitle.textContent = item.title;
         modalBody.innerHTML = `
           <img src="${item.image}" alt="${item.title}" />
-          <h2 id="modalTitle">${item.title}</h2>
           <p>${item.description}</p>
           <p>The future of climate action is built by deliberate choices, creative design, and a commitment to public good.</p>
         `;
@@ -293,34 +309,6 @@
         if (event.target === modal) {
           modal.classList.remove("open");
         }
-      });
-
-      fontSelect.addEventListener("change", (event) => {
-        document.body.style.fontFamily = event.target.value;
-      });
-
-      themeSelect.addEventListener("change", (event) => {
-        const themes = {
-          default: {
-            "--primary": "#0b6e4f",
-            "--secondary": "#43aa8b",
-            "--accent": "#ffd166",
-          },
-          forest: {
-            "--primary": "#275d3b",
-            "--secondary": "#5aa76a",
-            "--accent": "#9ad14f",
-          },
-          sunset: {
-            "--primary": "#b85c38",
-            "--secondary": "#f4a261",
-            "--accent": "#ffd166",
-          },
-        };
-        const selected = themes[event.target.value];
-        Object.entries(selected).forEach(([key, value]) => {
-          document.documentElement.style.setProperty(key, value);
-        });
       });
     </script>
   </body>

@@ -74,6 +74,30 @@
         border-radius: 24px;
         padding: 1.2rem;
         box-shadow: var(--shadow);
+        transition: background 0.3s, color 0.3s;
+      }
+
+      .modal-content.dark {
+        background: #000000c3;
+        color: #e8e8e8;
+      }
+
+      .modal-content.dark .modal-label {
+        color: #a0c4a0;
+      }
+
+      .modal-content.dark .modal-heading {
+        color: #e8e8e8;
+      }
+
+      .modal-content.dark .modal-close {
+        background: #2a2a3e;
+        color: #a0c4a0;
+        border-color: #3a3a5e;
+      }
+
+      .modal-content.dark p {
+        color: #cccccc;
       }
 
       .modal-header {
@@ -128,9 +152,73 @@
           grid-template-columns: 1fr;
         }
       }
-    
+
       .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-</style>
+
+      /* ── Theme toggle switch ── */
+      .theme-toggle {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        margin-top: 1rem;
+        justify-content: flex-end;
+      }
+
+      .theme-toggle-label {
+        font-size: 0.82rem;
+        color: inherit;
+        user-select: none;
+      }
+
+      .toggle-switch {
+        position: relative;
+        width: 44px;
+        height: 24px;
+        flex-shrink: 0;
+      }
+
+      .toggle-switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+        position: absolute;
+      }
+
+      .toggle-track {
+        position: absolute;
+        inset: 0;
+        background: #c8e6d0;
+        border-radius: 24px;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .toggle-track::after {
+        content: '';
+        position: absolute;
+        top: 3px;
+        left: 3px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #2e8b57;
+        transition: transform 0.3s;
+      }
+
+      .toggle-switch input:checked + .toggle-track {
+        background: #3a3a5e;
+      }
+
+      .toggle-switch input:checked + .toggle-track::after {
+        transform: translateX(20px);
+        background: #a0c4a0;
+      }
+
+      .toggle-switch input:focus-visible + .toggle-track {
+        outline: 2px solid #2e8b57;
+        outline-offset: 2px;
+      }
+    </style>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -150,8 +238,6 @@
         <label
           for="nav-toggle"
           class="nav-toggle"
-          
-          
         >
           <span class="visually-hidden">Toggle navigation menu</span>
           <span class="hamburger" aria-hidden="true">
@@ -194,7 +280,7 @@
       aria-modal="true"
       aria-labelledby="modalTitle"
     >
-      <div class="modal-content">
+      <div class="modal-content" id="modalContent">
         <div class="modal-header">
           <div class="modal-title-wrap">
             <p class="modal-label">Featured story</p>
@@ -210,6 +296,17 @@
           </button>
         </div>
         <div id="modalBody"></div>
+
+        <!-- ── Dark / Light toggle ── -->
+        <div class="theme-toggle">
+          <span class="theme-toggle-label" id="themeLabel">Light</span>
+          <label class="toggle-switch">
+            <input type="checkbox" id="themeSwitch" aria-label="Toggle dark mode">
+            <span class="toggle-track"></span>
+          </label>
+          <span class="theme-toggle-label">Dark</span>
+        </div>
+
       </div>
     </div>
 
@@ -237,7 +334,6 @@
     <a class="top-btn" href="#top" aria-label="Go to top of page">↑ Top</a>
 
     <script>
-      // Build the gallery cards from the content dataset.
       const galleryItems = [
         {
           title: "Solar Futures",
@@ -264,10 +360,12 @@
         },
       ];
 
-      const galleryGrid = document.getElementById("galleryGrid");
-      const modal = document.getElementById("galleryModal");
-      const modalBody = document.getElementById("modalBody");
-      const closeModal = document.getElementById("closeModal");
+      const galleryGrid  = document.getElementById("galleryGrid");
+      const modal        = document.getElementById("galleryModal");
+      const modalContent = document.getElementById("modalContent");
+      const modalBody    = document.getElementById("modalBody");
+      const closeModal   = document.getElementById("closeModal");
+      const themeSwitch  = document.getElementById("themeSwitch");
 
       galleryItems.forEach((item) => {
         const card = document.createElement("article");
@@ -277,13 +375,13 @@
           <h3>${item.title}</h3>
           <p class="muted">${item.description}</p>
         `;
-        const activateHover = () => card.classList.add("hovered");
+        const activateHover   = () => card.classList.add("hovered");
         const deactivateHover = () => card.classList.remove("hovered");
         card.addEventListener("mouseenter", activateHover);
         card.addEventListener("mouseleave", deactivateHover);
-        card.addEventListener("focus", activateHover);
-        card.addEventListener("blur", deactivateHover);
-        card.addEventListener("click", () => openModal(item));
+        card.addEventListener("focus",      activateHover);
+        card.addEventListener("blur",       deactivateHover);
+        card.addEventListener("click",      () => openModal(item));
         card.addEventListener("keydown", (event) => {
           if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
@@ -295,8 +393,7 @@
       });
 
       function openModal(item) {
-        const modalTitle = document.getElementById("modalTitle");
-        modalTitle.textContent = item.title;
+        document.getElementById("modalTitle").textContent = item.title;
         modalBody.innerHTML = `
           <img src="${item.image}" alt="${item.title}" >
           <p>${item.description}</p>
@@ -305,13 +402,14 @@
         modal.classList.add("open");
       }
 
-      closeModal.addEventListener("click", () =>
-        modal.classList.remove("open"),
-      );
+      closeModal.addEventListener("click", () => modal.classList.remove("open"));
       modal.addEventListener("click", (event) => {
-        if (event.target === modal) {
-          modal.classList.remove("open");
-        }
+        if (event.target === modal) modal.classList.remove("open");
+      });
+
+      // ── Theme switch ──────────────────────────────────────────────
+      themeSwitch.addEventListener("change", () => {
+        modalContent.classList.toggle("dark", themeSwitch.checked);
       });
     </script>
   </body>

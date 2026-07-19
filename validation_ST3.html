@@ -1,0 +1,368 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenSteps | Validation – Rehansa Sumalmi</title>
+
+    <link rel="icon" type="image/png" href="Images/favicon/favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+
+    <style>
+        body {
+            background:
+                radial-gradient(circle at top left, rgba(67, 170, 139, 0.16), transparent 24%),
+                linear-gradient(135deg, #f8fefb 0%, #eefcf7 100%);
+            color: var(--text);
+            min-height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: row-reverse;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 24px 20px 40px 45px;
+            gap: 24px;
+            align-items: flex-start;
+        }
+
+        main {
+            flex: 3;
+            display: grid;
+            gap: 1.2rem;
+        }
+
+        aside {
+            flex: 1;
+            background: rgba(255, 255, 255, 0.84);
+            padding: 20px;
+            border: 1px solid rgba(11, 110, 79, 0.12);
+            margin-right: 0;
+            border-radius: 24px;
+            box-shadow: var(--shadow);
+            backdrop-filter: blur(18px);
+            position: sticky;
+            top: 110px;
+        }
+
+        .stud {
+            max-width: 1200px;
+            margin: 2rem auto 0;
+            padding: 2rem 2.2rem;
+            border-radius: 24px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .stud h2 {
+            margin: 0;
+            font-size: clamp(1.3rem, 2vw, 1.8rem);
+        }
+
+        main section {
+            background: rgba(255, 255, 255, 0.82);
+            border: 1px solid rgba(11, 110, 79, 0.12);
+            border-radius: 24px;
+            padding: 1.5rem 1.6rem;
+            box-shadow: var(--shadow);
+        }
+
+        main h2 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        main h3 {
+            color: var(--secondary);
+            margin-bottom: 0.4rem;
+        }
+
+        main p,
+        main li {
+            line-height: 1.7;
+            color: var(--text);
+        }
+
+        main img {
+            display: block;
+            width: 100%;
+            max-height: 320px;
+            object-fit: cover;
+            border-radius: 16px;
+            margin: 1rem 0 1.2rem;
+            border: 1px solid rgba(11, 110, 79, 0.12);
+        }
+
+        main a {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .top {
+            margin-top: 1.2rem;
+        }
+
+        .top-level-ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 0.65rem;
+        }
+
+        .top-level-ul > li {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .top-level-ul ul {
+            list-style: none;
+            padding: 0 0 0 1rem;
+            display: grid;
+            gap: 0.35rem;
+            margin: 0.3rem 0 0;
+        }
+
+        .top-level-ul a {
+            color: var(--text);
+            text-decoration: none;
+        }
+
+        .top-level-ul a:hover,
+        .top-level-ul a:focus-visible,
+        main a:hover,
+        main a:focus-visible {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        @media (max-width: 900px) {
+            .container {
+                flex-direction: column;
+                padding-left: 20px;
+            }
+
+            aside {
+                position: relative;
+                top: auto;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .stud {
+                padding: 1.4rem 1rem;
+            }
+
+            main section {
+                padding: 1.2rem;
+            }
+        }
+
+      .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    </style>
+  </head>
+  <body id="top">
+    <!-- Update the header and the footer to be consistent with the rest of the pages you implemented Optional -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="home.html" aria-label="GreenSteps — Home">
+          <span class="brand-mark" aria-hidden="true">☀</span>
+          <span class="brand-name">GreenSteps</span>
+        </a>
+
+        <input
+          type="checkbox"
+          id="nav-toggle"
+          class="nav-checkbox"
+          aria-hidden="true"
+        />
+        <label for="nav-toggle" class="nav-toggle">
+          <span class="visually-hidden">Toggle navigation menu</span>
+          <span class="hamburger" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </label>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a class="nav-link" href="home.html">Home</a>
+          <a class="nav-link" href="gallery.html">Gallery</a>
+          <a class="nav-link" href="ais.html">Action Simulator</a>
+          <a class="nav-link" href="feedback.html">Feedback</a>
+          <a class="nav-link" href="team.html">Team</a>
+          <a class="nav-link" href="profile.html">User Profile</a>
+          <a class="nav-link" href="sitemap.html">Sitemap</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="stud">
+      <h2>
+        Validation Page – Rehansa Sumalmi | Student 3 – Feedback, Team and
+        Content Page
+      </h2>
+    </section>
+
+    <div class="container">
+      <!-- Main content area -->
+      <main id="main-content">
+        <!-- Update the content of the following sections with the information that corresponds to the pages you implemented  -->
+
+        <section>
+          <h2 id="feedbackVal">Feedback Page Validation Report</h2>
+
+          <p>
+            The Feedback and Program Directory page was checked using the
+            required HTML validation tool. The screenshot below provides
+            evidence of the final validation result.
+          </p>
+
+          <img
+            src="Images/validation_page/ST3/feedbackVal.jpeg"
+            alt="W3C HTML validation result showing no errors for the Feedback Page"
+          />
+
+          <h3>Back to Page Editor page</h3>
+          <p>
+            <a href="pageEditor_ST3.html#feedback"
+              >Return to the Feedback Page section in Rehansa Sumalmi's Page
+              Editor</a
+            >
+          </p>
+          <!-- Update the path to link the Page Editor with the validation page and make it jump to the marker that contains a snapshot for the splash page -->
+        </section>
+
+        <section>
+          <h2 id="teamVal">Team Page validation report</h2>
+
+          <p>
+            The Team Page was checked using the required HTML validation tool.
+            The screenshot below shows the final validation result for the page.
+          </p>
+
+          <img
+            src="Images/validation_page/ST3/teamVal.jpeg"
+            alt="W3C HTML validation result showing no errors for the Team Page"
+          />
+
+          <h3>Back to Page Editor page</h3>
+
+          <p>
+            <a href="pageEditor_ST3.html#team"
+              >Return to the Team Page section in Rehansa Sumalmi's Page
+              Editor</a
+            >
+          </p>
+          <!-- Update the path to link the Page Editor with the validation page and make it jump to the marker that contains a snapshot for the splash page -->
+        </section>
+
+        <section>
+          <h2 id="contentVal">Content Page validation report</h2>
+
+          <p>
+            The Climate Change and Young People Content Page was checked using
+            the required HTML validation tool. The screenshot below provides
+            evidence of the final result.
+          </p>
+
+          <img
+            src="Images/validation_page/ST3/contentVal.jpeg"
+            alt="W3C HTML validation result showing no errors for the Climate Change and Young People Content Page"
+          />
+
+          <h3>Back to Page Editor page</h3>
+
+          <p>
+            <a href="pageEditor_ST3.html#content"
+              >Return to the Content Page section in Rehansa Sumalmi's Page
+              Editor</a
+            >
+          </p>
+          <!-- Update the path to link the Page Editor with the validation page and make it jump to the marker that contains a snapshot for the splash page -->
+        </section>
+
+        <section>
+          <h2 id="reflection">Reflection on Validation</h2>
+
+          <p>
+            During the validation process, I found several minor issues on the
+            Feedback Page. Some form labels were not correctly associated with
+            their input controls. I corrected this by ensuring that every label
+            had a <code>for</code> attribute matching the <code>id</code> of its
+            related input, select or textarea element.
+          </p>
+
+          <p>
+            I also checked the nesting of HTML elements, closing tags, image
+            alternative text, heading order and internal links across my
+            Feedback, Team and Content Pages. After making the required
+            corrections, I validated each page again until the validator
+            reported no errors.
+          </p>
+
+          <p>
+            The validation process was a valuable learning experience because it
+            demonstrated the importance of semantic HTML, correct document
+            structure and accessibility best practices. Running the W3C
+            Validator regularly during development helped me identify problems
+            early and prepare my Student 3 pages for the final coursework
+            submission.
+          </p>
+        </section>
+      </main>
+
+      <!-- Sidebar area -->
+      <aside>
+        <h3>Core pages developed:</h3>
+
+        <!-- Customize this to the role you undertook. Keep only the list items you were responsible to develop, delete the rest -->
+        <ul class="top-level-ul">
+          <!-- Keep only the list items you were responsible to develop, delete the rest and update the links to the corresponding markers -->
+
+          <li>
+            Student 3
+            <ul>
+              <li><a href="#feedbackVal">Feedback Page</a></li>
+              <li><a href="#teamVal">Team Page</a></li>
+              <li><a href="#contentVal">Content Page</a></li>
+            </ul>
+          </li>
+
+          <li>
+            <a href="#reflection">Reflection</a>
+          </li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-card">
+          <h3>Student</h3>
+
+          <p>
+            Rehansa Sumalmi<br />Student 03 - Feedback, Team and Content Page
+          </p>
+        </div>
+        <div class="footer-card">
+          <h3>Explore</h3>
+          <p>
+            <a href="pageEditor_ST3.html">Page Editor</a><br />
+            <a href="validation_ST3.html">Validation</a><br />
+            <a href="sitemap.html">Sitemap</a>
+          </p>
+        </div>
+        <div class="footer-card">
+          <h3>Accessibility</h3>
+          <p><a href="#accessibility">Accessibility Statement</a></p>
+        </div>
+      </div>
+    </footer>
+
+    <a class="top-btn" href="#top" aria-label="Go to top of page">↑ Top</a>
+  </body>
+</html>

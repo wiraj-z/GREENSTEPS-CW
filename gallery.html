@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <title>Climate Action | Gallery</title>
     <meta
       name="description"
       content="Interactive gallery for the climate action campaign."
-    />
-    <link rel="stylesheet" href="style.css" />
-    <link rel="icon" type="image/png" href="Images/favicon/favicon.ico" />
+    >
+    <link rel="stylesheet" href="style.css" >
+    <link rel="icon" type="image/png" href="Images/favicon/favicon.ico" >
     <style>
       /* Gallery Page Styles */
       .gallery-shell {
@@ -128,7 +128,9 @@
           grid-template-columns: 1fr;
         }
       }
-    </style>
+    
+      .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+</style>
   </head>
   <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
@@ -144,13 +146,14 @@
           id="nav-toggle"
           class="nav-checkbox"
           aria-hidden="true"
-        />
+        >
         <label
           for="nav-toggle"
           class="nav-toggle"
-          aria-label="Toggle navigation menu"
-          role="button"
+          
+          
         >
+          <span class="visually-hidden">Toggle navigation menu</span>
           <span class="hamburger" aria-hidden="true">
             <span></span>
             <span></span>
@@ -214,13 +217,13 @@
       <div class="footer-grid">
         <div class="footer-card">
           <h3>Student</h3>
-          <p>Sayuranga Wiraj<br />Student 01 - Home Page & Gallery</p>
+          <p>Sayuranga Wiraj<br >Student 01 - Home Page & Gallery</p>
         </div>
         <div class="footer-card">
           <h3>Explore</h3>
           <p>
-            <a href="pageEditor_ST1.html">Page Editor</a><br />
-            <a href="validation_ST1.html">Validation</a><br />
+            <a href="pageEditor_ST1.html">Page Editor</a><br >
+            <a href="validation_ST1.html">Validation</a><br >
             <a href="sitemap.html">Sitemap</a>
           </p>
         </div>
@@ -270,7 +273,7 @@
         const card = document.createElement("article");
         card.className = "gallery-card";
         card.innerHTML = `
-          <img src="${item.image}" alt="${item.title}" />
+          <img src="${item.image}" alt="${item.title}" >
           <h3>${item.title}</h3>
           <p class="muted">${item.description}</p>
         `;
@@ -295,7 +298,7 @@
         const modalTitle = document.getElementById("modalTitle");
         modalTitle.textContent = item.title;
         modalBody.innerHTML = `
-          <img src="${item.image}" alt="${item.title}" />
+          <img src="${item.image}" alt="${item.title}" >
           <p>${item.description}</p>
           <p>The future of climate action is built by deliberate choices, creative design, and a commitment to public good.</p>
         `;

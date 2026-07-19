@@ -4,360 +4,422 @@
     <meta charset="UTF-8" >
     <meta name="viewport" content="width=device-width, initial-scale=1.0" >
     <title>GreenSteps | OUR TEAM</title>
-    <meta
-      name="description"
-      content="Meet the GreenSteps team working together to promote SDG 13 Climate Action."
-    >
-    <link rel="icon" type="image/png" href="Images/favicon/favicon.ico" >
+    <meta name="description" content="Meet the GreenSteps team working together to promote SDG 13 Climate Action." >
+    <link rel="icon" type="image/png" href="assets/img/favicon.ico" >
     <link rel="stylesheet" href="style.css" >
     <style>
+
       .team-section {
+
         min-height: 100vh;
 
-        padding: 55px 20px 80px;
+      padding: 55px 20px 80px;
 
-        background-color: #f4faf6;
+      background-color: #f4faf6;
 
-        color: #263238;
+      color: #263238;
+
+
+    }
+
+
+    .team-heading {
+  
+      max-width: 900px;
+
+      margin: 0 auto 50px;
+
+      text-align: center;
+
+    }
+
+    .team-heading h1 {
+
+      margin: 0 0 18px;
+
+      color: #2e8b57;
+
+      font-size: 48px;
+
+      font-weight: 700;
+
+    }
+
+    .team-heading p {
+
+      margin: 0;
+
+      color: #354149;
+
+      font-size: 18px;
+
+      line-height: 1.7;
+
+    }
+
+
+    .team-grid {
+
+      display: grid;
+
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      align-items: start;
+
+      gap: 50px 40px;
+
+      max-width: 1050px;
+
+      margin: 0 auto;
+
+    }
+
+
+    .member-item {
+
+      min-width: 0;
+
+      outline: none;
+
+    }
+
+
+    .member-card {
+
+      padding: 30px 26px 24px;
+
+      background-color: #ffffff;
+
+      border: 1px solid #dce8df;
+
+
+      border-radius: 16px;
+
+      text-align: center;
+
+      box-shadow: 0 6px 18px rgba(0, 0, 0, 0.13);
+
+      transition:transform 0.3s ease,border-color 0.3s ease,box-shadow 0.3s ease;
+
+
+    }
+
+
+    .member-card img {
+
+
+      display: block;
+
+      width: 190px;
+
+      height: 190px;
+
+      margin: 0 auto 24px;
+
+      object-fit: cover;
+
+      border-radius: 14px;
+
+      background-color: #e4f4e8;
+
+      border: 3px solid #2e8b57;
+
+      transition:transform 0.35s ease,opacity 0.35s ease,border-color 0.35s ease;
+
+    }
+
+
+    .member-name {
+
+      width: fit-content;
+
+      min-width: 150px;
+
+      margin: 0 auto;
+
+      padding: 10px 24px;
+
+      background-color: #d4f3dc;
+
+      color:#2e8b57;
+
+      border: 2px solid #2e8b57;
+
+      border-radius: 30px;
+
+      font-size: 19px;
+
+      font-weight: 600;
+
+      text-align: center;
+
+      transition:background-color 0.3s ease,color 0.3s ease,border-color 0.3s ease;
+
+    }
+
+
+    .member-role {
+
+      margin: 18px 0 0;
+
+      color:#354149;
+
+      font-size: 17px;
+
+      font-weight: 600;
+
+      line-height: 1.5;
+
+      text-align: center;
+
+    }
+
+
+    .member-details {
+
+      max-height: 0;
+
+      margin-top: 0;
+
+      padding: 0 25px;
+
+      overflow: hidden;
+
+      background-color: #edf8f0;
+
+      border: 1px solid transparent;
+
+      border-radius: 16px;
+
+      opacity: 0;
+
+      transform: translateY(-15px);
+
+      transition:max-height 0.55s ease,margin-top 0.4s ease,padding 0.45s ease,opacity 0.4s ease,transform 0.4s ease,border-color 0.4s ease;
+
+
+    }
+
+    .member-details h3 {
+
+      margin: 0 0 14px;
+
+      color: #205c37;
+
+      font-size: 24px;
+
+    }
+
+
+    .role-badge {
+
+      display: inline-block;
+
+      margin-bottom: 16px;
+
+      padding: 7px 17px;
+
+      color: #2e8b57;
+
+      background-color: #d4f3dc;
+
+      border: 1px solid #2e8b57;
+
+      border-radius: 22px;
+
+      font-size: 14px;
+
+      font-weight: 600;
+
+    }
+
+    .member-details ul {
+
+      margin: 0 0 18px;
+
+      padding-left: 22px;
+
+    }
+
+    .member-details li {
+
+      margin-bottom: 8px;
+
+      color: #263238;
+
+      line-height: 1.5;
+
+    }
+
+    .member-details p {
+
+      margin: 0;
+
+      color: #52656a;
+
+      line-height: 1.7;
+
+    } 
+
+    .member-item:hover .member-card {
+
+      transform: translateY(-7px);
+
+      border-color: #2e8b57;
+
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
+
+    }
+
+    .member-item:hover .member-card img {
+
+      transform: scale(1.04);
+
+      border-color: #1f6f46;
+
+      opacity: 0.92;
+
+    }
+
+    .member-item:hover .member-name {
+
+
+      background-color: #2e8b57;
+
+      color: white;
+
+    }
+
+
+    .member-item:hover .member-details {
+
+      max-height: 550px;
+
+      margin-top: 20px;
+
+      padding: 25px;
+
+      border-color: #9bcda8;
+
+      opacity: 1;
+
+      transform: translateY(0);
+
+    }
+
+
+    .member-item:focus-visible .member-card {
+
+      transform: translateY(-7px);
+
+      border-color: #2e8b57;
+
+      outline: 4px solid rgba(46, 139, 87, 0.25);
+
+      outline-offset: 5px;
+
+      box-shadow: 0 16px 32px rgba(46, 139, 87, 0.24);
+
+    }
+
+    .member-item:focus .member-card img {
+
+      transform: scale(1.04);
+
+      opacity: 0.92;
+
+    }
+
+    /* Reveal details using keyboard */
+    .member-item:focus .member-details {
+
+      max-height: 550px;
+
+      margin-top: 20px;
+
+      padding: 25px;
+
+      border-color: #9bcda8;
+
+      opacity: 1;
+
+      transform: translateY(0);
+
+    }
+
+    /* Tablet */
+    @media (max-width: 850px) {
+
+      .team-grid {
+
+        grid-template-columns: 1fr;
+
+        max-width: 540px;
+
       }
+    }
 
-      .team-heading {
-        max-width: 900px;
+    /* Mobile */
+    @media (max-width: 550px) {
 
-        margin: 0 auto 50px;
+      .team-section {
 
-        text-align: center;
+        padding: 40px 14px 65px;
+
       }
 
       .team-heading h1 {
-        margin: 0 0 18px;
 
-        color: #2e8b57;
+        font-size: 34px;
 
-        font-size: 48px;
-
-        font-weight: 700;
       }
 
       .team-heading p {
-        margin: 0;
 
-        color: #354149;
+        font-size: 16px;
 
-        font-size: 18px;
-
-        line-height: 1.7;
-      }
-
-      .team-grid {
-        display: grid;
-
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-
-        align-items: start;
-
-        gap: 50px 40px;
-
-        max-width: 1050px;
-
-        margin: 0 auto;
-      }
-
-      .member-item {
-        min-width: 0;
-
-        outline: none;
       }
 
       .member-card {
-        padding: 30px 26px 24px;
 
-        background-color: #ffffff;
+        padding: 28px 20px 22px;
 
-        border: 1px solid #dce8df;
-
-        border-radius: 16px;
-
-        text-align: center;
-
-        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.13);
-
-        transition:
-          transform 0.3s ease,
-          border-color 0.3s ease,
-          box-shadow 0.3s ease;
       }
 
       .member-card img {
-        display: block;
 
-        width: 190px;
+        width: 160px;
 
-        height: 190px;
+        height: 160px;
 
-        margin: 0 auto 24px;
-
-        object-fit: cover;
-
-        border-radius: 14px;
-
-        background-color: #e4f4e8;
-
-        border: 3px solid #2e8b57;
-
-        transition:
-          transform 0.35s ease,
-          opacity 0.35s ease,
-          border-color 0.35s ease;
       }
 
-      .member-name {
-        width: fit-content;
-
-        min-width: 150px;
-
-        margin: 0 auto;
-
-        padding: 10px 24px;
-
-        background-color: #d4f3dc;
-
-        color: #2e8b57;
-
-        border: 2px solid #2e8b57;
-
-        border-radius: 30px;
-
-        font-size: 19px;
-
-        font-weight: 600;
-
-        text-align: center;
-
-        transition:
-          background-color 0.3s ease,
-          color 0.3s ease,
-          border-color 0.3s ease;
-      }
-
-      .member-role {
-        margin: 18px 0 0;
-
-        color: #354149;
-
-        font-size: 17px;
-
-        font-weight: 600;
-
-        line-height: 1.5;
-
-        text-align: center;
-      }
-
-      .member-details {
-        max-height: 0;
-
-        margin-top: 0;
-
-        padding: 0 25px;
-
-        overflow: hidden;
-
-        background-color: #edf8f0;
-
-        border: 1px solid transparent;
-
-        border-radius: 16px;
-
-        opacity: 0;
-
-        transform: translateY(-15px);
-
-        transition:
-          max-height 0.55s ease,
-          margin-top 0.4s ease,
-          padding 0.45s ease,
-          opacity 0.4s ease,
-          transform 0.4s ease,
-          border-color 0.4s ease;
-      }
-
-      .member-details h3 {
-        margin: 0 0 14px;
-
-        color: #205c37;
-
-        font-size: 24px;
-      }
-
-      .role-badge {
-        display: inline-block;
-
-        margin-bottom: 16px;
-
-        padding: 7px 17px;
-
-        color: #2e8b57;
-
-        background-color: #d4f3dc;
-
-        border: 1px solid #2e8b57;
-
-        border-radius: 22px;
-
-        font-size: 14px;
-
-        font-weight: 600;
-      }
-
-      .member-details ul {
-        margin: 0 0 18px;
-
-        padding-left: 22px;
-      }
-
-      .member-details li {
-        margin-bottom: 8px;
-
-        color: #263238;
-
-        line-height: 1.5;
-      }
-
-      .member-details p {
-        margin: 0;
-
-        color: #52656a;
-
-        line-height: 1.7;
-      }
-
-      .member-item:hover .member-card {
-        transform: translateY(-7px);
-
-        border-color: #2e8b57;
-
-        box-shadow: 0 15px 30px rgba(0, 0, 0, 0.18);
-      }
-
-      .member-item:hover .member-card img {
-        transform: scale(1.04);
-
-        border-color: #1f6f46;
-
-        opacity: 0.92;
-      }
-
-      .member-item:hover .member-name {
-        background-color: #2e8b57;
-
-        color: white;
-      }
-
-      .member-item:hover .member-details {
-        max-height: 550px;
-
-        margin-top: 20px;
-
-        padding: 25px;
-
-        border-color: #9bcda8;
-
-        opacity: 1;
-
-        transform: translateY(0);
-      }
-
-      .member-item:focus-visible .member-card {
-        transform: translateY(-7px);
-
-        border-color: #2e8b57;
-
-        outline: 4px solid rgba(46, 139, 87, 0.25);
-
-        outline-offset: 5px;
-
-        box-shadow: 0 16px 32px rgba(46, 139, 87, 0.24);
-      }
-
-      .member-item:focus .member-card img {
-        transform: scale(1.04);
-
-        opacity: 0.92;
-      }
-
-      /* Reveal details using keyboard */
+      .member-item:hover .member-details,
       .member-item:focus .member-details {
+
         max-height: 550px;
 
         margin-top: 20px;
 
         padding: 25px;
 
-        border-color: #9bcda8;
+        border-color: #b7ddc0;
 
         opacity: 1;
 
         transform: translateY(0);
+
       }
 
-      /* Tablet */
-      @media (max-width: 850px) {
-        .team-grid {
-          grid-template-columns: 1fr;
 
-          max-width: 540px;
-        }
       }
 
-      /* Mobile */
-      @media (max-width: 550px) {
-        .team-section {
-          padding: 40px 14px 65px;
-        }
 
-        .team-heading h1 {
-          font-size: 34px;
-        }
-
-        .team-heading p {
-          font-size: 16px;
-        }
-
-        .member-card {
-          padding: 28px 20px 22px;
-        }
-
-        .member-card img {
-          width: 160px;
-
-          height: 160px;
-        }
-
-        .member-item:hover .member-details,
-        .member-item:focus .member-details {
-          max-height: 550px;
-
-          margin-top: 20px;
-
-          padding: 25px;
-
-          border-color: #b7ddc0;
-
-          opacity: 1;
-
-          transform: translateY(0);
-        }
-      }
-    
-      .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-</style>
+    </style>
   </head>
   <body>
     <!-- ===== SKIP LINK ===== -->
-    <a class="skip-link" href="team.html" aria-current="page"
-      >Skip to content</a
-    >
+    <a class="skip-link" href="team.html" aria-current="page">Skip to content</a>
 
     <!-- ===== HEADER ===== -->
     <header class="site-header">
@@ -376,10 +438,9 @@
         <label
           for="nav-toggle"
           class="nav-toggle"
-          
-          
+          aria-label="Toggle navigation menu"
+          role="button"
         >
-          <span class="visually-hidden">Toggle navigation menu</span>
           <span class="hamburger" aria-hidden="true">
             <span></span>
             <span></span>
@@ -392,9 +453,7 @@
           <a class="nav-link" href="gallery.html">Gallery</a>
           <a class="nav-link" href="ais.html">Action Simulator</a>
           <a class="nav-link" href="feedback.html">Feedback</a>
-          <a class="nav-link active" href="team.html" aria-current="page"
-            >Team</a
-          >
+          <a class="nav-link active" href="team.html" aria-current="page">Team</a>
           <a class="nav-link" href="profile.html">User Profile</a>
           <a class="nav-link" href="sitemap.html">Sitemap</a>
         </nav>
@@ -409,35 +468,43 @@
       
       -->
       <section class="team-section" aria-labelledby="team-title">
+
         <div class="team-heading">
+
           <h1 id="team-title">Meet Our Team</h1>
 
           <p>
-            Meet the students behind GreenSteps and discover how each member
-            contributed to our SDG 13 Climate Action website.
+             Meet the students behind GreenSteps and discover how each member contributed to our SDG 13 Climate Action website.
           </p>
+
         </div>
 
-        <div class="team-grid">
+        <div class="team-grid">  
+          
           <!--Student 1-->
 
-          <div
-            class="member-item"
-            tabindex="0"
-            aria-label="View Sayuranga's contribution details"
-          >
+          <div class="member-item" tabindex="0" role="group" aria-label="View Sayuranga's contribution details">
+
             <div class="member-card">
-              <img src="Images/profile.jpg" alt="Portrait of Sayuranga Wiraj" >
+
+              <img src="Images/food.jpg" alt="Portrait of Sayuranga Wiraj">
 
               <h2 class="member-name">Sayuranga Wiraj</h2>
+
             </div>
 
-            <p class="member-role">Template, Home Page and Gallery</p>
+
+            <p class="member-role">
+              Template, Home Page and Gallery
+            </p>
 
             <div class="member-details">
+
               <h3>Student 1</h3>
 
-              <span class="role-badge"> Implementation Lead </span>
+              <span class="role-badge"> 
+                Implementation Lead
+              </span>
 
               <ul>
                 <li>Shared HTML template</li>
@@ -453,31 +520,37 @@
 
               <p>
                 Created the shared website structure and visual identity.
-                Developed the navigation, global styling, Home Page and
-                interactive Gallery Page.
+                Developed the navigation, global styling, Home Page and interactive Gallery Page.
               </p>
+
             </div>
+
           </div>
 
           <!--Student 2-->
 
-          <div
-            class="member-item"
-            tabindex="0"
-            aria-label="View Omika's contribution details"
-          >
+          <div class="member-item" tabindex="0" role="group" aria-label="View Omika's contribution details">
+
             <div class="member-card">
-              <img src="Images/profile.jpg" alt="Portrait of Omika Vindya" >
+
+              <img src="Images/food.jpg" alt="Portrait of Omika Vindya">
 
               <h2 class="member-name">Omika Vindya</h2>
+
             </div>
 
-            <p class="member-role">Splash Screen and Action Impact Simulator</p>
+
+            <p class="member-role">
+              Splash Screen and Action Impact Simulator
+            </p>
 
             <div class="member-details">
+
               <h3>Student 2</h3>
 
-              <span class="role-badge"> Interactive Features Developer </span>
+              <span class="role-badge"> 
+                Interactive Features Developer
+              </span>
 
               <ul>
                 <li>Splash Screen</li>
@@ -490,35 +563,37 @@
               </ul>
 
               <p>
-                Developed the introductory Splash Screen and the
-                JavaScript-powered Action Impact Simulator that calculates the
-                effect of users' climate-friendly choices.
+                Developed the introductory Splash Screen and the JavaScript-powered Action Impact Simulator that calculates the effect of users' climate-friendly choices.
               </p>
+
             </div>
+
           </div>
 
           <!--Student 3-->
 
-          <div
-            class="member-item"
-            tabindex="0"
-            aria-label="View Rehansa's contribution details"
-          >
+          <div class="member-item" tabindex="0" role="group" aria-label="View Rehansa's contribution details">
+
             <div class="member-card">
-              <img
-                src="Images/Rehansa2.jpeg"
-                alt="Portrait of Rehansa Sumalmi"
-              >
+
+              <img src="Images/Rehansa2.jpeg" alt="Portrait of Rehansa Sumalmi">
 
               <h2 class="member-name">Rehansa Sumalmi</h2>
+
             </div>
 
-            <p class="member-role">Feedback and Team Pages</p>
+
+            <p class="member-role">
+              Feedback and Team Pages
+            </p>
 
             <div class="member-details">
+
               <h3>Student 3</h3>
 
-              <span class="role-badge"> Feedback and Team Developer </span>
+              <span class="role-badge"> 
+                Feedback and Team Developer
+              </span>
 
               <ul>
                 <li>Climate Programme Directory</li>
@@ -533,32 +608,37 @@
               </ul>
 
               <p>
-                Developed the programme directory, reviews, feedback form
-                validation, live character counter and interactive Team Page
-                with keyboard-accessible member details.
+                Developed the programme directory, reviews, feedback form validation, live character counter and interactive Team Page with keyboard-accessible member details.
               </p>
+
             </div>
+
           </div>
 
           <!--Student 4-->
 
-          <div
-            class="member-item"
-            tabindex="0"
-            aria-label="View Mufli's contribution details"
-          >
+          <div class="member-item" tabindex="0" role="group" aria-label="View Mufli's contribution details">
+
             <div class="member-card">
-              <img src="Images/Mufli.jpeg" alt="Portrait of Mufli Muhammath" >
+
+              <img src="Images/Mufli.jpeg" alt="Portrait of Mufli Muhammath">
 
               <h2 class="member-name">Mufli Muhammath</h2>
+
             </div>
 
-            <p class="member-role">User Profile and Sitemap</p>
+
+            <p class="member-role">
+              User Profile and Sitemap
+            </p>
 
             <div class="member-details">
+
               <h3>Student 4</h3>
 
-              <span class="role-badge"> Profile and Sitemap Developer </span>
+              <span class="role-badge"> 
+                Profile and Sitemap Developer
+              </span>
 
               <ul>
                 <li>User Profile Page</li>
@@ -571,13 +651,19 @@
               </ul>
 
               <p>
-                Developed the progressive User Profile experience and the
-                interactive SVG Sitemap representing the structure of the
-                GreenSteps website.
+                Developed the progressive User Profile experience and the interactive SVG Sitemap representing the structure of the GreenSteps website.
               </p>
+
             </div>
+
           </div>
+          
+          
+
+          
+
         </div>
+
       </section>
     </main>
 
@@ -586,13 +672,13 @@
       <div class="footer-grid">
         <div class="footer-card">
           <h3>Student</h3>
-          <p>Rehansa Sumalmi<br >Student 3-Feedback and Team</p>
+          <p>Rehansa Sumalmi<br>Student 3-Feedback and Team</p>
         </div>
         <div class="footer-card">
           <h3>Explore</h3>
           <p>
-            <a href="pageEditor_ST3.html">Page Editor</a><br >
-            <a href="validation_ST3.html">Validation</a><br >
+            <a href="pageEditor_ST3.html">Page Editor</a><br>
+            <a href="validation_ST3.html">Validation</a><br>
             <a href="sitemap.html">Sitemap</a>
           </p>
         </div>
@@ -604,6 +690,11 @@
     </footer>
     <a class="top-btn" href="#top" aria-label="Go to top of page">↑ Top</a>
 
-    <!-- Add page-specific JavaScript here.use an inline <script> if preferred.  -->
+    <!-- Add page-specific JavaScript here.
+
+        Example:
+        <script src="js/team.js"></script>
+
+        OR use an inline <script> if preferred.  -->
   </body>
 </html>

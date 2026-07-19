@@ -239,38 +239,87 @@
         <section>
           <h2 id="home">Home page</h2>
           <h3>Technical Description</h3>
+          <h5>HTML Structure</h5>
           <p>
-            Explain the HTML structure, the CSS techniques used to implement
-            this page, and how interactivity was integrated with JavaScript.
-            Justify the logic and purpose of the key HTML tags, CSS styling
-            choices, and JavaScript functionality, focusing on functionality and
-            design without copying large code sections. Explain the purpose of
-            the main HTML tags, CSS properties, and JavaScript features used.
-            Specify the key HTML tags, CSS properties, and JavaScript elements
-            that create the page structure, styling, and interactivity.
+            The page is built on semantic HTML5 landmarks. A header element
+            contains the site brand and a nav element for the primary
+            navigation, main wraps all page content, and a footer closes the
+            document with student and site links. The content inside main is
+            divided into section elements, each connected to its own heading
+            through aria-labelledby, giving the page a clear outline: one h1 in
+            the hero, then h2 headings for each section and h3 headings inside
+            the cards. The mission and topic cards are marked up as article
+            elements because each card is a self-contained unit of content that
+            would make sense on its own. Unordered lists present the key action
+            points inside each card. Supporting tags include a skip link anchor
+            for keyboard users, img elements with descriptive alt text, and
+            width, height and loading attributes on images to reduce layout
+            shift and delay loading of off-screen pictures.
+          </p>
+
+          <h5>CSS Techniques</h5>
+
+          <p>
+            Two layout systems are used together. Flexbox centres the hero text
+            vertically and horizontally over a full-viewport background image,
+            and also arranges the pair of call-to-action buttons. CSS Grid
+            drives the card layouts: the topic gallery is a four-column grid
+            that collapses to two columns at 900px and a single column at 640px
+            through media queries. Positioning is used in the hero, where the
+            background image is absolutely positioned behind the text and a
+            linear-gradient overlay darkens it so the white heading stays
+            readable. Styling decisions centre on a green palette defined once
+            as CSS variables in the shared stylesheet, generous spacing through
+            consistent padding and gap values, and rounded corners and soft
+            shadows on every card. Hover effects lift cards with a small
+            translateY movement, zoom their images with a transform scale, and
+            reveal a green gradient overlay, all softened with transitions.
+            Keyframe animations add a slow hero zoom, a bouncing scroll hint and
+            staggered fade-in entrances, and a prefers-reduced-motion query
+            switches these off for users who opt out of animation.
+          </p>
+
+          <h5>Design and Implementation Rationale</h5>
+
+          <p>
+            Generating cards from a JavaScript array was chosen so that adding a
+            new gallery story means adding one object to the array instead of
+            duplicating blocks of HTML, which reduces errors and keeps the
+            markup short. The dialog role and aria attributes were included
+            because a visually obvious popup is invisible to a screen reader
+            without them. Cards are given a tabindex and respond to Enter and
+            Space as well as clicks, so the gallery is fully usable without a
+            mouse, and the modal can be dismissed either with the close button
+            or by clicking the backdrop, matching the behaviour users expect
+            from dialogs. Using a checkbox for the theme switch means the
+            browser provides the state handling and keyboard support for free,
+            and the CSS-only knob avoids extra images. The consistent card
+            styling, shared colour variables and matching breakpoints keep the
+            gallery visually aligned with the home page.
           </p>
 
           <h3>Accessibility</h3>
           <p>
-            Explain how you used to addressed accessibility in this particular
-            page you implemented.
+            All images include descriptive alt text (e.g. alt="family cycling in
+            a park on a sunny day, representing sustainable transport"). The
+            statistics bar uses an visually hidden heading so screen readers
+            announce the section without affecting the visual layout. Semantic
+            HTML5 elements provide a logical document structure for assistive
+            technologies.
           </p>
 
           <h3>Link to the validation page</h3>
           <!-- Update the path to link the Page Editor with the splash page -->
           <p>
             <a href="validation_ST1.html#splashVal"
-              >Include a link to the validation page</a
-            >, use the marker to jump to the corresponding section of the
-            validation page.
+              >View Home Page validation evidence</a
+            >,
           </p>
           <!-- Update the path to link the Page Editor with the validation page and make it jump to the marker that contains a snapshot for the splash page -->
 
           <h3>Link to the page</h3>
           <p>
-            <a href="splash.html"
-              >Include a link to the actual page you describe.</a
-            >
+            <a href="home.html">Open the Home Page</a>
           </p>
         </section>
 
@@ -278,37 +327,54 @@
           <h2 id="gallery">Gallery Page</h2>
           <h3>Technical Description</h3>
           <p>
-            Explain the HTML structure, the CSS techniques used to implement
-            this page, and how interactivity was integrated with JavaScript.
-            Justify the logic and purpose of the key HTML tags, CSS styling
-            choices, and JavaScript functionality, focusing on functionality and
-            design without copying large code sections. Explain the purpose of
-            the main HTML tags, CSS properties, and JavaScript features used.
-            Specify the key HTML tags, CSS properties, and JavaScript elements
-            that create the page structure, styling, and interactivity.
+            The Gallery page follows the same structure as the rest of the
+            website, with a header, main section, and footer. The gallery grid
+            is empty in the HTML because the cards are created dynamically with
+            JavaScript when the page loads. It also includes an accessible modal
+            dialog using <code>role="dialog"</code>, <code>aria-modal</code>,
+            and <code>aria-labelledby</code>. The close button is a standard
+            button element, and the dark mode toggle uses a checkbox inside a
+            label, making both features keyboard accessible. <br><br>
+            The CSS creates a responsive grid that changes from four columns to
+            two and then one on smaller screens. The modal uses fixed
+            positioning to cover the page and is shown by adding an
+            <code>open</code> class. The dark mode switch is styled with CSS
+            using a pseudo element and the <code>:checked</code> selector. A
+            <code>.dark</code> class changes the modal colours, and transitions
+            make the theme change smooth. <br><br>
+            JavaScript handles all the interactivity. Gallery items are stored
+            in an array of objects, and a <code>forEach</code> loop generates
+            each card automatically. Event listeners manage hover effects, mouse
+            clicks, and keyboard input so users can open cards with Enter or
+            Space. The <code>openModal()</code> function displays the selected
+            image, title, and description. Users can close the modal using the
+            close button or by clicking outside it. A change listener on the
+            theme switch uses <code>classList.toggle()</code> to switch the
+            modal between light and dark mode.
           </p>
 
           <h3>Accessibility</h3>
           <p>
-            Explain how you used to addressed accessibility in this particular
-            page you implemented.
+            All images include descriptive alt text (e.g. alt="family cycling in
+            a park on a sunny day, representing sustainable transport"). The
+            statistics bar uses an visually hidden heading so screen readers
+            announce the section without affecting the visual layout. Semantic
+            HTML5 elements provide a logical document structure for assistive
+            technologies.
           </p>
 
           <h3>Link to the validation page</h3>
           <!-- Update the path to link the Page Editor with the splash page -->
           <p>
             <a href="validation_ST1.html#volunteerVal"
-              >Include a link to the validation page</a
-            >, use the marker to jump to the corresponding section of the
-            validation page.
+              >View Gallery Page validation evidence</a
+            >
           </p>
           <!-- Update the path to link the Page Editor with the validation page and make it jump to the marker that contains a snapshot for the splash page -->
 
           <h3>Link to the page</h3>
           <p>
-            <a href="gallery.html"
-              >Include a link to the actual page you describe.</a
-            >
+            <a href="gallery.html">View Gallery Page</a>
           </p>
         </section>
 
@@ -316,61 +382,106 @@
           <h2 id="content">Content Page</h2>
           <h3>Technical Description</h3>
           <p>
-            Explain the HTML structure, the CSS techniques used to implement
-            this page, and how interactivity was integrated with JavaScript.
-            Justify the logic and purpose of the key HTML tags, CSS styling
-            choices, and JavaScript functionality, focusing on functionality and
-            design without copying large code sections. Explain the purpose of
-            the main HTML tags, CSS properties, and JavaScript features used.
-            Specify the key HTML tags, CSS properties, and JavaScript elements
-            that create the page structure, styling, and interactivity.
+            This page is a long-form article on sustainable transport. After the
+            shared header, the main element opens with a hero holding the h1
+            title, an intro paragraph and an image. Below it, a nav with an
+            aria-label contains a list of anchor links that jump to the five
+            numbered sections, working as a table of contents. Each topic is a
+            section element with its own id for the anchors to target, using h2
+            and h3 headings, paragraphs and bullet lists. Images sit in figure
+            tags with figcaption captions, the correct way to pair an image with
+            its caption, and all carry descriptive alt text and lazy loading.
+            <br><br>
+            The CSS uses a two-column Grid to place text beside each figure, and
+            a reverse-layout class flips the columns with the order property for
+            a zigzag rhythm. The min() function caps the reading width while
+            keeping padding on small screens, and media queries at 900px and
+            650px stack the columns and shrink the type. Rounded borders, soft
+            shadows and the shared green palette keep it consistent with the
+            rest of the site, while scroll-margin-top stops headings hiding
+            under the sticky header. <br><br>
+            Interactivity comes from HTML and CSS, not JavaScript. Smooth
+            scrolling on the html element makes the table-of-contents and
+            back-to-top links glide rather than jump, hover and focus-visible
+            states give buttons and links clear feedback, and images scale
+            slightly on hover. The mobile menu uses the same CSS checkbox
+            technique as the rest of the site, so the page stays fully
+            functional even without JavaScript.
           </p>
 
           <h3>Accessibility</h3>
           <p>
-            Explain how you used to addressed accessibility in this particular
-            page you implemented.
+            All images include descriptive alt text. The statistics bar uses an
+            visually hidden heading so screen readers announce the section
+            without affecting the visual layout. Semantic HTML5 elements provide
+            a logical document structure for assistive technologies.
           </p>
 
           <h3>Link to the validation page</h3>
           <!-- Update the path to link the Page Editor with the splash page -->
           <p>
-            <a href="validation_ST0.html#contentVal"
-              >Include a link to the validation page</a
-            >, use the marker to jump to the corresponding section of the
-            validation page.
+            <a href="validation_ST1.html#content"
+              >View content page validation evidence</a
+            >
           </p>
           <!-- Update the path to link the Page Editor with the validation page and make it jump to the marker that contains a snapshot for the splash page -->
 
           <h3>Link to the page</h3>
           <p>
-            <a href="content.html"
-              >Include a link to the actual page you describe.</a
-            >
+            <a href="content_ST1.html">View Content Page</a>
           </p>
         </section>
 
         <section>
           <h2 id="challenge">Challenges and Lessons Learned</h2>
           <p>
-            Detail any challenges encountered during the implementation process
-            and explain how they were resolved. Reflect on the lessons learned
-            from overcoming these challenges.
+            One of the main challenges was building a shared template that all
+            four students could use consistently while each page also needed its
+            own embedded CSS. The solution was to strictly separate all shared
+            rules into <code>style.css</code> and only add page-specific rules
+            in the embedded <code>&lt;style&gt;</code> block, using clear
+            comments to mark which rules belong to which scope.
+          </p>
+          <p>
+            Implementing the Gallery modal was also challenging — populating the
+            correct image and description dynamically from a JavaScript array
+            required careful indexing and DOM manipulation. Debugging in browser
+            DevTools helped resolve an issue where the modal image dimensions
+            were not resetting correctly between clicks.
+          </p>
+        </section>
+        <section>
+          <h2 id="accessibility">Accessibility Considerations</h2>
+          <p>
+            Accessibility was built into all three pages from the start. Each
+            page uses semantic landmarks, header, nav, main and footer, with a
+            logical heading order and aria-labels, so screen readers can map the
+            page and users can jump between sections. Every meaningful image has
+            descriptive alt text, decorative layers are hidden with aria-hidden,
+            and the content page pairs images with figure and figcaption. <br><br> Colour
+            is handled carefully: the shared green palette was chosen for good
+            contrast, the hero uses a dark overlay so white text stays readable
+            over the photo, and colour is never the only cue, since focus
+            outlines, movement and shape reinforce it for colour-blind users.
+            Every interactive element works by keyboard, with a skip link on
+            each page, visible focus-visible outlines, and hover states matched
+            by focus states. The JavaScript-generated gallery cards were given a
+            tabindex and Enter and Space key support so they behave like real
+            buttons.
           </p>
         </section>
 
         <section>
           <h2 id="compliance">Compliance</h2>
-          <p>
-            Discuss how the pages you have created are compliant with Janet
-            regulations governing web page publication. This includes
-            demonstrating your understanding and application of these
-            regulations. Be realistic and truthful.
-            <a
-              href="https://intranet.ecs.westminster.ac.uk/modules/4COSC011W/compliance.html"
-              target="_blank"
-              >See the lecture notes for more details on compliance.</a
-            >
+          <p>All pages I created comply with JANET regulations for responsible web page publication. The following principles were applied:</p>
+        <ul>
+          <li><span class="highlight">Original content:</span> All written content is original and created by this student. No text was copied from the UN SDG website or any other source.</li>
+          <li><span class="highlight">Image sourcing:</span> All images were sourced from royalty-free platforms and are referenced in the References section below.</li>
+          <li><span class="highlight">No personal data collection:</span> The website does not collect, store, or transmit any personal user data. The feedback form does not submit to a server.</li>
+          <li><span class="highlight">Appropriate content:</span> The website contains no offensive, harmful, or discriminatory content. All content is focused on health education aligned with UN SDG 3.</li>
+          <li><span class="highlight">Academic integrity:</span> All HTML, CSS, and JavaScript was written by this student. No pre-built templates, frameworks, or copied code from other projects were used.</li>
+          <li><span class="highlight">Accessibility compliance:</span> Pages follow WCAG accessibility principles including semantic HTML, alt text, and keyboard navigation.</li>
+        </ul>
           </p>
         </section>
 
@@ -473,19 +584,12 @@
           <h2 id="ref">References</h2>
           <p>
             Provide links to resources you used following a consistent format
-            (e.g., APA, MLA, or a simplified style). For example:<br ><br >
+            (e.g., APA, MLA, or a simplified style). For example:<br><br>
           </p>
-          <ul class="ref">
-            <li>
-              iStock (2025) <i>iStock.</i> Available at:
-              <a href="#">https://www.istockphoto.com/</a> (Last accessed: 11
-              Feb 2025).
-            </li>
-            <li>
-              Duckett, J., 2011. HTML and CSS: Design and Build Websites,<i
-                >John Willey&Sons. Inc. Indianappolis.</i
-              >
-            </li>
+          <ul class="ref">           
+            <li>Unsplash (2026). <em>Free high-resolution photos.</em> Available at: <a href="https://unsplash.com" target="_blank">https://unsplash.com</a> (Last accessed: 28 Mar 2026).</li>
+            <li>W3Schools (2026). <em>HTML and CSS Tutorials.</em> Available at: <a href="https://www.w3schools.com" target="_blank">https://www.w3schools.com</a> (Last accessed: 28 Mar 2026).</li>
+            <li>Module lecture notes (2026). <em>4COSC011W Web Design and Development.</em> University of Westminster.</li>        
           </ul>
         </section>
       </main>
@@ -504,6 +608,7 @@
             <li><a href="#content">Content</a></li>
           </ul>
           <li><a href="#challenge">Challenges and Lessons Learned</a></li>
+          <li><a href="#accessibility">Accessibility</a></li>
           <li><a href="#compliance">Compliance</a></li>
           <li>
             <a href="#group">Group Meetings and Individual Contribution Log</a>
@@ -517,13 +622,13 @@
       <div class="footer-grid">
         <div class="footer-card">
           <h3>Student</h3>
-          <p>Sayuranga Wiraj<br >Student 01 - Home Page & Gallery</p>
+          <p>Sayuranga Wiraj<br>Student 01 - Home Page & Gallery</p>
         </div>
         <div class="footer-card">
           <h3>Explore</h3>
           <p>
-            <a href="pageEditor_ST1.html">Page Editor</a><br >
-            <a href="validation_ST1.html">Validation</a><br >
+            <a href="pageEditor_ST1.html">Page Editor</a><br>
+            <a href="validation_ST1.html">Validation</a><br>
             <a href="sitemap.html">Sitemap</a>
           </p>
         </div>

@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Page Editor — Mubaris Mufli Muhammath</title>
+
+    <link rel="stylesheet" href="style.css" >
+    <link rel="icon" type="image/png" href="Images/favicon/favicon.ico" >
+    <style>
+      body {
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(67, 170, 139, 0.16),
+            transparent 24%
+          ),
+          linear-gradient(135deg, #f8fefb 0%, #eefcf7 100%);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: row-reverse;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px 20px 40px 45px;
+        gap: 24px;
+        align-items: flex-start;
+      }
+
+      main {
+        flex: 3;
+        display: grid;
+        gap: 1.2rem;
+      }
+
+      aside {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.84);
+        padding: 20px;
+        border: 1px solid rgba(11, 110, 79, 0.12);
+        margin-right: 0;
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+        position: sticky;
+        top: 110px;
+      }
+
+      .stud {
+        max-width: 1200px;
+        margin: 2rem auto 0;
+        padding: 2rem 2.2rem;
+        border-radius: 24px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        box-shadow: var(--shadow);
+      }
+
+      .stud h2 {
+        margin: 0;
+        font-size: clamp(1.3rem, 2vw, 1.8rem);
+      }
+
+      main section {
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(11, 110, 79, 0.12);
+        border-radius: 24px;
+        padding: 1.5rem 1.6rem;
+        box-shadow: var(--shadow);
+      }
+
+      main h2 {
+        margin-top: 0;
+        color: var(--primary);
+      }
+
+      main h3 {
+        color: var(--secondary);
+        margin-bottom: 0.4rem;
+      }
+
+      main p,
+      main li {
+        line-height: 1.7;
+        color: var(--text);
+      }
+
+      main img {
+        display: block;
+        width: 100%;
+        max-height: 320px;
+        object-fit: cover;
+        border-radius: 16px;
+        margin: 1rem 0 1.2rem;
+        border: 1px solid rgba(11, 110, 79, 0.12);
+      }
+
+      main a {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .top {
+        margin-top: 1.2rem;
+      }
+
+      .top-level-ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.65rem;
+      }
+
+      .top-level-ul > li {
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .top-level-ul ul {
+        list-style: none;
+        padding: 0 0 0 1rem;
+        display: grid;
+        gap: 0.35rem;
+        margin: 0.3rem 0 0;
+      }
+
+      .top-level-ul a {
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .top-level-ul a:hover,
+      .top-level-ul a:focus-visible,
+      main a:hover,
+      main a:focus-visible {
+        color: var(--secondary);
+        text-decoration: underline;
+      }
+      table{
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+
+        th, td{
+            padding: 4px;
+            border: 1px solid black;
+        }
+        thead{
+            background-color: #333;
+            color: azure;
+        }
+
+
+      @media (max-width: 900px) {
+        .container {
+          flex-direction: column;
+          padding-left: 20px;
+        }
+
+        aside {
+          position: relative;
+          top: auto;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .stud {
+          padding: 1.4rem 1rem;
+        }
+
+        main section {
+          padding: 1.2rem;
+        }
+      }
+
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="home.html" aria-label="GreenSteps — Home">
+          <span class="brand-mark" aria-hidden="true">☀</span>
+          <span class="brand-name">GreenSteps</span>
+        </a>
+
+        <input
+          type="checkbox"
+          id="nav-toggle"
+          class="nav-checkbox"
+          aria-hidden="true"
+        >
+        <label for="nav-toggle" class="nav-toggle">
+          <span class="visually-hidden">Toggle navigation menu</span>
+          <span class="hamburger" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </label>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a class="nav-link" href="home.html">Home</a>
+          <a class="nav-link" href="gallery.html">Gallery</a>
+          <a class="nav-link" href="ais.html">Action Simulator</a>
+          <a class="nav-link" href="feedback.html">Feedback</a>
+          <a class="nav-link" href="team.html">Team</a>
+          <a class="nav-link" href="profile.html">User Profile</a>
+          <a class="nav-link" href="sitemap.html">Sitemap</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="stud">
+      <h2>Mubaris Mufli Muhammath — GreenSteps — Student 4: User Profile &amp; Sitemap</h2>
+    </section>
+
+    <div class="container">
+      <!-- Main content area -->
+      <main id="main-content">
+        <section>
+          <h2 id="profile">User Profile Page</h2>
+          <h3>Technical Description</h3>
+          <p>
+            The page reuses the shared header, navigation, and footer from the
+            team template without modification. Inside <code>&lt;main&gt;</code>
+            I used <code>&lt;section&gt;</code> elements with
+            <code>aria-labelledby</code> pointing at each heading's id, and
+            <code>&lt;article&gt;</code> for the two profile-summary cards so
+            each is understood as a standalone unit of content. A
+            <code>&lt;dl&gt;</code> (description list) holds each profile
+            field as a term/value pair, which is more semantically correct
+            than a plain list for label–value data. Layout uses the Global
+            CSS <code>.grid-2</code> utility for the two-column cards, which
+            already collapses to one column at the site-wide 900px
+            breakpoint. Page-specific embedded CSS handles the progress bar
+            and the hide/reveal behaviour for the profile-summary section via
+            a single <code>.hidden { display: none; }</code> class toggled
+            by JavaScript. The spec required JavaScript prompts rather than
+            an HTML form, so the main design problem was giving the user
+            feedback despite <code>prompt()</code>/<code>confirm()</code>
+            being blocking and visually disconnected from the page. I
+            addressed this with a visible progress bar and percentage text
+            that update immediately after each step, a summary list that
+            always shows all nine fields and marks missing ones explicitly,
+            and an "Edit Missing Information" button that only re-prompts
+            for empty fields, so returning users aren't asked to repeat
+            information they already gave.
+          </p>
+
+          <h3>Accessibility</h3>
+          <p>
+            <code>aria-live="polite"</code> is set on the progress text so
+            screen-reader users are told about progress changes automatically
+            without needing to navigate back to that element. The progress
+            track uses <code>role="progressbar"</code> with
+            <code>aria-valuemin</code>, <code>aria-valuemax</code>, and
+            <code>aria-valuenow</code> kept in sync by JavaScript. Every
+            action (start, edit, reset) is a real <code>&lt;button&gt;</code>
+            rather than a clickable <code>&lt;div&gt;</code>, so it is
+            reachable and operable by keyboard by default.
+          </p>
+
+          <h3>Link to the validation page</h3>
+          <p>
+            <a href="validation_ST4.html#profileVal"
+              >See the validation evidence for this page</a
+            >.
+          </p>
+
+          <h3>Link to the page</h3>
+          <p>
+            <a href="profile.html">Open the User Profile page</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 id="sitemap">Sitemap Page</h2>
+          <h3>Technical Description</h3>
+          <p>
+            The sitemap is built as a single inline <code>&lt;svg&gt;</code>
+            inside <code>&lt;main&gt;</code>, using <code>&lt;a&gt;</code>
+            elements (SVG's native link element) wrapping a
+            <code>&lt;rect&gt;</code> and <code>&lt;text&gt;</code> per page,
+            so each node is a genuinely clickable link rather than a
+            JavaScript click-handler standing in for one. The SVG uses
+            <code>viewBox</code> with
+            <code>preserveAspectRatio="xMinYMin meet"</code> instead of
+            fixed pixel dimensions, so the whole tree scales down on
+            tablet/mobile without needing separate breakpoints. Node
+            styling — fill, stroke, hover and focus states — is done
+            entirely with CSS selectors targeting the SVG elements
+            (<code>.sm-node rect</code>, <code>:hover</code>,
+            <code>:focus-visible</code>) rather than inline SVG attributes,
+            keeping styling in one place and consistent with how the rest of
+            the site handles interactive states. I chose a horizontal,
+            left-to-right tree layout because it scales more predictably on
+            narrow screens than a top-down tree, and grouped each student's
+            Content Page with its own Page Editor and Validation page as
+            children, so the diagram reflects the real navigation paths on
+            the site rather than just the top-level nav bar.
+          </p>
+
+          <h3>Accessibility</h3>
+          <p>
+            Each node carries an SVG <code>&lt;title&gt;</code>, which
+            browsers expose as an accessible name, and the whole diagram has
+            a top-level <code>&lt;title&gt;</code> and
+            <code>&lt;desc&gt;</code> referenced via
+            <code>aria-labelledby</code> so screen-reader users get a text
+            description of the tree structure before reaching the individual
+            nodes. Every node also has <code>tabindex="0"</code> so the tree
+            is fully keyboard-navigable with Tab, and a visible
+            <code>:focus-visible</code> outline shows which node is
+            currently focused — this was needed because default SVG focus
+            styling isn't consistent across browsers.
+          </p>
+
+          <h3>Link to the validation page</h3>
+          <p>
+            <a href="validation_ST4.html#sitemapVal"
+              >See the validation evidence for this page</a
+            >.
+          </p>
+
+          <h3>Link to the page</h3>
+          <p>
+            <a href="sitemap.html">Open the Sitemap page</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 id="content">Content Page</h2>
+          <h3>Technical Description</h3>
+          <p>
+            The article uses one <code>&lt;h1&gt;</code> for the page title
+            and <code>&lt;h2&gt;</code>/<code>&lt;h3&gt;</code> for section
+            and sub-section headings, kept in strict hierarchical order. A
+            <code>&lt;nav&gt;</code> element with an ordered list of anchor
+            links acts as an in-page contents menu, and each major section
+            carries a unique <code>id</code> that the contents links and the
+            "Back to Top" button target directly via
+            <code>href="#id"</code>. <code>scroll-margin-top</code> is set
+            on each section so that clicking a contents link doesn't leave
+            the heading hidden underneath the sticky header. Images are
+            wrapped in <code>&lt;figure&gt;</code>/<code>&lt;figcaption&gt;</code>
+            and styled with border, border-radius, and box-shadow to match
+            the card language used elsewhere on the site, and a CSS Grid
+            layout pairs two images side by side on wider screens only. I
+            structured the content around three distances from the reader —
+            campus, household, and community — because the spec asks for
+            "meaningful internal navigation," which only makes sense if the
+            sections are genuinely distinct enough to want to jump between.
+          </p>
+
+          <h3>Accessibility</h3>
+          <p>
+            Every image has descriptive <code>alt</code> text that explains
+            what the image shows rather than restating the caption.
+            Section headings are wired to their parent
+            <code>&lt;section&gt;</code> via <code>aria-labelledby</code>,
+            and the in-page contents list is a real <code>&lt;nav&gt;</code>
+            landmark so assistive technology users can jump straight to it.
+          </p>
+
+          <h3>Link to the validation page</h3>
+          <p>
+            <a href="validation_ST4.html#contentVal"
+              >See the validation evidence for this page</a
+            >.
+          </p>
+
+          <h3>Link to the page</h3>
+          <p>
+            <a href="content_ST4.html">Open the Content page</a>.
+          </p>
+        </section>
+
+        <section>
+          <h2 id="challenge">Challenges and Lessons Learned</h2>
+          <p>
+            One issue I ran into was that the shared <code>.card</code>
+            class in the Global CSS had no <code>padding</code> rule, so
+            content on every page — not just mine — was sitting flush
+            against the card edges. Since this lived in the Global CSS
+            rather than my own page, fixing it meant raising it with the
+            team and editing the shared file, not working around it locally.
+            Building the Sitemap also meant re-reading the spec closely: my
+            first draft used a plain bullet list of links, which doesn't
+            meet the requirement for a graphical SVG sitemap with hierarchy,
+            hover feedback, and keyboard accessibility, so I rebuilt it from
+            scratch as a coordinate-based SVG tree. I also found that the
+            nav-toggle <code>&lt;label&gt;</code> in an earlier version of
+            the shared header used <code>role="button"</code>, which the
+            HTML validator flags as invalid on that element — switching to a
+            visually-hidden text label solved it without changing how the
+            button looks or behaves for anyone.
+          </p>
+        </section>
+
+        <section>
+          <h2 id="compliance">Compliance</h2>
+          <p>
+            The pages I built contain no offensive, unlawful, or
+            commercially exploitative material, and are limited to
+            educational content in support of this coursework, consistent
+            with JANET's acceptable-use conditions for connected
+            institutions. Any external image I reference is royalty-free and
+            credited on the Content Page under "Image Credits" rather than
+            reproduced without permission. No personal data is collected or
+            transmitted by my pages — the User Profile page stores
+            information only in memory in the browser tab and never sends it
+            to a server, so no third-party data-handling or privacy concerns
+            arise from its use.
+            <a
+              href="https://intranet.ecs.westminster.ac.uk/modules/4COSC011W/compliance.html"
+              target="_blank"
+              >See the lecture notes for more details on compliance.</a
+            >
+          </p>
+        </section>
+
+        <section>
+          <h2 id="group">Group Meetings and Individual Contribution Log</h2>
+          <p>
+            Include a Group Meetings and Contribution Log that documents your
+            engagement with group work.
+          </p>
+          Requirements:
+          <ul>
+            <li>A minimum of six (6) group meetings must be recorded.</li>
+            <li>
+              Each student must provide their own account of the meetings.
+            </li>
+            <li>
+              The log must focus on individual contribution, not just group
+              activity.
+            </li>
+          </ul>
+          <p>Fill in your real meetings below:</p>
+
+          <table>
+            <thead>
+              <tr>
+                <th colspan="6">Group Meetings and Contribution Log</th>
+              </tr>
+              <tr>
+                <th>Meeting</th>
+                <th>Date &amp; Time</th>
+                <th>Format</th>
+                <th>Objective</th>
+                <th>Attended</th>
+                <th>Your Individual Contribution</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2 id="ref">References</h2>
+          <p>
+            Provide links to resources you used following a consistent format
+            (e.g., APA, MLA, or a simplified style). For example:<br ><br >
+          </p>
+          <ul class="ref">
+            <li>
+              University of Westminster (2026) <i>4COSC011W Web Design and Development, Coursework Specification 2025/26.</i> Module leader Ms. Asini Silva. Blackboard.
+            </li>
+            <li>
+              MDN Web Docs (2025) <i>SVG &lt;a&gt; element.</i> Available at:
+              <a href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/a" target="_blank">https://developer.mozilla.org/en-US/docs/Web/SVG/Element/a</a> (Last accessed: 19 Jul 2026).
+            </li>
+            <li>
+              W3C WAI (2023) <i>Accessible SVG.</i> Available at:
+              <a href="https://www.w3.org/WAI/tutorials/images/" target="_blank">https://www.w3.org/WAI/tutorials/images/</a> (Last accessed: 19 Jul 2026).
+            </li>
+            <li>
+              iStock (2025) <i>iStock.</i> Available at:
+              <a href="https://www.istockphoto.com/" target="_blank">https://www.istockphoto.com/</a> (Last accessed: 19 Jul 2026).
+            </li>
+          </ul>
+        </section>
+      </main>
+
+      <!-- Sidebar area -->
+      <aside>
+        <h3>Core pages developed:</h3>
+
+        <ul class="top-level-ul">
+          <li>Student 4 — Mubaris Mufli Muhammath
+            <ul>
+              <li><a href="#profile">User Profile</a></li>
+              <li><a href="#sitemap">Sitemap</a></li>
+              <li><a href="#content">Content Page</a></li>
+            </ul>
+          </li>
+          <li><a href="#challenge">Challenges and Lessons Learned</a></li>
+          <li><a href="#compliance">Compliance</a></li>
+          <li>
+            <a href="#group">Group Meetings and Individual Contribution Log</a>
+          </li>
+          <li><a href="#ref">References</a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer class="site-footer">
+      <div class="footer-grid">
+        <div class="footer-card">
+          <h3>Student</h3>
+          <p>Mubaris Mufli Muhammath<br >Student 4 — User Profile &amp; Sitemap</p>
+        </div>
+        <div class="footer-card">
+          <h3>Explore</h3>
+          <p>
+            <a href="pageEditor_ST4.html">Page Editor</a><br >
+            <a href="validation_ST4.html">Validation</a><br >
+            <a href="sitemap.html">Sitemap</a>
+          </p>
+        </div>
+        <div class="footer-card">
+          <h3>Accessibility</h3>
+          <p><a href="#accessibility">Accessibility Statement</a></p>
+        </div>
+      </div>
+    </footer>
+    <a class="top-btn" href="#top" aria-label="Go to top of page">↑ Top</a>
+  </body>
+</html>

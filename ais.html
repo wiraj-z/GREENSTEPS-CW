@@ -12,12 +12,12 @@
     <link rel="stylesheet" href="style.css" >
 
     <!-- =============================================
-         AIS PAGE — PAGE-SPECIFIC STYLES ONLY
+         AIS PAGE  PAGE-SPECIFIC STYLES ONLY
          Does not override any rule in style.css.
          ============================================= -->
     <style>
       /* -----------------------------------------------
-         1. SIMULATOR WRAPPER — dynamic background layer
+         1. SIMULATOR WRAPPER dynamic background layer
          ----------------------------------------------- */
 
       /* Background layers are position:fixed so they cover the full
@@ -96,7 +96,7 @@
         }
       }
 
-      /* Hero visual — image card */
+      /* Hero visual image card */
       .ais-hero__visual {
         border-radius: var(--radius);
         overflow: hidden;
@@ -157,7 +157,7 @@
         box-shadow: 0 28px 55px rgba(46, 125, 50, 0.25);
       }
 
-      /* Checkmark badge — hidden by default */
+      /* Checkmark badge hidden by default */
       .action-card__check {
         position: absolute;
         top: 0.75rem;
@@ -512,7 +512,7 @@
          5. RESULTS SECTION
          ----------------------------------------------- */
       .ais-results {
-        /* Hidden by default — JS toggles .is-visible */
+        /* Hidden by default JS toggles .is-visible */
         display: none;
         opacity: 0;
         transform: translateY(24px);
@@ -762,7 +762,7 @@
     <!-- ===== HEADER ===== -->
     <header class="site-header">
       <div class="header-inner">
-        <a class="brand" href="home.html" aria-label="GreenSteps — Home">
+        <a class="brand" href="home.html" aria-label="GreenSteps Home">
           <span class="brand-mark" aria-hidden="true">☀</span>
           <span class="brand-name">GreenSteps</span>
         </a>
@@ -803,7 +803,7 @@
 
     <!-- ===== MAIN ===== -->
     <main id="main-content">
-      <!-- Fixed background layers — JS fades between them on score change -->
+      <!-- Fixed background layers JS fades between them on score change -->
       <div class="ais-bg ais-bg--low" id="bg-low" aria-hidden="true"></div>
       <div
         class="ais-bg ais-bg--medium"
@@ -823,8 +823,8 @@
                 Climate Impact<br ><span>Simulator</span>
               </h1>
               <p class="ais-hero__copy">
-                Choose the sustainable actions you already take — or are ready
-                to start — and instantly see your positive environmental impact
+                Choose the sustainable actions you already take or are ready
+                to start and instantly see your positive environmental impact
                 scored in real time.
               </p>
               <p class="ais-hero__copy" style="margin-top: -0.8rem">
@@ -877,7 +877,7 @@
                 <div class="action-card__img-wrap">
                   <img
                     src="Images/ais/Bicycles.avif"
-                    alt="Bicycles parked in a park — a sustainable transport choice"
+                    alt="Bicycles parked in a park a sustainable transport choice"
                     width="500"
                     height="281"
                     loading="lazy"
@@ -895,14 +895,14 @@
                     class="action-card__btn"
                     type="button"
                     aria-pressed="false"
-                    aria-label="Select Sustainable Transport — 15 impact points"
+                    aria-label="Select Sustainable Transport 15 impact points"
                   >
                     Select Action
                   </button>
                 </div>
               </article>
 
-              <!-- Card 2 — Save Electricity -->
+              <!-- Card 2 Save Electricity -->
               <article
                 class="action-card"
                 data-id="electricity"
@@ -914,7 +914,7 @@
                 <div class="action-card__img-wrap">
                   <img
                     src="Images/ais/save-electricity.avif"
-                    alt="Light bulbs — choosing energy-efficient lighting saves electricity"
+                    alt="Light bulbs choosing energy-efficient lighting saves electricity"
                     width="500"
                     height="281"
                     loading="lazy"
@@ -932,14 +932,14 @@
                     class="action-card__btn"
                     type="button"
                     aria-pressed="false"
-                    aria-label="Select Save Electricity — 10 impact points"
+                    aria-label="Select Save Electricity 10 impact points"
                   >
                     Select Action
                   </button>
                 </div>
               </article>
 
-              <!-- Card 3 — Recycle Waste -->
+              <!-- Card 3 Recycle Waste -->
               <article
                 class="action-card"
                 data-id="recycle"
@@ -961,22 +961,21 @@
                   <span class="action-card__icon" aria-hidden="true">♻️</span>
                   <h3 class="action-card__title">Recycle Waste</h3>
                   <p class="action-card__desc">
-                    Separate recyclable waste — paper, glass, plastic, metal —
-                    so materials re-enter the production cycle.
+                    Separate recyclable waste paper, glass, plastic, metal so materials re-enter the production cycle.
                   </p>
                   <span class="action-card__points">+10 pts</span>
                   <button
                     class="action-card__btn"
                     type="button"
                     aria-pressed="false"
-                    aria-label="Select Recycle Waste — 10 impact points"
+                    aria-label="Select Recycle Waste 10 impact points"
                   >
                     Select Action
                   </button>
                 </div>
               </article>
 
-              <!-- Card 4 — Plant Trees -->
+              <!-- Card 4 Plant Trees -->
               <article
                 class="action-card"
                 data-id="trees"
@@ -998,7 +997,7 @@
                   <span class="action-card__icon" aria-hidden="true">🌱</span>
                   <h3 class="action-card__title">Plant Trees</h3>
                   <p class="action-card__desc">
-                    Support tree-planting initiatives or start your own — trees
+                    Support treeplanting initiatives or start your own trees
                     are one of the most effective carbon sinks on the planet.
                   </p>
                   <span class="action-card__points">+20 pts</span>
@@ -1006,14 +1005,14 @@
                     class="action-card__btn"
                     type="button"
                     aria-pressed="false"
-                    aria-label="Select Plant Trees — 20 impact points"
+                    aria-label="Select Plant Trees 20 impact points"
                   >
                     Select Action
                   </button>
                 </div>
               </article>
 
-              <!-- Card 5 — Save Water -->
+              <!-- Card 5 Save Water -->
               <article
                 class="action-card"
                 data-id="water"
@@ -1043,14 +1042,14 @@
                     class="action-card__btn"
                     type="button"
                     aria-pressed="false"
-                    aria-label="Select Save Water — 10 impact points"
+                    aria-label="Select Save Water 10 impact points"
                   >
                     Select Action
                   </button>
                 </div>
               </article>
 
-              <!-- Card 6 — Reusable Bags -->
+              <!-- Card 6 Reusable Bags -->
               <article
                 class="action-card"
                 data-id="bags"
@@ -1080,7 +1079,7 @@
                     class="action-card__btn"
                     type="button"
                     aria-pressed="false"
-                    aria-label="Select Use Reusable Bags — 5 impact points"
+                    aria-label="Select Use Reusable Bags 5 impact points"
                   >
                     Select Action
                   </button>
@@ -1091,7 +1090,7 @@
           </section>
 
           <!-- ===========================================
-               SECTION 3 — SUMMARY PANEL
+               SECTION 3 SUMMARY PANEL
                =========================================== -->
           <section
             class="section ais-summary"
@@ -1126,7 +1125,7 @@
                 class="ais-level-pill ais-level-pill--none"
                 id="live-level-pill"
               >
-                — Select actions to begin
+                Select actions to begin
               </span>
             </div>
 
@@ -1154,7 +1153,7 @@
               aria-label="Selected actions"
             >
               <span class="ais-chips__empty" id="chips-empty">
-                No actions selected yet — pick some cards above!
+                No actions selected yet pick some cards above!
               </span>
             </div>
 
@@ -1172,7 +1171,7 @@
           </section>
 
           <!-- ===========================================
-               SECTION 4 — RESULTS
+               SECTION 4 RESULTS
                =========================================== -->
           <section
             class="section ais-results"
@@ -1181,7 +1180,6 @@
             aria-live="assertive"
           >
             <div class="ais-results__inner">
-              <!-- Impact badge — JS sets class + text -->
               <div class="ais-badge" id="result-badge" role="status">
                 <span
                   class="ais-badge__icon"
@@ -1269,7 +1267,7 @@
         "use strict";
 
         /* ------------------------------------------
-           DATA — action definitions
+           DATA - action definitions
            ------------------------------------------ */
         // Points-to-CO₂ conversion: 1 point ≈ 2.8 kg CO₂/year (illustrative)
         const CO2_PER_POINT = 2.8;
@@ -1285,7 +1283,7 @@
             badgeClass: "ais-badge--low",
             bg: "bg-low",
             message:
-              "You're taking your first green steps! Every action counts — keep building these habits and your impact will grow.",
+              "You're taking your first green steps! Every action counts keep building these habits and your impact will grow.",
             recs: [
               "Try cycling or walking for short journeys instead of driving.",
               "Switch off lights and standby appliances when you leave a room.",
@@ -1302,7 +1300,7 @@
             message:
               "Great progress! You're making a real positive contribution to climate action. A few more actions will take you to the next level.",
             recs: [
-              "Continue recycling — try composting food waste too.",
+              "Continue recycling try composting food waste too.",
               "Reduce single-use plastic further by buying in bulk.",
               "Share your habits with friends and inspire them to join you.",
             ],
@@ -1317,7 +1315,7 @@
             message:
               "Outstanding! You're a true climate champion. Your daily actions are making a significant difference for our planet.",
             recs: [
-              "Inspire friends and family — share GreenSteps with them.",
+              "Inspire friends and family share GreenSteps with them.",
               "Join a local environmental project or community clean-up.",
               "Consider a plant-rich diet to further reduce your footprint.",
             ],
@@ -1408,12 +1406,12 @@
 
           // ── Live background + pill + progress bar on every selection ──
           if (selectedActions.size === 0) {
-            // Nothing selected — reset everything
+            // Nothing selected reset everything
             bgLow.classList.remove("is-active");
             bgMedium.classList.remove("is-active");
             bgHigh.classList.remove("is-active");
             liveLevelPill.className = "ais-level-pill ais-level-pill--none";
-            liveLevelPill.textContent = "— Select actions to begin";
+            liveLevelPill.textContent = "Select actions to begin";
             liveProgressFill.style.width = "0%";
             liveProgressFill.classList.remove("has-value");
           } else {
@@ -1593,7 +1591,7 @@
            EVENT LISTENERS
            ------------------------------------------ */
 
-        // Card clicks — delegate to both card and button
+        // Card clicks delegate to both card and button
         cards.forEach(function (card) {
           // Clicking the card article itself
           card.addEventListener("click", function (e) {
@@ -1623,7 +1621,7 @@
         // Calculate button
         btnCalculate.addEventListener("click", function () {
           if (selectedActions.size === 0) {
-            // Friendly nudge — no alert, just highlight the grid
+            // Friendly nudge no alert, just highlight the grid
             var grid = document.querySelector(".ais-grid");
             grid.style.outline = "3px solid #f59e0b";
             grid.style.borderRadius = "16px";

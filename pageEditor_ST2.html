@@ -1,0 +1,569 @@
+    <!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <title>Page Editor Student - Omika Vindiya</title>
+
+    <link rel="stylesheet" href="style.css" >
+    <link rel="icon" type="image/png" href="Images/favicon/favicon.ico" >
+    <style>
+      body {
+        background:
+          radial-gradient(
+            circle at top left,
+            rgba(67, 170, 139, 0.16),
+            transparent 24%
+          ),
+          linear-gradient(135deg, #f8fefb 0%, #eefcf7 100%);
+        color: var(--text);
+        min-height: 100vh;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: row-reverse;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 24px 20px 40px 45px;
+        gap: 24px;
+        align-items: flex-start;
+      }
+
+      main {
+        flex: 3;
+        display: grid;
+        gap: 1.2rem;
+      }
+
+      aside {
+        flex: 1;
+        background: rgba(255, 255, 255, 0.84);
+        padding: 20px;
+        border: 1px solid rgba(11, 110, 79, 0.12);
+        margin-right: 0;
+        border-radius: 24px;
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(18px);
+        position: sticky;
+        top: 110px;
+      }
+
+      .stud {
+        max-width: 1200px;
+        margin: 2rem auto 0;
+        padding: 2rem 2.2rem;
+        border-radius: 24px;
+        background: linear-gradient(135deg, var(--primary), var(--secondary));
+        color: white;
+        box-shadow: var(--shadow);
+      }
+
+      .stud h2 {
+        margin: 0;
+        font-size: clamp(1.3rem, 2vw, 1.8rem);
+      }
+
+      main section {
+        background: rgba(255, 255, 255, 0.82);
+        border: 1px solid rgba(11, 110, 79, 0.12);
+        border-radius: 24px;
+        padding: 1.5rem 1.6rem;
+        box-shadow: var(--shadow);
+      }
+
+      main h2 {
+        margin-top: 0;
+        color: var(--primary);
+      }
+
+      main h3 {
+        color: var(--secondary);
+        margin-bottom: 0.4rem;
+      }
+
+      main p,
+      main li {
+        line-height: 1.7;
+        color: var(--text);
+      }
+
+      main img {
+        display: block;
+        width: 100%;
+        max-height: 320px;
+        object-fit: cover;
+        border-radius: 16px;
+        margin: 1rem 0 1.2rem;
+        border: 1px solid rgba(11, 110, 79, 0.12);
+      }
+
+      main a {
+        color: var(--primary);
+        font-weight: 600;
+      }
+
+      .top {
+        margin-top: 1.2rem;
+      }
+
+      .top-level-ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: grid;
+        gap: 0.65rem;
+      }
+
+      .top-level-ul > li {
+        font-weight: 700;
+        color: var(--primary);
+      }
+
+      .top-level-ul ul {
+        list-style: none;
+        padding: 0 0 0 1rem;
+        display: grid;
+        gap: 0.35rem;
+        margin: 0.3rem 0 0;
+      }
+
+      .top-level-ul a {
+        color: var(--text);
+        text-decoration: none;
+      }
+
+      .top-level-ul a:hover,
+      .top-level-ul a:focus-visible,
+      main a:hover,
+      main a:focus-visible {
+        color: var(--secondary);
+        text-decoration: underline;
+      }
+      table{
+        border: 1px solid black;
+        border-collapse: collapse;
+        }
+
+        th, td{
+            padding: 4px;
+            border: 1px solid black;
+        }
+        thead{
+            background-color: #333;
+            color: azure;
+        }
+
+
+      @media (max-width: 900px) {
+        .container {
+          flex-direction: column;
+          padding-left: 20px;
+        }
+
+        aside {
+          position: relative;
+          top: auto;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .stud {
+          padding: 1.4rem 1rem;
+        }
+
+        main section {
+          padding: 1.2rem;
+        }
+      }
+
+      .visually-hidden {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+    </style>
+  </head>
+    <!-- Update the header and the footer to be consistent with the rest of the pages you implemented Optional -->
+    <a class="skip-link" href="#main-content">Skip to content</a>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="home.html" aria-label="GreenSteps — Home">
+          <span class="brand-mark" aria-hidden="true">☀</span>
+          <span class="brand-name">GreenSteps</span>
+        </a>
+
+        <input
+          type="checkbox"
+          id="nav-toggle"
+          class="nav-checkbox"
+          aria-hidden="true"
+        >
+        <label for="nav-toggle" class="nav-toggle">
+          <span class="visually-hidden">Toggle navigation menu</span>
+          <span class="hamburger" aria-hidden="true">
+            <span></span>
+            <span></span>
+            <span></span>
+          </span>
+        </label>
+
+        <nav class="site-nav" aria-label="Primary navigation">
+          <a class="nav-link" href="home.html">Home</a>
+          <a class="nav-link" href="gallery.html">Gallery</a>
+          <a class="nav-link" href="ais.html">Action Simulator</a>
+          <a class="nav-link" href="feedback.html">Feedback</a>
+          <a class="nav-link" href="team.html">Team</a>
+          <a class="nav-link" href="profile.html">User Profile</a>
+          <a class="nav-link" href="sitemap.html">Sitemap</a>
+        </nav>
+      </div>
+    </header>
+
+    <section class="stud">
+      <h2>Student name, team name, student role [this is required]</h2>
+    </section>
+
+    <div class="container">
+      <!-- Main content area -->
+      <main>
+        <!-- Update those first three sections for the pages you were responsible to implement -->
+
+        <section>
+          <h2 id="splash">Splash Page</h2>
+          <h3>Technical Description</h3>
+          <p>
+          The HTML structure for this splash page employs a main element to house a centralized section,
+           which acts as the primary content container for the immersive introduction. The design features 
+           a header, a descriptive paragraph, and a dynamic progress loader, while a skip button ensures user 
+           accessibility by providing an immediate route to the home page.
+          </p>
+          <p>
+            The presentation is driven by modern CSS techniques, utilizing a full-viewport grid layout with 
+            place-items to perfectly center the splash card. A frosted glass aesthetic is achieved through a
+             backdrop filter blur on the card background, combined with a linear gradient and background image
+              overlay on the body to create a cohesive, branded visual environment. Fluidity and responsiveness 
+              are maintained using width constraints that allow the container to adapt dynamically to various 
+              screen sizes.
+          </p>
+          <p>
+            Interactivity is implemented using JavaScript to manage a timed countdown and visual feedback sequence.
+             A timer function runs at one-second intervals to update the text content of a countdown element while 
+             simultaneously adjusting the width of the loader progress bar through DOM manipulation. Once the countdown 
+             reaches zero, the script terminates the interval and executes an automatic redirection to the home page, 
+             providing a seamless transition for the user.
+          </p>
+
+          <h3>Accessibility</h3>
+          <p>
+           For the splash page, accessibility was prioritized by establishing a clear, semantic structure that allows 
+           screen readers to parse the content efficiently. The use of an aria-labelledby attribute on the primary content
+            section ensures that assistive technology correctly identifies the purpose of the splash card, while the skip 
+            button provides keyboard users with an immediate, accessible route to the main website. Additionally, the loader 
+            component incorporates an aria-label attribute, ensuring that the progress state is conveyed to users even in the 
+            absence of visual monitoring.
+          </p>
+
+          <h3>Link to the validation page</h3>
+          <!-- Update the path to link the Page Editor with the splash page -->
+          <p>
+            <a href="validation_ST2.html"
+              >validation page</a
+            >
+          </p>
+          <!-- Update the path to link the Page Editor with the validation page and make it jump to the marker that contains a snapshot for the splash page -->
+
+          <h3>Link to the page</h3>
+          <p>
+            <a href="splash.html">Splash Page</a>
+          </p>
+        </section>
+
+        <section>
+          <h2 id="ais">Action Impact Simulator</h2>
+          <h3>Technical Description</h3>
+          <p>
+            The Action Impact Simulator utilizes a highly structured, semantic HTML architecture designed to facilitate a sophisticated, 
+            data-driven user experience. The layout is segmented into distinct functional regions, including a primary hero area for 
+            contextual onboarding, an interactive grid for lifestyle data input, a dynamic summary panel for real-time statistical 
+            feedback, and a dedicated results section for final impact analysis. To ensure accessibility and semantic integrity, the 
+            document employs appropriate tagging and ARIA live regions, ensuring that state-based updates are communicated effectively 
+            to assistive technologies.
+          </p>
+          <p>
+            The visual presentation adheres to a modular CSS methodology, utilizing a frosted glass aesthetic achieved through backdrop-filter 
+            blurs and refined, semi-transparent backgrounds to maintain a polished, professional interface. Layout management is handled through
+            a combination of CSS Grid and responsive media queries, which ensure the interface maintains its structural integrity and alignment 
+            across a diverse range of viewing platforms. The atmospheric background layers, which transition based on user interaction, are positioned
+             to provide a cohesive visual narrative without disrupting the document's primary content flow.
+          </p>
+          <p>
+            Interactivity is managed via a robust JavaScript implementation that governs the simulator's logic, including real-time score computation,
+             DOM state management, and the triggering of responsive animations. This script-based approach facilitates immediate user feedback, such as
+              the dynamic update of performance metrics and the visual reveal of results, ensuring that the simulator operates as a functional application.
+               By utilizing programmatic DOM manipulation, the page achieves a seamless transition between the selection, calculation, and reporting phases
+               of the user journey.
+          </p>
+
+          <h3>Accessibility</h3>
+          <p>
+           The Action Impact Simulator was designed to provide an engaging and intuitive interactive experience, focusing on clear feedback loops and user 
+           empowerment. The interface uses state-based updates to confirm selections and provide real-time progression stats, which helps users stay oriented
+            as they navigate through different lifestyle choices. By combining immediate visual confirmations with comprehensive result summaries, the tool 
+            encourages active participation and makes complex environmental impact data feel personal, reachable, and simple to understand.
+          </p>
+
+          <h3>Link to the validation page</h3>
+          <!-- Update the path to link the Page Editor with the splash page -->
+          <p>
+            <a href="validation_ST2.html#volunteerVal"
+              >validation page</a
+            >
+          </p>
+          <!-- Update the path to link the Page Editor with the validation page and make it jump to the marker that contains a snapshot for the splash page -->
+
+          <h3>Link to the page</h3>
+          <p>
+            <a href="ais.html"
+              >Action Impact Simulator</a
+            >
+          </p>
+        </section>
+
+        <section>
+          <h2 id="content">Content Page</h2>
+          <h3>Technical Description</h3>
+          <p>
+            The HTML structure utilizes semantic tags like header, main, aside, and footer to establish a logical, accessible information 
+            architecture, ensuring that screen readers can effectively parse the document's functional regions. Content is organized into
+             thematic section blocks, while unordered and ordered list elements provide structured, readable lists, and table tags are
+              used to format data accurately.
+          </p>
+          <p>
+            The presentation is driven by modern CSS techniques, relying on Flexbox for navigation alignment and CSS Grid to manage complex 
+            layouts, such as the hero and image-rich sections, which allow for precise positioning of text and media. A frosted glass aesthetic
+             is implemented via semi-transparent backgrounds combined with backdrop-filter blur properties, while fluid typography and media queries 
+             ensure the design remains responsive across devices ranging from desktops to mobile screens.
+          </p> 
+          <p>
+            For interactivity, the page employs a pure CSS checkbox hack to manage state-based UI elements, such as the mobile navigation toggle.
+             By pairing a visually hidden input checkbox with a label, the page achieves dynamic functionality through CSS checked pseudo-classes. 
+             This native approach eliminates the need for JavaScript, resulting in a lightweight, high-performance codebase that is fully compliant 
+             with markup validation standards
+          </p> 
+
+          <h3>Accessibility</h3>
+          <p>
+          In the content report page, accessibility was addressed by implementing a robust semantic architecture using landmark elements like main, 
+          header, and nav, which provide a logical roadmap for screen reader navigation. To optimize keyboard usability, a skip link was integrated, 
+          allowing users to bypass the primary navigation and proceed directly to the document's core content. Furthermore, a visually-hidden utility
+           class was employed to provide descriptive labels for non-textual UI elements, ensuring that vital context is available to assistive technologies
+           without disrupting the intended visual layout.
+          </p>
+
+          <h3>Link to the validation page</h3>
+          <!-- Update the path to link the Page Editor with the splash page -->
+          <p>
+            <a href="validation_ST2.html"
+              >Include a link to the validation page</a
+            >, use the marker to jump to the corresponding section of the
+            validation page.
+          </p>
+          <!-- Update the path to link the Page Editor with the validation page and make it jump to the marker that contains a snapshot for the splash page -->
+
+          <h3>Link to the page</h3>
+          <p>
+            <a href="content_ST2.html"
+              >Include a link to the actual page you describe.</a
+            >
+          </p>
+        </section>
+
+        <section>
+          <h2 id="challenge">Challenges and Lessons Learned</h2>
+          <h3>1. Strict Markup Validation</h3>
+          <p>
+            Ensuring the document structure fully complied with HTML5 standards for the Nu Html Checker presented an initial 
+            hurdle, particularly regarding the proper nesting of semantic tags and avoiding the inclusion of block-level elements
+             within standard text containers. This was resolved by carefully auditing the HTML structure and breaking complex text
+              blocks into distinct, sibling paragraph tags rather than forcing line breaks within a single container. Ultimately, 
+              this experience reinforced that adhering to strict semantic rules from the beginning of the development process 
+              prevents cascading validation errors and results in a much cleaner, more predictable codebase.
+          </p>
+          <h3>2. Native CSS Interactivity</h3>
+          <p>
+            Implementing a fully functional mobile navigation toggle without relying on JavaScript required finding a reliable, 
+            CSS-only solution that would not compromise the layout or responsiveness of the header. The solution was to implement
+             the native CSS "checkbox hack," pairing a visually hidden input with a label to trigger state changes via the :
+             checked pseudo-class. This approach demonstrated that modern CSS is highly capable of handling state-based UI 
+             interactions, and prioritizing native CSS over JavaScript for simple toggles can lead to a more lightweight, 
+             high-performance application.
+          </p>
+          <h3>3. Dynamic State Management</h3>
+          <p>
+            In the Action Impact Simulator, synchronizing multiple dynamic elements—such as the selected action cards, the live 
+            numerical score, the progress bar fill, and the fading background layers—proved complex and prone to visual 
+            desynchronization. This was addressed by centralizing the data management within the JavaScript file, utilizing a 
+            Set object to track selected items and a single, unified function to calculate the score and update all DOM elements
+             simultaneously. The key takeaway was that maintaining a strict "single source of truth" for application data makes
+              complex DOM manipulation significantly more predictable and easier to troubleshoot.
+          </p>
+        </section>
+
+        <section>
+          <h2 id="compliance">Compliance</h2>
+          <p>All pages I created comply with JANET regulations for responsible web page publication. The following principles were applied:</p>
+        <ul>
+          <li><span class="highlight">Original content:</span> All written content is original and created by this student. No text was copied from the UN SDG website or any other source.</li>
+          <li><span class="highlight">Image sourcing:</span> All images were sourced from royalty-free platforms and are referenced in the References section below.</li>
+          <li><span class="highlight">No personal data collection:</span> The website does not collect, store, or transmit any personal user data. The feedback form does not submit to a server.</li>
+          <li><span class="highlight">Appropriate content:</span> The website contains no offensive, harmful, or discriminatory content. All content is focused on health education aligned with UN SDG 3.</li>
+          <li><span class="highlight">Academic integrity:</span> All HTML, CSS, and JavaScript was written by this student. No pre-built templates, frameworks, or copied code from other projects were used.</li>
+          <li><span class="highlight">Accessibility compliance:</span> Pages follow WCAG accessibility principles including semantic HTML, alt text, and keyboard navigation.</li>
+        </ul>
+          </p>
+        </section>
+
+        <section>
+          <h2 id="group">Group Meetings and Individual Contribution Log</h2>
+
+          <table>
+            <thead>
+              <tr>
+                <th colspan="6">Group Meetings and Contribution Log</th>
+              </tr>
+              <tr>
+                <th>Meeting</th>
+                <th>Date &amp; Time</th>
+                <th>Format</th>
+                <th>Objective</th>
+                <th>Attended</th>
+                <th>Your Individual Contribution</th>
+              </tr>
+            </thead>
+
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>8 june 2026</td>
+                <td>Face-to-face</td>
+                <td>Discuss website concept and assign roles</td>
+                <td>Yes</td>
+                <td>I contributed ideas for interactive features and accepted responsibility for developing the Splash Screen and Action Impact Simulator.</td>
+              </tr>
+
+              <tr>
+                <td>2</td>
+                <td>19 june 2026</td>
+                <td>Online</td>
+                <td>Plan interactive features and user experience</td>
+                <td>Yes</td>
+                <td>I suggested using JavaScript-based interactions such as countdown animation, selectable action cards and impact scoring.</td>
+              </tr>
+
+              <tr>
+                <td>3</td>
+                <td>24 june 2026</td>
+                <td>Face-to-face</td>
+                <td>Review progress of individual pages</td>
+                <td>Yes</td>
+                <td>I showed my progress on the Splash Screen design and discussed how the transition into the Home Page would work.</td>
+              </tr>
+
+              <tr>
+                <td>4</td>
+                <td>3 july 2026</td>
+                <td>Face-to-face</td>
+                <td>Review JavaScript functionality</td>
+                <td>Yes</td>
+                <td>I demonstrated the Action Impact Simulator logic, including selecting actions, calculating scores and displaying impact feedback.</td>
+              </tr>
+
+              <tr>
+                <td>5</td>
+                <td>17 july 2026</td>
+                <td>Online</td>
+                <td>Test website functionality and collect feedback</td>
+                <td>Yes</td>
+                <td>I tested the simulator with different selections and improved the feedback messages and background changes.</td>
+              </tr>
+
+              <tr>
+                <td>6</td>
+                <td>19 july 2026</td>
+                <td>Online</td>
+                <td>Final website review before submission</td>
+                <td>Yes</td>
+                <td>I fixed remaining issues in my pages, checked accessibility features and helped verify JavaScript functions worked correctly.</td>
+                
+              </tr>
+            </tbody>
+          </table>
+        </section>
+
+        <section>
+          <h2 id="ref">References</h2>
+          <p>
+            Provide links to resources you used following a consistent format
+            (e.g., APA, MLA, or a simplified style). For example:<br><br>
+          </p>
+          <ul class="ref">           
+            <li>Unsplash (2026). <em>Free high-resolution photos.</em> Available at: <a href="https://unsplash.com" target="_blank">https://unsplash.com</a> (Last accessed: 28 Mar 2026).</li>
+            <li>W3Schools (2026). <em>HTML and CSS Tutorials.</em> Available at: <a href="https://www.w3schools.com" target="_blank">https://www.w3schools.com</a> (Last accessed: 28 Mar 2026).</li>
+            <li>Module lecture notes (2026). <em>4COSC011W Web Design and Development.</em> University of Westminster.</li>        
+          </ul>
+        </section>
+      </main>
+
+      <!-- Sidebar area -->
+      <aside>
+        <h3>Core pages developed:</h3>
+
+        <!-- Customize this to the role you undertook. Keep only the list items you were responsible to develop, delete the rest -->
+        <ul class="top-level-ul">
+          <!-- Keep only the list items you were responsible to develop, delete the rest and update the links to the corresponding markers -->
+          <li>Student 2</li>
+          <ul>
+            <li><a href="#splash">Splash</a></li>
+            <li><a href="#ais">Action Impact Simulator</a></li>
+            <li><a href="#content">Content</a></li>
+          </ul>
+          <li><a href="#challenge">Challenges and Lessons Learned</a></li>
+          <li><a href="#compliance">Compliance</a></li>
+          <li>
+            <a href="#group">Group Meetings and Individual Contribution Log</a>
+          </li>
+          <li><a href="#ref">References</a></li>
+        </ul>
+      </aside>
+    </div>
+
+    <footer>
+      <div class="footer-grid">
+        <div class="footer-card">
+          <h3>Student</h3>
+          <p>Omika Vindya<br >Student 02 - Splash & Action Impact Simulator</p>
+        </div>
+        <div class="footer-card">
+          <h3>Explore</h3>
+          <p>
+            <a href="pageEditor_ST2.html">Page Editor</a><br >
+            <a href="validation_ST2.html">Validation</a><br >
+            <a href="sitemap.html">Sitemap</a>
+          </p>
+        </div>
+        <div class="footer-card">
+          <h3>Accessibility</h3>
+          <p><a href="#accessibility">Accessibility Statement</a></p>
+        </div>
+      </div>
+    </footer>
+    <a class="top-btn" href="#top" aria-label="Go to top of page">↑ Top</a>
+  </body>
+</html>

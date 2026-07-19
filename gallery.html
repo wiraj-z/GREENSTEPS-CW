@@ -1,15 +1,15 @@
 <!doctype html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" >
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Greensteps | Gallery</title>
     <meta
       name="description"
       content="Interactive gallery for the greensteps."
-    >
-    <link rel="stylesheet" href="style.css" >
-    <link rel="icon" type="image/png" href="Images/favicon/favicon.ico" >
+    />
+    <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/png" href="Images/favicon/favicon.ico" />
     <style>
       /* Gallery Page Styles */
       .gallery-shell {
@@ -234,11 +234,8 @@
           id="nav-toggle"
           class="nav-checkbox"
           aria-hidden="true"
-        >
-        <label
-          for="nav-toggle"
-          class="nav-toggle"
-        >
+        />
+        <label for="nav-toggle" class="nav-toggle">
           <span class="visually-hidden">Toggle navigation menu</span>
           <span class="hamburger" aria-hidden="true">
             <span></span>
@@ -301,12 +298,15 @@
         <div class="theme-toggle">
           <span class="theme-toggle-label" id="themeLabel">Light</span>
           <label class="toggle-switch">
-            <input type="checkbox" id="themeSwitch" aria-label="Toggle dark mode">
+            <input
+              type="checkbox"
+              id="themeSwitch"
+              aria-label="Toggle dark mode"
+            />
             <span class="toggle-track"></span>
           </label>
           <span class="theme-toggle-label">Dark</span>
         </div>
-
       </div>
     </div>
 
@@ -314,13 +314,13 @@
       <div class="footer-grid">
         <div class="footer-card">
           <h3>Student</h3>
-          <p>Sayuranga Wiraj<br >Student 01 - Home Page & Gallery</p>
+          <p>Sayuranga Wiraj<br />Student 01 - Home Page & Gallery</p>
         </div>
         <div class="footer-card">
           <h3>Explore</h3>
           <p>
-            <a href="pageEditor_ST1.html">Page Editor</a><br >
-            <a href="validation_ST1.html">Validation</a><br >
+            <a href="pageEditor_ST1.html">Page Editor</a><br />
+            <a href="validation_ST1.html">Validation</a><br />
             <a href="sitemap.html">Sitemap</a>
           </p>
         </div>
@@ -334,83 +334,103 @@
     <a class="top-btn" href="#top" aria-label="Go to top of page">↑ Top</a>
 
     <script>
-      const galleryItems = [
+            const galleryItems = [
         {
           title: "Solar Futures",
           image: "images/gallery/Solar_futures.avif",
-          description:
-            "Large-scale solar farms remove dependency on fossil fuels.",
+          label: "Renewable Energy",
+          description: "Large-scale solar farms remove dependency on fossil fuels.",
+          body: `
+            <p>Solar energy is one of the fastest-growing sources of electricity worldwide. Photovoltaic (PV) panels convert sunlight directly into electricity, producing zero emissions during operation. In 2023, solar accounted for nearly 5% of global electricity generation a figure climbing steeply each year.</p>
+            <p>Utility-scale solar farms now power entire cities. Projects like the Bhadla Solar Park in India and the Noor Complex in Morocco demonstrate how arid, low-productivity land can be repurposed to generate gigawatts of clean power for millions of homes.</p>
+            <p>Beyond large installations, rooftop solar and community solar schemes empower individuals and neighbourhoods to generate their own electricity, reducing grid dependence and lowering household energy bills. Paired with battery storage, solar is becoming a 24/7 solution rather than a daytime-only resource.</p>
+          `
         },
         {
           title: "Urban Forests",
           image: "images/gallery/Urban_forests.avif",
+          label: "Green Infrastructure",
           description: "Green infrastructure cools cities and captures carbon.",
+          body: `
+            <p>Urban forests networks of trees, parks, green roofs, and planted corridors woven through cities are a frontline response to the urban heat island effect. A single mature tree can cool the surrounding air by up to 8 °C through shade and transpiration, reducing the need for energy intensive air conditioning.</p>
+            <p>Trees and urban green spaces also sequester carbon dioxide, filter air pollutants, absorb stormwater runoff, and support biodiversity by providing habitats for birds, insects, and small mammals that would otherwise have no place in a built environment.</p>
+            <p>Cities like Singapore, Oslo, and Melbourne have committed to ambitious urban greening targets, recognising that investing in nature-based infrastructure pays dividends in public health, reduced flood risk, and improved quality of life for residents. Urban forests are not a luxury, they are essential climate infrastructure.</p>
+          `
         },
         {
           title: "Zero Waste",
           image: "images/gallery/zero_waste.avif",
-          description:
-            "Circular habits reduce landfill pressure and emissions.",
+          label: "Circular Economy",
+          description: "Circular habits reduce landfill pressure and emissions.",
+          body: `
+            <p>The zero-waste movement challenges the conventional "take -make - dispose" model of production and consumption. Instead, it advocates for a circular economy in which materials are kept in use for as long as possible through reuse, repair, remanufacturing, and recycling with landfill as an absolute last resort.</p>
+            <p>Landfills are a significant source of methane, a greenhouse gas 80 times more potent than CO₂ over a 20-year period. By diverting organic waste to composting or anaerobic digestion, and recovering recyclable materials before they reach disposal, communities can dramatically cut their climate impact.</p>
+            <p>Zero-waste cities such as Kamikatsu in Japan and Ljubljana in Slovenia have achieved waste diversion rates above 80%, proving that systemic change supported by education, convenient infrastructure, and extended producer responsibility can turn an ambitious goal into everyday reality.</p>
+          `
         },
         {
           title: "Ocean Care",
           image: "images/gallery/Ocean.avif",
-          description:
-            "Marine restoration protects biodiversity and climate resilience.",
-        },
+          label: "Marine Restoration",
+          description: "Marine restoration protects biodiversity and climate resilience.",
+          body: `
+            <p>Oceans cover over 70% of Earth's surface and absorb roughly 30% of the CO₂ humans emit each year, as well as more than 90% of the excess heat trapped by greenhouse gases. Healthy oceans are indispensable to a stable climate, yet rising temperatures, acidification, and pollution are pushing marine ecosystems to a tipping point.</p>
+            <p>Coral reefs, seagrass meadows, and mangrove forests are among the most biodiverse and carbon rich ecosystems on the planet. Mangroves alone store up to five times more carbon per hectare than tropical rainforests. Restoring and protecting these "blue carbon" habitats is one of the highest-leverage climate actions available to us.</p>
+          `
+        }
       ];
 
-      const galleryGrid  = document.getElementById("galleryGrid");
-      const modal        = document.getElementById("galleryModal");
-      const modalContent = document.getElementById("modalContent");
-      const modalBody    = document.getElementById("modalBody");
-      const closeModal   = document.getElementById("closeModal");
-      const themeSwitch  = document.getElementById("themeSwitch");
+            const galleryGrid  = document.getElementById("galleryGrid");
+            const modal        = document.getElementById("galleryModal");
+            const modalContent = document.getElementById("modalContent");
+            const modalBody    = document.getElementById("modalBody");
+            const closeModal   = document.getElementById("closeModal");
+            const themeSwitch  = document.getElementById("themeSwitch");
 
-      galleryItems.forEach((item) => {
-        const card = document.createElement("article");
-        card.className = "gallery-card";
-        card.innerHTML = `
-          <img src="${item.image}" alt="${item.title}" >
-          <h3>${item.title}</h3>
-          <p class="muted">${item.description}</p>
-        `;
-        const activateHover   = () => card.classList.add("hovered");
-        const deactivateHover = () => card.classList.remove("hovered");
-        card.addEventListener("mouseenter", activateHover);
-        card.addEventListener("mouseleave", deactivateHover);
-        card.addEventListener("focus",      activateHover);
-        card.addEventListener("blur",       deactivateHover);
-        card.addEventListener("click",      () => openModal(item));
-        card.addEventListener("keydown", (event) => {
-          if (event.key === "Enter" || event.key === " ") {
-            event.preventDefault();
-            openModal(item);
-          }
-        });
-        card.tabIndex = 0;
-        galleryGrid.appendChild(card);
-      });
+            galleryItems.forEach((item) => {
+              const card = document.createElement("article");
+              card.className = "gallery-card";
+              card.innerHTML = `
+                <img src="${item.image}" alt="${item.title}" >
+                <h3>${item.title}</h3>
+                <p class="muted">${item.description}</p>
+              `;
+              const activateHover   = () => card.classList.add("hovered");
+              const deactivateHover = () => card.classList.remove("hovered");
+              card.addEventListener("mouseenter", activateHover);
+              card.addEventListener("mouseleave", deactivateHover);
+              card.addEventListener("focus",      activateHover);
+              card.addEventListener("blur",       deactivateHover);
+              card.addEventListener("click",      () => openModal(item));
+              card.addEventListener("keydown", (event) => {
+                if (event.key === "Enter" || event.key === " ") {
+                  event.preventDefault();
+                  openModal(item);
+                }
+              });
+              card.tabIndex = 0;
+              galleryGrid.appendChild(card);
+            });
 
-      function openModal(item) {
-        document.getElementById("modalTitle").textContent = item.title;
-        modalBody.innerHTML = `
-          <img src="${item.image}" alt="${item.title}" >
-          <p>${item.description}</p>
-          <p>The future of climate action is built by deliberate choices, creative design, and a commitment to public good.</p>
-        `;
-        modal.classList.add("open");
-      }
+            function openModal(item) {
+              document.getElementById("modalTitle").textContent = item.title;
+              document.querySelector(".modal-label").textContent = item.label;
+              modalBody.innerHTML = `
+                <img src="${item.image}" alt="${item.title}">
+                ${item.body}
+              `;
+              modal.classList.add("open");
+            }
 
-      closeModal.addEventListener("click", () => modal.classList.remove("open"));
-      modal.addEventListener("click", (event) => {
-        if (event.target === modal) modal.classList.remove("open");
-      });
+            closeModal.addEventListener("click", () => modal.classList.remove("open"));
+            modal.addEventListener("click", (event) => {
+              if (event.target === modal) modal.classList.remove("open");
+            });
 
-      // ── Theme switch ──────────────────────────────────────────────
-      themeSwitch.addEventListener("change", () => {
-        modalContent.classList.toggle("dark", themeSwitch.checked);
-      });
+            // Theme switch
+            themeSwitch.addEventListener("change", () => {
+              modalContent.classList.toggle("dark", themeSwitch.checked);
+            });
     </script>
   </body>
 </html>

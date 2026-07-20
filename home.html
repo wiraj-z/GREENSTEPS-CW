@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GreenSteps | Home - Climate Action for Students</title>
+    <title>GreenSteps | Home</title>
     <meta
       name="description"
       content="GreenSteps empowers students to take practical climate actions. Discover how small daily steps create a global impact aligned with UN SDG 13."
@@ -12,10 +12,8 @@
     <link rel="stylesheet" href="style.css" />
 
     <style>
-      /* 1. Hero - full-viewport background image with dark overlay, text centred on top */
       .home-hero {
         position: relative;
-        /* Break out of .container to reach full viewport width */
         margin-left: calc(50% - 50vw);
         margin-right: calc(50% - 50vw);
         width: 100vw;
@@ -27,7 +25,6 @@
         margin-bottom: 3rem;
       }
 
-      /* Background image layer */
       .home-hero__bg {
         position: absolute;
         inset: 0;
@@ -39,7 +36,6 @@
         height: 100%;
         object-fit: cover;
         object-position: center;
-        /* Subtle slow zoom for visual drama */
         animation: heroZoom 18s ease-in-out infinite alternate;
       }
 
@@ -52,7 +48,6 @@
         }
       }
 
-      /* Dark gradient overlay for text legibility WCAG AA compliant */
       .home-hero__bg::after {
         content: "";
         position: absolute;
@@ -65,7 +60,6 @@
         );
       }
 
-      /* Text layer - centred over the image */
       .home-hero__text {
         position: relative;
         z-index: 1;
@@ -81,7 +75,7 @@
         font-weight: 700;
         letter-spacing: 0.14em;
         text-transform: uppercase;
-        color: #a5d6a7; /* light green readable on dark bg */
+        color: #a5d6a7;
         background: rgba(255, 255, 255, 0.12);
         border: 1px solid rgba(255, 255, 255, 0.22);
         padding: 0.4rem 1rem;
@@ -101,7 +95,7 @@
       }
 
       .home-hero__heading span {
-        color: #69f0ae; /* vivid mint accent on dark bg */
+        color: #69f0ae;
       }
 
       .home-hero__copy {
@@ -120,7 +114,6 @@
         justify-content: center;
       }
 
-      /* Outline/ghost secondary button visible on dark bg */
       .btn-ghost {
         background: rgba(255, 255, 255, 0.12);
         color: #ffffff;
@@ -137,7 +130,6 @@
         transform: translateY(-3px);
       }
 
-      /* Scroll-hint arrow at the bottom of the hero */
       .home-hero__scroll {
         position: absolute;
         bottom: 2rem;
@@ -181,10 +173,9 @@
         }
       }
 
-      /* ---- Mobile: stack image above text (as requested) ---- */
       @media (max-width: 640px) {
         .home-hero {
-          min-height: 100svh; /* safe-area-aware on iOS */
+          min-height: 100svh;
           align-items: flex-end;
           padding-bottom: 3rem;
         }
@@ -201,7 +192,6 @@
           font-size: 1rem;
         }
 
-        /* Deepen the overlay at bottom so text pops on small screens */
         .home-hero__bg::after {
           background: linear-gradient(
             to bottom,
@@ -285,7 +275,7 @@
         flex-shrink: 0;
       }
 
-      /* 4. Gallery / content cards */
+      /*  Gallery / content cards */
       .home-gallery {
         display: grid;
         grid-template-columns: repeat(4, 1fr);
@@ -382,7 +372,7 @@
         text-decoration: underline;
       }
 
-      /* 5. CTA banner */
+      /*  CTA banner */
       .home-cta {
         background: linear-gradient(135deg, var(--primary) 0%, #1b5e20 100%);
         border-radius: var(--radius);
@@ -421,7 +411,6 @@
         text-decoration: none;
       }
 
-      /* 6. Section header shared helper */
       .section-header {
         margin-bottom: 1.6rem;
       }
@@ -436,7 +425,6 @@
         margin-bottom: 0.5rem;
       }
 
-      /* 7. Fade-in animation for sections */
       @keyframes fadeUp {
         from {
           opacity: 0;
@@ -465,14 +453,12 @@
         animation-delay: 0.26s;
       }
 
-      /* Respect reduced-motion preference */
       @media (prefers-reduced-motion: reduce) {
         .fade-up {
           animation: none;
         }
       }
 
-      /* 8. Responsive tablet (900 px) */
       @media (max-width: 900px) {
         .stats-strip {
           grid-template-columns: repeat(2, 1fr);
@@ -483,7 +469,6 @@
         }
       }
 
-      /* 9. Responsive mobile (640 px) */
       @media (max-width: 640px) {
         .stats-strip {
           grid-template-columns: 1fr 1fr;
@@ -545,11 +530,7 @@
     <!-- ===== MAIN ===== -->
     <main id="main-content">
       <div class="container">
-        <!-- ===================================================
-             SECTION 1 - HERO (full-viewport background overlay)
-             =================================================== -->
         <section class="home-hero" aria-labelledby="hero-heading">
-          <!-- Background image layer (decorative - meaningful alt on img) -->
           <div class="home-hero__bg" aria-hidden="true">
             <img
               src="Images/home/hero.avif"
@@ -561,7 +542,6 @@
             />
           </div>
 
-          <!-- Foreground text -->
           <div class="home-hero__text">
             <span class="home-hero__eyebrow">UN SDG 13 - Climate Action</span>
             <h1 class="home-hero__heading" id="hero-heading">
@@ -579,7 +559,6 @@
             </div>
           </div>
 
-          <!-- Scroll hint -->
           <a
             class="home-hero__scroll"
             href="#stats-section"
@@ -605,7 +584,6 @@
           </header>
 
           <div class="missions-grid">
-            <!-- Card 1 -->
             <article class="mission-card fade-up fade-up--d1">
               <div class="mission-card__img-wrap">
                 <img
@@ -633,7 +611,6 @@
               </ul>
             </article>
 
-            <!-- Card 2 -->
             <article class="mission-card fade-up fade-up--d2">
               <div class="mission-card__img-wrap">
                 <img
@@ -662,7 +639,6 @@
               </ul>
             </article>
 
-            <!-- Card 3 -->
             <article class="mission-card fade-up fade-up--d3">
               <div class="mission-card__img-wrap">
                 <img
@@ -691,9 +667,6 @@
           </div>
         </section>
 
-        <!-- ===================================================
-             SECTION 4 - CONTENT GALLERY
-             =================================================== -->
         <section class="section" aria-labelledby="gallery-heading">
           <header class="section-header">
             <span class="section-header__tag">Explore Topics</span>
@@ -707,7 +680,6 @@
           </header>
 
           <div class="home-gallery">
-            <!-- Gallery card 1 -->
             <article class="gallery-card fade-up fade-up--d1">
               <div class="gallery-card__img-wrap">
                 <img
@@ -730,7 +702,6 @@
               </div>
             </article>
 
-            <!-- Gallery card 2 -->
             <article class="gallery-card fade-up fade-up--d2">
               <div class="gallery-card__img-wrap">
                 <img
@@ -757,7 +728,6 @@
               </div>
             </article>
 
-            <!-- Gallery card 3 -->
             <article class="gallery-card fade-up fade-up--d3">
               <div class="gallery-card__img-wrap">
                 <img
@@ -785,7 +755,6 @@
               </div>
             </article>
 
-            <!-- Gallery card 4 -->
             <article class="gallery-card fade-up fade-up--d4">
               <div class="gallery-card__img-wrap">
                 <img
@@ -814,9 +783,6 @@
           </div>
         </section>
 
-        <!-- ===================================================
-             SECTION 5 - CTA BANNER
-             =================================================== -->
         <section class="home-cta section" aria-labelledby="cta-heading">
           <h2 class="home-cta__heading" id="cta-heading">
             Ready to Measure Your Climate Impact?
@@ -831,7 +797,6 @@
           </a>
         </section>
       </div>
-      <!-- /.container -->
     </main>
 
     <!-- ===== FOOTER ===== -->

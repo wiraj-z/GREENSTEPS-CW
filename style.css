@@ -47,7 +47,7 @@ textarea {
 }
 
 /* =============================================
-   2. ACCESSIBILITY — SKIP LINK & FOCUS
+    ACCESSIBILITY — SKIP LINK & FOCUS
    ============================================= */
 .skip-link {
   position: absolute;
@@ -70,7 +70,7 @@ textarea {
 }
 
 /* =============================================
-   3. LAYOUT UTILITIES
+    LAYOUT UTILITIES
    ============================================= */
 .container {
   width: min(var(--max-width), calc(100% - 2rem));
@@ -123,7 +123,7 @@ main {
 }
 
 /* =============================================
-   4. HEADER & NAVIGATION
+    HEADER & NAVIGATION
    ============================================= */
 .site-header {
   position: sticky;
@@ -243,7 +243,7 @@ main {
 }
 
 /* =============================================
-   5. SURFACES — cards / panels shared shell
+    cards / panels 
    ============================================= */
 .hero,
 .card,
@@ -266,7 +266,7 @@ main {
 }
 
 /* =============================================
-   6. BUTTONS
+    BUTTONS
    ============================================= */
 .btn {
   display: inline-flex;
@@ -299,7 +299,7 @@ main {
 }
 
 /* =============================================
-   7. TYPOGRAPHY HELPERS
+    TYPOGRAPHY HELPERS
    ============================================= */
 .section-title {
   font-size: clamp(1.4rem, 2vw, 1.9rem);
@@ -313,7 +313,7 @@ main {
 }
 
 /* =============================================
-   9. FOOTER
+    FOOTER
    ============================================= */
 .site-footer {
   padding: 2rem 0 3rem;
@@ -337,7 +337,7 @@ main {
 }
 
 /* =============================================
-   10. BACK-TO-TOP BUTTON
+    BACK-TO-TOP BUTTON
    ============================================= */
 .top-btn {
   position: fixed;
@@ -371,7 +371,7 @@ main {
 }
 
 /* =============================================
-   11. RESPONSIVE BREAKPOINTS
+    RESPONSIVE
    ============================================= */
 @media (max-width: 900px) {
   .hero {
@@ -391,12 +391,10 @@ main {
     grid-template-columns: 1fr 1fr;
   }
 
-  /* Show hamburger label on mobile */
   .nav-toggle {
     display: inline-flex;
   }
 
-  /* Hide nav by default on mobile */
   .site-nav {
     display: none;
     position: fixed;
@@ -413,12 +411,10 @@ main {
     border: 1px solid rgba(11, 110, 79, 0.1);
   }
 
-  /* Show nav when checkbox is checked — pure CSS, zero JS */
   .nav-checkbox:checked ~ .site-nav {
     display: flex;
   }
 
-  /* Full-width tappable links on mobile */
   .site-nav .nav-link {
     width: 100%;
     padding: 0.85rem 1rem;

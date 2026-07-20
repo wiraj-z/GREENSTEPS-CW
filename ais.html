@@ -44,9 +44,7 @@
         position: relative;
       }
 
-      /* -----------------------------------------------
-         2. HERO
-         ----------------------------------------------- */
+
       .ais-hero {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -106,9 +104,7 @@
         transform: scale(1.04);
       }
 
-      /* -----------------------------------------------
-         3. ACTION CARDS GRID
-         ----------------------------------------------- */
+
       .ais-grid {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
@@ -131,7 +127,6 @@
           transform 280ms ease,
           box-shadow 280ms ease,
           border-color 280ms ease;
-        /* Make card itself keyboard-focusable for accessibility */
         position: relative;
       }
 
@@ -267,9 +262,7 @@
         border-color: transparent;
       }
 
-      /* -----------------------------------------------
-         4. SUMMARY PANEL
-         ----------------------------------------------- */
+      /*  SUMMARY PANEL */
       .ais-summary {
         background: rgba(255, 255, 255, 0.95);
         border: 1px solid rgba(46, 125, 50, 0.18);
@@ -498,11 +491,8 @@
         letter-spacing: 0.01em;
       }
 
-      /* -----------------------------------------------
-         5. RESULTS SECTION
-         ----------------------------------------------- */
+
       .ais-results {
-        /* Hidden by default JS toggles .is-visible */
         display: none;
         opacity: 0;
         transform: translateY(24px);
@@ -524,7 +514,7 @@
       }
 
       .ais-results__inner {
-        background: rgba(255, 255, 255, 0.96);
+        background: rgba(225, 236, 217, 0.489);
         border: 1px solid rgba(46, 125, 50, 0.2);
         box-shadow: var(--shadow);
         backdrop-filter: blur(20px);
@@ -788,7 +778,6 @@
 
     <!-- ===== MAIN ===== -->
     <main id="main-content">
-      <!-- Fixed background layers JS fades between them on score change -->
       <div class="ais-bg ais-bg--low" id="bg-low" aria-hidden="true"></div>
       <div
         class="ais-bg ais-bg--medium"
@@ -799,9 +788,6 @@
 
       <div class="ais-content">
         <div class="container">
-          <!-- ===========================================
-               SECTION 1 — HERO
-               =========================================== -->
           <section class="ais-hero section" aria-labelledby="ais-heading">
             <div class="ais-hero__text">
               <h1 class="ais-hero__heading" id="ais-heading">
@@ -831,9 +817,6 @@
             </div>
           </section>
 
-          <!-- ===========================================
-               SECTION 2 — ACTION CARDS
-               =========================================== -->
           <section class="section" aria-labelledby="actions-heading">
             <header style="margin-bottom: 1.4rem">
               <h2 class="section-title" id="actions-heading">
@@ -850,7 +833,6 @@
               role="group"
               aria-label="Sustainable action cards"
             >
-              <!-- Card 1 — Sustainable Transport -->
               <article
                 class="action-card"
                 data-id="transport"
@@ -887,7 +869,6 @@
                 </div>
               </article>
 
-              <!-- Card 2 Save Electricity -->
               <article
                 class="action-card"
                 data-id="electricity"
@@ -924,7 +905,6 @@
                 </div>
               </article>
 
-              <!-- Card 3 Recycle Waste -->
               <article
                 class="action-card"
                 data-id="recycle"
@@ -961,7 +941,6 @@
                 </div>
               </article>
 
-              <!-- Card 4 Plant Trees -->
               <article
                 class="action-card"
                 data-id="trees"
@@ -998,7 +977,6 @@
                 </div>
               </article>
 
-              <!-- Card 5 Save Water -->
               <article
                 class="action-card"
                 data-id="water"
@@ -1035,7 +1013,6 @@
                 </div>
               </article>
 
-              <!-- Card 6 Reusable Bags -->
               <article
                 class="action-card"
                 data-id="bags"
@@ -1072,12 +1049,8 @@
                 </div>
               </article>
             </div>
-            <!-- /.ais-grid -->
           </section>
 
-          <!-- ===========================================
-               SECTION 3 SUMMARY PANEL
-               =========================================== -->
           <section
             class="section ais-summary"
             aria-labelledby="summary-heading"
@@ -1105,7 +1078,6 @@
               </div>
             </div>
 
-            <!-- Live level indicator pill -->
             <div style="margin-bottom: 0.4rem">
               <span
                 class="ais-level-pill ais-level-pill--none"
@@ -1115,7 +1087,6 @@
               </span>
             </div>
 
-            <!-- Live score progress bar -->
             <div class="ais-live-progress" aria-hidden="true">
               <div class="ais-live-progress__track">
                 <div
@@ -1131,7 +1102,6 @@
               </div>
             </div>
 
-            <!-- Selected action chips -->
             <p class="ais-summary__selected-label">Selected Actions</p>
             <div
               class="ais-chips"
@@ -1143,7 +1113,6 @@
               </span>
             </div>
 
-            <!-- Calculate button -->
             <div class="ais-summary__cta">
               <button
                 class="btn btn-calculate"
@@ -1156,9 +1125,6 @@
             </div>
           </section>
 
-          <!-- ===========================================
-               SECTION 4 RESULTS
-               =========================================== -->
           <section
             class="section ais-results"
             id="results-section"
@@ -1175,11 +1141,9 @@
                 <span id="result-badge-text"></span>
               </div>
 
-              <!-- Score display -->
               <p class="ais-results__score" id="result-score">0</p>
               <p class="ais-results__score-label">Total Impact Points</p>
 
-              <!-- Progress bar (0–70 pts = 100%) -->
               <div
                 class="ais-progress-wrap"
                 role="progressbar"
@@ -1199,10 +1163,8 @@
                 </div>
               </div>
 
-              <!-- Encouraging message -->
               <p class="ais-results__message" id="result-message"></p>
 
-              <!-- Recommendations -->
               <div class="ais-recs">
                 <p class="ais-recs__title">Next Steps</p>
                 <ul
@@ -1212,16 +1174,13 @@
                 ></ul>
               </div>
 
-              <!-- Reset -->
               <button class="btn btn-reset" type="button" id="btn-reset">
                 ↺ Try Again
               </button>
             </div>
           </section>
         </div>
-        <!-- /.container -->
       </div>
-      <!-- /.ais-content -->
     </main>
 
     <!-- ===== FOOTER ===== -->
@@ -1252,14 +1211,11 @@
       (function () {
         "use strict";
 
-        /* ------------------------------------------
-           DATA - action definitions
-           ------------------------------------------ */
-        // Points-to-CO₂ conversion: 1 point ≈ 2.8 kg CO₂/year (illustrative)
-        const CO2_PER_POINT = 2.8;
-        const MAX_SCORE = 70; // sum of all card points
 
-        /* Impact level thresholds */
+        const CO2_PER_POINT = 2.8;
+        const MAX_SCORE = 70;
+
+
         const LEVELS = {
           low: {
             min: 0,
@@ -1308,14 +1264,9 @@
           },
         };
 
-        /* ------------------------------------------
-           STATE
-           ------------------------------------------ */
-        const selectedActions = new Set(); // stores data-id values
 
-        /* ------------------------------------------
-           DOM REFERENCES
-           ------------------------------------------ */
+        const selectedActions = new Set();
+
         const cards = document.querySelectorAll(".action-card");
         const statScore = document.getElementById("stat-score");
         const statActions = document.getElementById("stat-actions");
@@ -1339,10 +1290,7 @@
         const bgMedium = document.getElementById("bg-medium");
         const bgHigh = document.getElementById("bg-high");
 
-        /* ------------------------------------------
-           FUNCTION: calculateScore
-           Returns the numeric total of selected pts.
-           ------------------------------------------ */
+
         function calculateScore() {
           let total = 0;
           selectedActions.forEach(function (id) {
@@ -1354,45 +1302,36 @@
           return total;
         }
 
-        /* ------------------------------------------
-           FUNCTION: getLevel
-           Returns the level object for a given score.
-           ------------------------------------------ */
+
         function getLevel(score) {
           if (score <= LEVELS.low.max) return LEVELS.low;
           if (score <= LEVELS.medium.max) return LEVELS.medium;
           return LEVELS.high;
         }
 
-        /* ------------------------------------------
-           FUNCTION: popValue
-           Triggers the number-pop CSS animation.
-           ------------------------------------------ */
+
+
         function popValue(el) {
           el.classList.remove("pop");
-          // Force reflow so the animation re-fires
+
           void el.offsetWidth;
           el.classList.add("pop");
         }
 
-        /* ------------------------------------------
-           FUNCTION: updateSummary
-           Refreshes the live summary panel AND
-           triggers the background change in real time.
-           ------------------------------------------ */
+
         function updateSummary() {
           var score = calculateScore();
           var co2 = Math.round(score * CO2_PER_POINT);
 
-          // Update stat numbers with pop animation
+
           statScore.textContent = score;
           statActions.textContent = selectedActions.size;
           statCO2.textContent = co2 + " kg";
           popValue(statScore);
 
-          // ── Live background + pill + progress bar on every selection ──
+
           if (selectedActions.size === 0) {
-            // Nothing selected reset everything
+
             bgLow.classList.remove("is-active");
             bgMedium.classList.remove("is-active");
             bgHigh.classList.remove("is-active");
@@ -1404,7 +1343,7 @@
             var liveLevel = getLevel(score);
             setBackground(liveLevel.bg);
 
-            // Update level pill
+
             liveLevelPill.className =
               "ais-level-pill ais-level-pill--" +
               (liveLevel === LEVELS.low
@@ -1414,13 +1353,13 @@
                   : "high");
             liveLevelPill.textContent = liveLevel.icon + " " + liveLevel.label;
 
-            // Update mini progress bar (max 70 pts)
+
             var livePct = Math.min(Math.round((score / MAX_SCORE) * 100), 100);
             liveProgressFill.style.width = livePct + "%";
             liveProgressFill.classList.add("has-value");
           }
 
-          // Rebuild chips
+
           var existingChips = chipsContainer.querySelectorAll(".ais-chip");
           existingChips.forEach(function (c) {
             c.remove();
@@ -1440,22 +1379,19 @@
           }
         }
 
-        /* ------------------------------------------
-           FUNCTION: toggleAction
-           Selects / deselects a card.
-           ------------------------------------------ */
+
         function toggleAction(card) {
           var id = card.dataset.id;
           var btn = card.querySelector(".action-card__btn");
 
           if (selectedActions.has(id)) {
-            // Deselect
+
             selectedActions.delete(id);
             card.classList.remove("is-selected");
             btn.textContent = "Select Action";
             btn.setAttribute("aria-pressed", "false");
           } else {
-            // Select
+
             selectedActions.add(id);
             card.classList.add("is-selected");
             btn.textContent = "Selected ✓";
@@ -1464,14 +1400,11 @@
 
           updateSummary();
 
-          // Hide results if user changes selection after calculating
+
           hideResults();
         }
 
-        /* ------------------------------------------
-           FUNCTION: setBackground
-           Fades in the correct background layer.
-           ------------------------------------------ */
+
         function setBackground(bgId) {
           bgLow.classList.remove("is-active");
           bgMedium.classList.remove("is-active");
@@ -1482,30 +1415,23 @@
           if (bgId === "bg-high") bgHigh.classList.add("is-active");
         }
 
-        /* ------------------------------------------
-           FUNCTION: showResults
-           Reveals and populates the results section.
-           ------------------------------------------ */
+
         function showResults() {
           var score = calculateScore();
           var level = getLevel(score);
           var pct = Math.min(Math.round((score / MAX_SCORE) * 100), 100);
           var co2 = Math.round(score * CO2_PER_POINT);
 
-          // Populate badge
           resultBadge.className = "ais-badge " + level.badgeClass;
           resultBadgeIcon.textContent = level.icon;
           resultBadgeText.textContent = level.label;
 
-          // Score & message
           resultScore.textContent = score;
           resultMessage.textContent = level.message;
 
-          // Progress bar
           progressFill.style.width = "0%";
           progressBar.setAttribute("aria-valuenow", score);
 
-          // Build recommendations
           resultRecs.innerHTML = "";
           level.recs.forEach(function (rec) {
             var li = document.createElement("li");
@@ -1513,22 +1439,18 @@
             resultRecs.appendChild(li);
           });
 
-          // Swap background
           setBackground(level.bg);
 
-          // Reveal the results panel
           resultsSection.classList.add("is-animating");
           requestAnimationFrame(function () {
             requestAnimationFrame(function () {
               resultsSection.classList.add("is-visible");
-              // Animate progress bar after reveal
               setTimeout(function () {
                 progressFill.style.width = pct + "%";
               }, 150);
             });
           });
 
-          // Scroll results into view
           setTimeout(function () {
             resultsSection.scrollIntoView({
               behavior: "smooth",
@@ -1537,19 +1459,12 @@
           }, 100);
         }
 
-        /* ------------------------------------------
-           FUNCTION: hideResults
-           Hides the results panel (no animation reset).
-           ------------------------------------------ */
         function hideResults() {
           resultsSection.classList.remove("is-visible", "is-animating");
           progressFill.style.width = "0%";
         }
 
-        /* ------------------------------------------
-           FUNCTION: resetSimulator
-           Clears all state and returns to start.
-           ------------------------------------------ */
+
         function resetSimulator() {
           // Deselect all cards
           selectedActions.clear();
@@ -1560,22 +1475,18 @@
             btn.setAttribute("aria-pressed", "false");
           });
 
-          // Reset summary
+
           updateSummary();
 
-          // Hide results
           hideResults();
 
-          // Scroll back to top of simulator
           document.getElementById("actions-heading").scrollIntoView({
             behavior: "smooth",
             block: "start",
           });
         }
 
-        /* ------------------------------------------
-           EVENT LISTENERS
-           ------------------------------------------ */
+
 
         // Card clicks delegate to both card and button
         cards.forEach(function (card) {
@@ -1593,7 +1504,7 @@
             toggleAction(card);
           });
 
-          // Keyboard: Enter/Space on card (for non-button focus)
+
           card.addEventListener("keydown", function (e) {
             if (e.key === "Enter" || e.key === " ") {
               if (e.target === card) {
@@ -1604,10 +1515,9 @@
           });
         });
 
-        // Calculate button
+
         btnCalculate.addEventListener("click", function () {
           if (selectedActions.size === 0) {
-            // Friendly nudge no alert, just highlight the grid
             var grid = document.querySelector(".ais-grid");
             grid.style.outline = "3px solid #f59e0b";
             grid.style.borderRadius = "16px";
@@ -1620,13 +1530,11 @@
           showResults();
         });
 
-        // Reset button
+
         btnReset.addEventListener("click", resetSimulator);
 
-        /* ------------------------------------------
-           INIT
-           ------------------------------------------ */
-        updateSummary(); // prime the panel on load
+
+        updateSummary();
       })();
     </script>
   </body>
